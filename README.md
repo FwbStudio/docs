@@ -2,13 +2,10 @@
 
 Public documentation for Beta resources.
 
-This docs space is being kept simple on purpose right now.
+This docs space is structured in two layers:
 
-## Live Section
-
-| Section | Focus |
-|---|---|
-| `Bridge` | Supported integrations, installation, configuration, public namespaces, exports, and override examples |
+- `Helpful` for general server knowledge and common setup issues
+- `Bridge` for the public `fs_bridge` documentation
 
 ## Current Focus
 
@@ -17,13 +14,7 @@ The current public docs focus on FiveM servers using:
 - `ESX`
 - `QBCore`
 
-## Inside Bridge
-
-Bridge is split into two tracks:
-
-- `Public Installation` for server owners setting it up
-- `Developers` for people using `FWB.*`, exports, config names, and override snippets
-
 ## Start Here
 
+- [Helpful](helpful/README.md)
 - [Bridge](scripts/fs_bridge/README.md)

@@ -1,6 +1,10 @@
 # Table of contents
 
 * [Home](README.md)
+* [Helpful](helpful/README.md)
+  * [Basic Server Knowledge](helpful/basic-server-knowledge.md)
+  * [Escrow Errors](helpful/escrow-errors.md)
+  * [General Issues](helpful/general-issues.md)
 * [Bridge](scripts/fs_bridge/README.md)
   * [Installation](scripts/fs_bridge/installation.md)
   * [Compatibility](scripts/fs_bridge/compatibility.md)
