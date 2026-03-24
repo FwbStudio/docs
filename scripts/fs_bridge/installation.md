@@ -1,10 +1,19 @@
 # Installation
 
-This page covers the normal Bridge installation flow for FiveM servers.
+This page covers the recommended Bridge installation flow for FiveM servers.
 
-## Required Dependencies
+> 🔴 **Important**
+> Ensure `fs_bridge` as the last resource in your `server.cfg`.
 
-Make sure these are installed before Bridge:
+> 🟢 **Recommended**
+> Keep `fs_bridge` and your related FS scripts inside the same `[fs]` folder.
+
+> 🔵 **Default setup**
+> Leave supported selectors on `1` for auto detect unless a support team member tells you to use manual selection.
+
+## Required Base Resources
+
+Make sure these are already installed:
 
 | Type | Required |
 |---|---|
@@ -12,51 +21,79 @@ Make sure these are installed before Bridge:
 | Framework | `es_extended` or `qb-core` |
 | Bridge resource | `fs_bridge` |
 
-## Recommended Resource Placement
+## 1. Start Order Rules
 
-Place Bridge inside your resources folder in your project script group, for example:
-
-```text
-resources/[fs]/fs_bridge
-```
-
-Keeping Bridge inside your `[fs]` group makes it easier to keep your own script order clean.
-
-## Start Order Rules
+Bridge should start after everything it needs to detect.
 
 - start your framework before Bridge
-- start supported resources that Bridge needs to detect before Bridge
-- start Bridge before your own scripts that directly depend on Bridge on startup
+- start supported resources before Bridge
+- start all other required resources before Bridge
+- ensure `fs_bridge` last
 
-## ESX Setup
+Example order:
 
-1. Make sure `es_extended` and `oxmysql` are working first.
-2. Start any supported target, inventory, phone, dispatch, fuel, or keys resources you want Bridge to detect.
-3. Start `fs_bridge`.
-4. Start your own resources that use `FWB.*` or `exports.fs_bridge:*`.
+```text
+oxmysql
+framework
+supported resources
+other required resources
+fs_bridge
+```
 
-## QBCore Setup
+## 2. Keep Everything In The Same `[fs]` Folder
 
-1. Make sure `qb-core` and `oxmysql` are working first.
-2. Start any supported target, inventory, phone, dispatch, fuel, or keys resources you want Bridge to detect.
-3. Start `fs_bridge`.
-4. Start your own resources that use `FWB.*` or `exports.fs_bridge:*`.
+Recommended layout:
 
-## Configure Bridge
+```text
+resources/
+`-- [fs]/
+    |-- fs_bridge
+    |-- your_fs_script_1
+    |-- your_fs_script_2
+    `-- your_fs_script_3
+```
 
-After the resource is in place:
+Keeping Bridge and your related scripts in the same `[fs]` folder makes the setup easier to manage, and your scripts can wait for Bridge to start properly.
 
-1. Open `config/sh_config.lua`
-2. Keep `selected_key = 1` for auto-detect unless you want to force a supported resource
-3. Confirm the framework section matches your server
-4. Restart the server
+## 3. ESX And QBCore Setup
 
-## Basic Checks After Install
+The setup flow is the same for both ESX and QBCore.
 
-- Bridge starts without errors
-- the correct framework is detected
-- the supported resources you use are detected
-- your own scripts can call Bridge after startup
+1. drag and drop the resource into your server
+2. make sure `oxmysql` and your framework are already working
+3. keep all supported selectors on `1` for auto detect
+4. only use manual selection if a support team member tells you to
+
+Example:
+
+```lua
+selected_key = 1
+```
+
+## 4. Restart And Verify
+
+After installation:
+
+1. restart your server
+2. check Bridge debug prints in `F8`
+3. check Bridge debug prints in the server console
+
+You can also use these commands to check detected modules:
+
+| Command | Where To Use It | Purpose |
+|---|---|---|
+| `/fs_bridge_c` | In-game chat | Check client-side detected modules |
+| `fs_bridge_s` | Server console | Check server-side detected modules |
+
+## Quick Checklist
+
+- `oxmysql` is installed
+- `es_extended` or `qb-core` is installed
+- `fs_bridge` is inside `[fs]`
+- supported resources start before Bridge
+- `fs_bridge` is ensured last
+- selectors stay on `1` unless support tells you otherwise
+- debug output looks correct in `F8` and the server console
 
 ## Next Pages
 
