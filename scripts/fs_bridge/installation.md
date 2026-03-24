@@ -41,21 +41,15 @@ Make sure these are already installed before Bridge:
 
 ## Start Order Rules
 
-Bridge should start after everything it needs to detect.
-
-- start your framework before Bridge
-- start supported resources before Bridge
-- start all other required resources before Bridge
-- ensure `fs_bridge` last
+Ensure your <mark style="color:#f0fdf4;background-color:#166534;">[fs]</mark> folder, including Bridge and your other FS resources, is placed near the bottom of your <mark style="color:#f0fdf4;background-color:#166534;">server.cfg</mark>, with `fs_bridge` ensured last.
 
 Example order:
 
 ```text
-oxmysql
-framework
-supported resources
-other required resources
-fs_bridge
+ensure [framework]
+ensure [standalone]
+ensure [fs]
+ensure fs_bridge
 ```
 
 ## Keep Everything In The Same `[fs]` Folder
