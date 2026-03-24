@@ -44,11 +44,11 @@ This page lists the supported resource groups currently exposed through `sh_conf
 
 ## Notification
 
-`auto`, `fs_bridge`, `ox_lib`, `esx_notify`, `es_extended`, `qb-core`, `vorp_core`
+`auto`, `fs_bridge`, `ox_lib`, `esx_notify`, `es_extended`, `qb-core`
 
 ## Text UI
 
-`auto`, `fs_bridge`, `ox_lib`, `esx_textui`, `es_extended`, `qb-core`, `vorp_core`
+`auto`, `fs_bridge`, `ox_lib`, `esx_textui`, `es_extended`, `qb-core`
 
 ## Progressbar
 

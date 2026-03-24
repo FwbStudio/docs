@@ -4,6 +4,13 @@
 
 This page documents the keys users are expected to change.
 
+## Current Public Focus
+
+The current public configuration docs focus on FiveM servers using:
+
+- `ESX`
+- `QBCore`
+
 ## Top-Level Sections
 
 | Key | Purpose |
@@ -34,13 +41,12 @@ If the requested locale is missing, the bridge falls back to English.
 
 ## Framework
 
-Each supported framework has its own event map.
+These are the main framework config branches currently covered in public docs:
 
 | Framework | Main Config Keys |
 |---|---|
 | `ESX` | `core_script`, `update_player_job`, `load_player`, `unload_player` |
 | `QBCore` | `core_script`, `update_player_job`, `load_player`, `unload_player`, `dirtymoney`, `bank` |
-| `VORP` | `core_script`, `update_player_job`, `load_player`, `unload_player` |
 
 ## Runtime Creation Modes
 
@@ -103,5 +109,3 @@ Rules:
 | `Notification` | Notify resource selection |
 | `TextUi` | Text UI resource selection |
 | `Progressbar` | Progress bar resource selection |
-
-For the full supported list in each group, see [Resource Support](../resource-support.md).
