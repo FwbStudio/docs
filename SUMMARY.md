@@ -35,3 +35,7 @@
         * [FWB.Vehicle.Fuel](scripts/fs_bridge/overrides/integration-overrides/fwb-vehicle-fuel.md)
   * [&#128196; Configuration Files](scripts/fs_bridge/configuration-files/README.md)
     * [Shared Config (sh\_config.lua)](scripts/fs_bridge/configuration-files/shared-config.md)
+    * [Client Config (cl\_config.lua)](scripts/fs_bridge/configuration-files/client-config.md)
+    * [Server Config (sv\_config.lua)](scripts/fs_bridge/configuration-files/server-config.md)
+    * [Unlocked Client (client.lua)](scripts/fs_bridge/configuration-files/unlocked-client.md)
+    * [Unlocked Server (server.lua)](scripts/fs_bridge/configuration-files/unlocked-server.md)
