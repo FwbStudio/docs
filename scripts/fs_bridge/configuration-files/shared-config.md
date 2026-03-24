@@ -10,6 +10,7 @@ The current public configuration docs focus on FiveM servers using:
 
 - `ESX`
 - `QBCore`
+- `Qbox`
 
 ## Top-Level Sections
 
@@ -47,6 +48,7 @@ These are the main framework config branches currently covered in public docs:
 |---|---|
 | `ESX` | `core_script`, `update_player_job`, `load_player`, `unload_player` |
 | `QBCore` | `core_script`, `update_player_job`, `load_player`, `unload_player`, `dirtymoney`, `bank` |
+| `Qbox` | `core_script`, `update_player_job`, `load_player`, `unload_player`, `bank` |
 
 ## Runtime Creation Modes
 

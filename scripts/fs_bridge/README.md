@@ -18,6 +18,7 @@ The current public docs focus on FiveM usage with:
 
 - `ESX`
 - `QBCore`
+- `Qbox`
 
 ## Sections
 

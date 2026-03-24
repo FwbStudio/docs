@@ -18,7 +18,7 @@ Make sure these are already installed:
 | Type | Required |
 |---|---|
 | Database library | `oxmysql` |
-| Framework | `es_extended` or `qb-core` |
+| Framework | `es_extended`, `qb-core`, or `qbx_core` |
 | Bridge resource | `fs_bridge` |
 
 ## 1. Start Order Rules
@@ -55,9 +55,9 @@ resources/
 
 Keeping Bridge and your related scripts in the same `[fs]` folder makes the setup easier to manage, and your scripts can wait for Bridge to start properly.
 
-## 3. ESX And QBCore Setup
+## 3. ESX, QBCore, And Qbox Setup
 
-The setup flow is the same for both ESX and QBCore.
+The setup flow is the same for ESX, QBCore, and Qbox.
 
 1. drag and drop the resource into your server
 2. make sure `oxmysql` and your framework are already working
@@ -88,7 +88,7 @@ You can also use these commands to check detected modules:
 ## Quick Checklist
 
 - `oxmysql` is installed
-- `es_extended` or `qb-core` is installed
+- `es_extended`, `qb-core`, or `qbx_core` is installed
 - `fs_bridge` is inside `[fs]`
 - supported resources start before Bridge
 - `fs_bridge` is ensured last

@@ -18,5 +18,6 @@ For now, this public installation section is focused on:
 
 - `ESX`
 - `QBCore`
+- `Qbox`
 
 That keeps the docs clean while the FiveM path is the priority.

@@ -15,7 +15,7 @@ Check these first:
 
 Bridge should not start before:
 
-- `es_extended` or `qb-core`
+- `es_extended`, `qb-core`, or `qbx_core`
 - supported resources it needs to read from, such as target, inventory, dispatch, phone, or fuel systems
 
 If Bridge starts too early, detection can fail.
@@ -60,6 +60,7 @@ Open `config/sh_config.lua` and make sure the framework section matches your ser
 
 - `ESX`
 - `QBCore`
+- `Qbox`
 
 If the wrong branch is being used, job and player functions may not behave correctly.
 

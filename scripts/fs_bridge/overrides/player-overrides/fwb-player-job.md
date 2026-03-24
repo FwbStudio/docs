@@ -106,7 +106,7 @@ Override code:
 
 ```lua
 -- No unlocked override block is documented for job write helpers at this time.
--- Use the built-in framework support for ESX, QBCore, or VORP.
+-- Use the built-in framework support for ESX, QBCore, or Qbox.
 ```
 
 Example usage:

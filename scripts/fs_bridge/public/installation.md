@@ -9,7 +9,7 @@ You should have these in place before setting up Bridge:
 | Type | Required |
 |---|---|
 | Database library | `oxmysql` |
-| Framework | `es_extended` or `qb-core` |
+| Framework | `es_extended`, `qb-core`, or `qbx_core` |
 | Bridge resource | `fs_bridge` |
 
 ## Optional Supported Scripts
@@ -31,7 +31,7 @@ You only need these if you want Bridge to connect to them:
 ## Recommended Setup Flow
 
 1. Install and start `oxmysql`.
-2. Make sure your framework is already working: `es_extended` or `qb-core`.
+2. Make sure your framework is already working: `es_extended`, `qb-core`, or `qbx_core`.
 3. Add `fs_bridge` to your server resources.
 4. Start Bridge after your framework and the supported scripts you want it to detect.
 5. Open `config/sh_config.lua`.

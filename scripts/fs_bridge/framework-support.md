@@ -8,6 +8,7 @@ This page currently documents the public FiveM focus for Bridge.
 |---|---|---|
 | `ESX` | FiveM | Uses `es_extended` config keys |
 | `QBCore` | FiveM | Includes dirty money and society bank config branches |
+| `Qbox` | FiveM | Uses `qbx_core` config keys |
 
 ## What This Support Includes
 

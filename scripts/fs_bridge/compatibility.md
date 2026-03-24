@@ -10,6 +10,7 @@ Bridge currently documents and focuses on these FiveM frameworks:
 |---|---|---|
 | `ESX` | Supported | Uses `es_extended` in config |
 | `QBCore` | Supported | Uses `qb-core` in config |
+| `Qbox` | Supported | Uses `qbx_core` in config |
 
 ## Supported Integration Groups
 

@@ -17,7 +17,7 @@ resources/
 ## Recommended Start Order
 
 1. `oxmysql`
-2. `es_extended` or `qb-core`
+2. `es_extended`, `qb-core`, or `qbx_core`
 3. supported resources Bridge may use
 4. `fs_bridge`
 5. your own resources that depend on Bridge
