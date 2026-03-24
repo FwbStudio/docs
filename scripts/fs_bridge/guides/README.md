@@ -1,4 +1,4 @@
-# Guides
+# &#10148; Guides
 
 This section contains task-based Bridge walkthroughs.
 

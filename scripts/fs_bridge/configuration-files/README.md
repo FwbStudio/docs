@@ -1,4 +1,4 @@
-# Configuration Files
+# &#128196; Configuration Files
 
 This section documents the files users normally edit.
 

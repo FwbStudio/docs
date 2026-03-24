@@ -1,4 +1,4 @@
-# Common Errors
+# &#9888; Common Errors
 
 This page covers the most common Bridge setup mistakes.
 
