@@ -1,6 +1,6 @@
 # Compatibility
 
-This page shows the frameworks, integrations, and built-in modules that currently have public Bridge support.
+This page shows the frameworks and integrations that currently have public Bridge support.
 
 | ✅ Officially Supported | ✅ Supported | ⚠️ Supported |
 |---|---|---|
@@ -17,15 +17,6 @@ This page shows the frameworks, integrations, and built-in modules that currentl
 | `ESX` | ✅ Officially Supported | `es_extended` |
 | `QBCore` | ✅ Officially Supported | `qb-core` |
 | `Qbox` | ✅ Officially Supported | `qbx_core` |
-
-## 🧩 Built-In Bridge Modules
-
-| Module | Status | Purpose |
-|---|---|---|
-| `FWB.Blip` | ✅ Officially Supported | Static and moving blips |
-| `FWB.Ped` | ✅ Officially Supported | Handle-based ped runtime |
-| `FWB.Vehicle` | ✅ Officially Supported | Vehicle creation, updates, props, and ownership helpers |
-| `FWB.Entity` | ✅ Officially Supported | Nearby entity helpers and front-coords helpers |
 
 ## 🔌 Integration Compatibility
 

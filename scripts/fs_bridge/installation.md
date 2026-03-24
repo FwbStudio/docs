@@ -2,18 +2,17 @@
 
 This page covers the recommended Bridge installation flow for FiveM servers.
 
-> 🔴 **Important**
-> Ensure `fs_bridge` as the last resource in your `server.cfg`.
+| 🔴 Start Order Rule | 🟢 Recommended Layout | 🔵 Default Config |
+|---|---|---|
+| Ensure `fs_bridge` as the last resource in your `server.cfg`. | Keep `fs_bridge` and your related FS scripts inside the same `[fs]` folder. | Keep supported selectors on `1` for auto-detect unless support tells you to change them. |
 
-> 🟢 **Recommended**
-> Keep `fs_bridge` and your related FS scripts inside the same `[fs]` folder.
+| 🟣 After Setup | ⚪ Need Help Checking? |
+|---|---|
+| Restart the server and verify Bridge output in both `F8` and the server console. | Use `/fs_bridge_c` in-game and `fs_bridge_s` in the server console to check detected modules. |
 
-> 🔵 **Default setup**
-> Leave supported selectors on `1` for auto detect unless a support team member tells you to use manual selection.
+## 📦 Required Base Resources
 
-## Required Base Resources
-
-Make sure these are already installed:
+Make sure these are already installed before Bridge:
 
 | Type | Required |
 |---|---|
@@ -21,7 +20,7 @@ Make sure these are already installed:
 | Framework | `es_extended`, `qb-core`, or `qbx_core` |
 | Bridge resource | `fs_bridge` |
 
-## 1. Start Order Rules
+## ⏱️ Start Order Rules
 
 Bridge should start after everything it needs to detect.
 
@@ -40,7 +39,7 @@ other required resources
 fs_bridge
 ```
 
-## 2. Keep Everything In The Same `[fs]` Folder
+## 📁 Keep Everything In The Same `[fs]` Folder
 
 Recommended layout:
 
@@ -55,7 +54,7 @@ resources/
 
 Keeping Bridge and your related scripts in the same `[fs]` folder makes the setup easier to manage, and your scripts can wait for Bridge to start properly.
 
-## 3. ESX, QBCore, And Qbox Setup
+## ⚙️ ESX, QBCore, And Qbox Setup
 
 The setup flow is the same for ESX, QBCore, and Qbox.
 
@@ -70,7 +69,7 @@ Example:
 selected_key = 1
 ```
 
-## 4. Restart And Verify
+## 🧪 Restart And Verify
 
 After installation:
 
@@ -85,7 +84,7 @@ You can also use these commands to check detected modules:
 | `/fs_bridge_c` | In-game chat | Check client-side detected modules |
 | `fs_bridge_s` | Server console | Check server-side detected modules |
 
-## Quick Checklist
+## ✅ Quick Checklist
 
 - `oxmysql` is installed
 - `es_extended`, `qb-core`, or `qbx_core` is installed
@@ -95,7 +94,7 @@ You can also use these commands to check detected modules:
 - selectors stay on `1` unless support tells you otherwise
 - debug output looks correct in `F8` and the server console
 
-## Next Pages
+## ➡️ Next Pages
 
 - [Compatibility](compatibility.md)
 - [Common Errors](common-errors.md)
