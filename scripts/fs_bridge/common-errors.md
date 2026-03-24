@@ -1,85 +1,87 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # &#9888; Common Errors
 
-This page covers the most common Bridge setup mistakes.
+Below you'll find the most common Bridge-related errors and what they usually mean.
 
-## Bridge Does Not Detect My Resources
+Click an error to expand it.
+
+* * *
+
+<details>
+<summary><strong>Bridge keeps spamming "waiting to start load properly"</strong></summary>
+
+This usually means Bridge is waiting for the framework you selected, but that framework is not the correct one for your server setup.
+
+Make sure:
+
+- you purchased or installed the correct framework version
+- the Bridge framework matches your server
+- your server is actually using `ESX`, `QBCore`, or `Qbox` as expected
+
+If the wrong framework version is installed, Bridge can keep waiting for something that never loads.
+
+</details>
+
+<details>
+<summary><strong>I have the items, but the console says they were not found in ESX, QBCore, or Qbox</strong></summary>
+
+This usually means your installation order is wrong and Bridge did not detect your inventory correctly.
 
 Check these first:
 
-1. Make sure the supported resources you want Bridge to detect start before `fs_bridge`
-2. Make sure `selected_key = 1` is still used if you want auto-detect
-3. Make sure the resource names match the supported names exactly
-4. Restart the whole server after changing start order
+- make sure your supported inventory starts before `fs_bridge`
+- make sure your <mark style="color:#f0fdf4;background-color:#166534;">[fs]</mark> group is near the bottom of <mark style="color:#f0fdf4;background-color:#166534;">server.cfg</mark>
+- make sure `fs_bridge` is ensured last
+- restart the full server after changing the order
 
-## Bridge Starts Too Early
+If Bridge does not detect the correct inventory, item checks can fail even when the items exist.
 
-Bridge should not start before:
+</details>
 
-- `es_extended`, `qb-core`, or `qbx_core`
-- supported resources it needs to read from, such as target, inventory, dispatch, phone, or fuel systems
+<details>
+<summary><strong>The console says an export was not found in <code>esx_skin</code>, <code>qb_skin</code>, or a clothing resource</strong></summary>
 
-If Bridge starts too early, detection can fail.
+This usually means Bridge was not ensured last and could not detect the clothing resource correctly.
 
-## My Own Script Cannot Use Bridge On Startup
+Check these first:
 
-If your own resource calls Bridge during startup, it must start after `fs_bridge`.
+- make sure your clothing resource starts before `fs_bridge`
+- make sure `fs_bridge` is ensured last
+- restart the full server after changing the order
 
-Typical order:
+If Bridge starts too early, it may try to use exports before the supported clothing resource is available.
 
-```text
-framework
-supported resources
-fs_bridge
-your own Bridge-based resources
-```
+</details>
 
-## Resource Placement Is Wrong
+<details>
+<summary><strong>The console says "attempt to index a nil value"</strong></summary>
 
-Recommended placement:
+If this happens right after uploading or starting an escrowed resource, it usually points to an escrow upload problem.
 
-```text
-resources/[fs]/fs_bridge
-```
+Recommended fix:
 
-This keeps your Bridge and related resources grouped cleanly.
+1. re-upload the resource using `WinSCP`
+2. avoid tools that may damage escrowed files during upload
+3. restart the server after uploading again
 
-## Bridge In `server.cfg`
+If the escrowed files were corrupted during transfer, Bridge or the connected resource may fail with nil-value errors.
 
-For normal setups, keep Bridge near the end of the resources it needs to detect, not before them.
-
-Good rule:
-
-- framework first
-- supported integrations next
-- `fs_bridge` after them
-- your own Bridge-dependent scripts after `fs_bridge`
-
-## Wrong Framework Branch In Config
-
-Open `config/sh_config.lua` and make sure the framework section matches your server:
-
-- `ESX`
-- `QBCore`
-- `Qbox`
-
-If the wrong branch is being used, job and player functions may not behave correctly.
-
-## I Edited Locked Files
-
-For normal setups, do not edit locked Bridge files.
-
-Use:
-
-- `config/sh_config.lua`
-- `unlocked/client.lua`
-- `unlocked/server.lua`
-
-## My Custom Script Is Not Supported
-
-That does not always mean Bridge is broken.
-
-If your script is unsupported:
-
-1. keep the supported config clean
-2. use the override pages
-3. paste custom logic into unlocked files only
+</details>
