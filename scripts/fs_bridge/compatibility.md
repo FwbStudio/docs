@@ -2,33 +2,32 @@
 
 This page shows the frameworks, integrations, and built-in modules that currently have public Bridge support.
 
-> ✅ **Built-in support**
-> Every resource listed below already has Bridge support.
+| ✅ Officially Supported | ✅ Supported | ⚠️ Supported |
+|---|---|---|
+| Verified compatibility and built in support are available inside Bridge. | Bridge includes support for this resource in normal public setup. | Compatibility may exist in code, but it should be checked carefully before relying on it. |
 
-> 🟢 **Recommended setup**
-> Keep `selected_key = 1` unless a support team member tells you to manually force a specific resource.
+| ⛔ Not Supported | 🕒 Soon... |
+|---|---|
+| Resource is not supported in the normal public setup flow. Use overrides instead. | We may add public support in a future update. |
 
-> ⬜ **Resource not listed**
-> If you do not see a resource below, treat it as unsupported for normal public setup and use the override docs instead.
-
-## Supported Frameworks
+## ⚙️ Supported Frameworks
 
 | Framework | Status | Resource Name |
 |---|---|---|
-| `ESX` | ✅ Supported | `es_extended` |
-| `QBCore` | ✅ Supported | `qb-core` |
-| `Qbox` | ✅ Supported | `qbx_core` |
+| `ESX` | ✅ Officially Supported | `es_extended` |
+| `QBCore` | ✅ Officially Supported | `qb-core` |
+| `Qbox` | ✅ Officially Supported | `qbx_core` |
 
-## Built-In Bridge Modules
+## 🧩 Built-In Bridge Modules
 
 | Module | Status | Purpose |
 |---|---|---|
-| `FWB.Blip` | ✅ Built-in | Static and moving blips |
-| `FWB.Ped` | ✅ Built-in | Handle-based ped runtime |
-| `FWB.Vehicle` | ✅ Built-in | Vehicle creation, updates, props, and ownership helpers |
-| `FWB.Entity` | ✅ Built-in | Nearby entity helpers and front-coords helpers |
+| `FWB.Blip` | ✅ Officially Supported | Static and moving blips |
+| `FWB.Ped` | ✅ Officially Supported | Handle-based ped runtime |
+| `FWB.Vehicle` | ✅ Officially Supported | Vehicle creation, updates, props, and ownership helpers |
+| `FWB.Entity` | ✅ Officially Supported | Nearby entity helpers and front-coords helpers |
 
-## Integration Compatibility
+## 🔌 Integration Compatibility
 
 All integration groups below follow the same public setup rule:
 
@@ -36,7 +35,7 @@ All integration groups below follow the same public setup rule:
 - only force a specific resource if support tells you to
 - use overrides if your exact resource is not listed
 
-### Ambulance
+### 🚑 Ambulance
 
 Used for downed-state and ambulance compatibility.
 
@@ -49,7 +48,7 @@ Used for downed-state and ambulance compatibility.
 | `tk_ambulancejob` | ✅ Supported |
 | `p_ambulancejob` | ✅ Supported |
 
-### Banking
+### 🏦 Banking
 
 Used for society banking and bank-related helpers.
 
@@ -63,7 +62,7 @@ Used for society banking and bank-related helpers.
 | `qs_banking` | ✅ Supported |
 | `fd_banking` | ✅ Supported |
 
-### Clothing
+### 👕 Clothing
 
 Used for clothing, appearance, and skin-related helpers.
 
@@ -78,7 +77,7 @@ Used for clothing, appearance, and skin-related helpers.
 | `p_appearance` | ✅ Supported |
 | `qs-appearance` | ✅ Supported |
 
-### Dispatch
+### 🚨 Dispatch
 
 Used for alerts, police notifications, and dispatch integrations.
 
@@ -93,7 +92,7 @@ Used for alerts, police notifications, and dispatch integrations.
 | `wasabi_mdt` | ✅ Supported |
 | `lb-tablet` | ✅ Supported |
 
-### Inventory
+### 🎒 Inventory
 
 Used for inventory reads, stash support, and item image helpers.
 
@@ -108,7 +107,7 @@ Used for inventory reads, stash support, and item image helpers.
 | `pappu-inventorynp` | ✅ Supported |
 | `codem-inventory` | ✅ Supported |
 
-### Target
+### 🎯 Target
 
 Used for target interaction support.
 
@@ -118,7 +117,7 @@ Used for target interaction support.
 | `qb-target` | ✅ Supported |
 | `qtarget` | ✅ Supported |
 
-### Vehicle Keys
+### 🔑 Vehicle Keys
 
 Used for key ownership and vehicle access support.
 
@@ -134,7 +133,7 @@ Used for key ownership and vehicle access support.
 | `qb-vehiclekeys` | ✅ Supported |
 | `cd_garage` | ✅ Supported |
 
-### Vehicle Fuel
+### ⛽ Vehicle Fuel
 
 Used for fuel level support and refuel helpers.
 
@@ -150,7 +149,7 @@ Used for fuel level support and refuel helpers.
 | `lyre_fuel` | ✅ Supported |
 | `lc_fuel` | ✅ Supported |
 
-### Sounds
+### 🔊 Sounds
 
 Used for URL and positional audio support.
 
@@ -159,7 +158,7 @@ Used for URL and positional audio support.
 | `xsound` | ✅ Supported |
 | `mx-surround` | ✅ Supported |
 
-### Phone
+### 📱 Phone
 
 Used for phone and mail integrations.
 
@@ -172,7 +171,7 @@ Used for phone and mail integrations.
 | `lb-phone` | ✅ Supported |
 | `gksphone` | ✅ Supported |
 
-### Notification
+### 🔔 Notification
 
 Used for notify helpers.
 
@@ -184,7 +183,7 @@ Used for notify helpers.
 | `es_extended` | ✅ Supported |
 | `qb-core` | ✅ Supported |
 
-### Text UI
+### 💬 Text UI
 
 Used for text UI helpers.
 
@@ -196,7 +195,7 @@ Used for text UI helpers.
 | `es_extended` | ✅ Supported |
 | `qb-core` | ✅ Supported |
 
-### Progressbar
+### ⏳ Progressbar
 
 Used for progress helper support.
 
@@ -207,7 +206,7 @@ Used for progress helper support.
 | `qb-core` | ✅ Supported |
 | `mythic_progbar` | ✅ Supported |
 
-## Need A Custom Integration?
+## 🛠️ Need A Custom Integration?
 
 If your resource is not listed above:
 
