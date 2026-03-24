@@ -1,3 +1,22 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Overrides
 
 Overrides are for custom integrations that are not already covered by the built-in compatibility layer.
@@ -18,19 +37,19 @@ unlocked/server.lua
 
 ## Override Rules
 
-- keep your edits inside the unlocked files
-- use the public function names documented here
-- only override what you need
-- prefer supported integrations first
+* keep your edits inside the unlocked files
+* use the public function names documented here
+* only override what you need
+* prefer supported integrations first
 
 ## How These Pages Are Organized
 
 The override docs are grouped by public namespace or public feature area.
 
-| Section | Covers |
-|---|---|
-| [Player Overrides](player-overrides/README.md) | Player state, job helpers, and player vehicle key flows |
-| [Integration Overrides](integration-overrides/README.md) | Banking, clothes, dispatch, phone, sounds, and fuel customizations |
+| Section                                         | Covers                                                             |
+| ----------------------------------------------- | ------------------------------------------------------------------ |
+| [Player Overrides](player-overrides/)           | Player state, job helpers, and player vehicle key flows            |
+| [Integration Overrides](integration-overrides/) | Banking, clothes, dispatch, phone, sounds, and fuel customizations |
 
 ## Typical Override Shape
 

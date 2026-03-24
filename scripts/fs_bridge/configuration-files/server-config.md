@@ -1,4 +1,23 @@
-# Server Config (`sv_config.lua`)
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
+# Server Config (sv\_config.lua)
 
 The current file is shown below exactly as it appears in Bridge.
 
