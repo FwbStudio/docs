@@ -2,13 +2,13 @@
 
 This page covers the recommended Bridge installation flow for FiveM servers.
 
-| 🔴 Start Order Rule | 🟢 Recommended Layout | 🔵 Default Config |
-|---|---|---|
-| Ensure `fs_bridge` as the last resource in your `server.cfg`. | Keep `fs_bridge` and your related FS scripts inside the same `[fs]` folder. | Keep supported selectors on `1` for auto-detect unless support tells you to change them. |
+## Quick Summary
 
-| 🟣 After Setup | ⚪ Need Help Checking? |
-|---|---|
-| Restart the server and verify Bridge output in both `F8` and the server console. | Use `/fs_bridge_c` in-game and `fs_bridge_s` in the server console to check detected modules. |
+- 🔴 **Start Order Rule:** Ensure `fs_bridge` as the last resource in your `server.cfg`.
+- 🟢 **Recommended Layout:** Keep `fs_bridge` and your related FS scripts inside the same `[fs]` folder.
+- 🔵 **Default Config:** Keep supported selectors on `1` for auto-detect unless support tells you to change them.
+- 🟣 **After Setup:** Restart the server and verify Bridge output in both `F8` and the server console.
+- ⚪ **Need Help Checking?** Use `/fs_bridge_c` in-game and `fs_bridge_s` in the server console to check detected modules.
 
 ## 📦 Required Base Resources
 
