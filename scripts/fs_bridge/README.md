@@ -18,12 +18,13 @@ The current public docs focus on FiveM usage with:
 - `ESX`
 - `QBCore`
 
-## Browse By Goal
+## Main Sections
 
-| If you are... | Start Here |
+| Section | What It Covers |
 |---|---|
-| Setting Bridge up on a server | [Public Installation](getting-started/README.md) |
-| Building resources with Bridge APIs and exports | [Developers](developers/README.md) |
+| [Installation](public/installation.md) | Setup, supported stuff, and config |
+| [Override](overrides/README.md) | Custom integration snippets grouped by namespace |
+| [Usage](developers/usage/README.md) | Public namespace usage, API reference, and examples |
 
 ## Main Public Namespaces
 
