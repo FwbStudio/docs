@@ -34,4 +34,4 @@
         * [FWB.Sounds](scripts/fs_bridge/overrides/integration-overrides/fwb-sounds.md)
         * [FWB.Vehicle.Fuel](scripts/fs_bridge/overrides/integration-overrides/fwb-vehicle-fuel.md)
   * [Configuration Files](scripts/fs_bridge/configuration-files/README.md)
-    * [Shared Config (`sh_config.lua`)](scripts/fs_bridge/configuration-files/shared-config.md)
+    * [Shared Config (sh\_config.lua)](scripts/fs_bridge/configuration-files/shared-config.md)
