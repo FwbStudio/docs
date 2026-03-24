@@ -8,7 +8,7 @@
 * [Bridge](scripts/fs_bridge/README.md)
   * [&#9881; Installation](scripts/fs_bridge/installation.md)
   * [&#10227; Compatibility](scripts/fs_bridge/compatibility.md)
-  * [FAQ](scripts/fs_bridge/faq.md)
+  * [&#10067; FAQ](scripts/fs_bridge/faq.md)
   * [Common Errors](scripts/fs_bridge/common-errors.md)
   * [Guides](scripts/fs_bridge/guides/README.md)
     * [Resource Order](scripts/fs_bridge/guides/resource-order.md)
