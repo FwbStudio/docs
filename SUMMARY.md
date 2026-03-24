@@ -33,7 +33,7 @@
         * [FWB.Phone](scripts/fs_bridge/overrides/integration-overrides/fwb-phone.md)
         * [FWB.Sounds](scripts/fs_bridge/overrides/integration-overrides/fwb-sounds.md)
         * [FWB.Vehicle.Fuel](scripts/fs_bridge/overrides/integration-overrides/fwb-vehicle-fuel.md)
-  * [Configuration Files](scripts/fs_bridge/configuration-files/README.md)
+  * [📖 Configuration Files](scripts/fs_bridge/configuration-files/README.md)
     * [Shared Config (sh\_config.lua)](scripts/fs_bridge/configuration-files/shared-config.md)
     * [Client Config (cl\_config.lua)](scripts/fs_bridge/configuration-files/client-config.md)
     * [Server Config (sv\_config.lua)](scripts/fs_bridge/configuration-files/server-config.md)

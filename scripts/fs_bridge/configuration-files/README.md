@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# Configuration Files
+# 📖 Configuration Files
 
 This section mirrors the current Bridge config files.
 
