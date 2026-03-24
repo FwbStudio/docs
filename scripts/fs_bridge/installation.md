@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# &#9881; Installation
+# Installation
 
 This page covers the recommended Bridge installation flow for FiveM servers.
 

@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# ? FAQ
+# FAQ
 
 Below you'll find answers to the most common Bridge setup and usage questions.
 

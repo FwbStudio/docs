@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# &#9888; Common Errors
+# Common Errors
 
 Below you'll find the most common Bridge-related errors and what they usually mean.
 

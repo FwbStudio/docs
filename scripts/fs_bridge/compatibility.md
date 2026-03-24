@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# &#10227; Compatibility
+# Compatibility
 
 This page shows the frameworks and integrations that currently have public Bridge support.
 
