@@ -6,5 +6,5 @@ This section contains task-based Bridge walkthroughs.
 
 | Guide | What It Covers |
 |---|---|
-| [Resource Order](resource-order.md) | Recommended startup and resource placement order |
-| [Custom Overrides](custom-overrides.md) | When to use overrides and where to place them |
+| [Update Bridge](update-bridge.md) | Safe Bridge update flow and backup steps |
+| [Manual Compatibility](manual-compatibility.md) | When to use unlocked files for unsupported setups |
