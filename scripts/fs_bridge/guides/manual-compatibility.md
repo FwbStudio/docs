@@ -42,14 +42,9 @@ Below is a sample override entry so the rest of the manual compatibility docs ca
 <details>
 <summary><strong>Hunger</strong></summary>
 
-Short description: Adds or removes hunger through your own status system.
+Description:
 
-Signature:
-
-```lua
-Override.AddHunger(value)
-Override.RemoveHunger(value)
-```
+Copy this code into `fs_bridge/unlocked/client.lua`.
 
 Arguments:
 
@@ -71,13 +66,6 @@ end
 function Override.RemoveHunger(value)
     TriggerEvent('my_status:remove', 'hunger', value)
 end
-```
-
-Example usage:
-
-```lua
-FWB.Player.Hunger.Add(10)
-FWB.Player.Hunger.Remove(5)
 ```
 
 Notes:
