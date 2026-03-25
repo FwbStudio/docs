@@ -604,3 +604,368 @@ Notes:
 - Bridge only calls this when a string is provided
 
 </details>
+
+### Ambulance
+
+<details>
+<summary><strong>IsPlayerDowned</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | No | Optional player source if your ambulance system supports it |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDowned(source)
+    return exports['your_ambulance']:isPlayerDowned(source)
+end
+```
+
+Notes:
+
+- this override is client-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>IsPlayerDead</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | No | Optional player source if your ambulance system supports it |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDead(source)
+    return exports['your_ambulance']:isPlayerDead(source)
+end
+```
+
+Notes:
+
+- this override is client-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>GetAmbulanceResourceName</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetAmbulanceResourceName()
+    return 'your_ambulance'
+end
+```
+
+Notes:
+
+- this override is client-side
+- return the exact started resource folder name
+
+</details>
+
+### Dispatch
+
+<details>
+<summary><strong>AddCustomDispatch</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `argument.Job` | `table` | Yes | Target jobs |
+| `argument.Location` | `vector3` | Yes | Dispatch location |
+| `argument.CallCode.Code` | `string` | No | Dispatch call code |
+| `argument.CallCode.Title` | `string` | No | Dispatch title |
+| `argument.Message` | `string` | Yes | Main dispatch message |
+| `argument.Flashes` | `boolean` | No | Flash state |
+| `argument.Image` | `string` | No | Optional image URL |
+| `argument.icon` | `string` | No | Dispatch icon |
+| `argument.Blip` | `table` | No | Blip settings |
+
+Returns:
+
+- optional result from your dispatch resource
+
+Override code:
+
+```lua
+function Override.AddCustomDispatch(argument)
+    return exports['your_dispatch']:sendAlert(argument)
+end
+```
+
+Notes:
+
+- this override is client-side
+- Bridge also supports a server-side dispatch override on the server page
+
+</details>
+
+<details>
+<summary><strong>GetDispatchResourceName (Client)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetDispatchResourceName()
+    return 'your_dispatch'
+end
+```
+
+Notes:
+
+- this override is client-side
+- return the exact started resource folder name
+
+</details>
+
+### Vehicle Fuel
+
+<details>
+<summary><strong>SetFuel</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `vehicle` | `number` | Yes | Vehicle entity handle |
+| `value` | `number` | No | Fuel amount; Bridge defaults to `100.0` when not provided |
+
+Returns:
+
+- optional result from your fuel resource
+
+Override code:
+
+```lua
+function Override.SetFuel(vehicle, value)
+    return exports['your_fuel']:setFuel(vehicle, value)
+end
+```
+
+Notes:
+
+- this override is client-side
+- match the fuel scale used by your fuel resource
+
+</details>
+
+<details>
+<summary><strong>GetFuel</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `vehicle` | `number` | Yes | Vehicle entity handle |
+
+Returns:
+
+- `number` fuel amount
+
+Override code:
+
+```lua
+function Override.GetFuel(vehicle)
+    return exports['your_fuel']:getFuel(vehicle)
+end
+```
+
+Notes:
+
+- this override is client-side
+- Bridge falls back to `0.0` if nothing is returned
+
+</details>
+
+<details>
+<summary><strong>GetFuelResourceName</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetFuelResourceName()
+    return 'your_fuel'
+end
+```
+
+Notes:
+
+- this override is client-side
+- return the exact started resource folder name
+
+</details>
+
+### Vehicle Keys
+
+<details>
+<summary><strong>GiveCarKeyPlayer (Client)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `vehicle` | `number` | Yes | Vehicle entity handle |
+
+Returns:
+
+- optional result from your vehicle-keys resource
+
+Override code:
+
+```lua
+function Override.GiveCarKeyPlayer(vehicle)
+    return exports['your_keys']:giveKeys(vehicle)
+end
+```
+
+Notes:
+
+- this override is client-side
+- use the client-facing give-keys function from your keys resource
+
+</details>
+
+<details>
+<summary><strong>RemoveCarKeyPlayer (Client)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `vehicle` | `number` | Yes | Vehicle entity handle |
+
+Returns:
+
+- optional result from your vehicle-keys resource
+
+Override code:
+
+```lua
+function Override.RemoveCarKeyPlayer(vehicle)
+    return exports['your_keys']:removeKeys(vehicle)
+end
+```
+
+Notes:
+
+- this override is client-side
+- use the client-facing remove-keys function from your keys resource
+
+</details>
+
+<details>
+<summary><strong>GetVehicleKeysResourceName (Client)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/client.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetVehicleKeysResourceName()
+    return 'your_keys'
+end
+```
+
+Notes:
+
+- this override is client-side
+- return the exact started resource folder name
+
+</details>

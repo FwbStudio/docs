@@ -563,3 +563,231 @@ Notes:
 - Bridge can still run its own built-in logger after this override
 
 </details>
+
+### Ambulance
+
+<details>
+<summary><strong>IsPlayerDowned</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDowned(source)
+    return exports['your_ambulance']:isPlayerDowned(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>IsPlayerDead</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDead(source)
+    return exports['your_ambulance']:isPlayerDead(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>RevivePlayer</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- optional result from your ambulance resource
+
+Override code:
+
+```lua
+function Override.RevivePlayer(source)
+    return exports['your_ambulance']:revivePlayer(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- use the exact revive function expected by your ambulance system
+
+</details>
+
+<details>
+<summary><strong>GetAmbulanceResourceName</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetAmbulanceResourceName()
+    return 'your_ambulance'
+end
+```
+
+Notes:
+
+- this override is server-side
+- return the exact started resource folder name
+
+</details>
+
+### Vehicle Keys
+
+<details>
+<summary><strong>GiveCarKeyPlayer (Server)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+| `vehicle` | `number` | Yes | Vehicle entity handle or network-aware vehicle reference |
+
+Returns:
+
+- optional result from your vehicle-keys resource
+
+Override code:
+
+```lua
+function Override.GiveCarKeyPlayer(source, vehicle)
+    return exports['your_keys']:giveKeys(source, vehicle)
+end
+```
+
+Notes:
+
+- this override is server-side
+- use the server-facing give-keys function from your keys resource
+
+</details>
+
+<details>
+<summary><strong>RemoveCarKeyPlayer (Server)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+| `vehicle` | `number` | Yes | Vehicle entity handle or network-aware vehicle reference |
+
+Returns:
+
+- optional result from your vehicle-keys resource
+
+Override code:
+
+```lua
+function Override.RemoveCarKeyPlayer(source, vehicle)
+    return exports['your_keys']:removeKeys(source, vehicle)
+end
+```
+
+Notes:
+
+- this override is server-side
+- use the server-facing remove-keys function from your keys resource
+
+</details>
+
+<details>
+<summary><strong>GetVehicleKeysResourceName (Server)</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetVehicleKeysResourceName()
+    return 'your_keys'
+end
+```
+
+Notes:
+
+- this override is server-side
+- return the exact started resource folder name
+
+</details>
