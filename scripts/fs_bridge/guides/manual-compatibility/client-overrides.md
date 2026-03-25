@@ -21,6 +21,10 @@ layout:
 
 These are the client-side manual compatibility overrides from the current Bridge build.
 
+Use this page when you need client-side compatibility for an unsupported or custom setup.
+
+Paste these overrides into `fs_bridge/unlocked/client.lua`.
+
 ### Player Status
 
 <details>

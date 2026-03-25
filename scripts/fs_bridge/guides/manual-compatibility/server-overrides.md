@@ -21,6 +21,10 @@ layout:
 
 These are the server-side manual compatibility overrides from the current Bridge build.
 
+Use this page when you need server-side compatibility for an unsupported or custom setup.
+
+Paste these overrides into `fs_bridge/unlocked/server.lua`.
+
 ### Banking
 
 <details>
