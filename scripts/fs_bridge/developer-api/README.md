@@ -16,14 +16,19 @@ layout:
   tags:
     visible: true
 ---
-
 # Developer API
 
-This section is for developers building resources with Bridge.
+This section documents the public Bridge API that your own scripts can call through `fs_bridge`.
 
-## Pages
+Use these pages in order:
 
-| Page | What It Covers |
+| Page | What it covers |
 |---|---|
-| [Client](client.md) | Client-side usage, runtime docs, examples, and client manual compatibility |
-| [Server](server.md) | Server-side usage, runtime docs, examples, and server manual compatibility |
+| `How To Call` | Export access, `GetObject()`, and `import.lua` usage |
+| `Cache` | Public cache access, updates, and listeners |
+| `Callbacks` | Client and server callback registration and await helpers |
+| `Player` | Player, job, status, and request helpers |
+| `Vehicle` | Vehicle search, keys, fuel, props, runtime entries, and ownership helpers |
+| `Clothing` | Client clothing helpers and clothing resource detection |
+
+The pages below focus on the clean public API only. Deprecated calls and internal bridge structure are intentionally skipped.

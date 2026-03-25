@@ -16,15 +16,9 @@ layout:
   tags:
     visible: true
 ---
-# Server API
+# Clothing
 
-This older page has been replaced by the new category pages under `Developer API`.
+This category covers the public clothing API.
 
-Use these pages instead:
-
-- `How To Call`
-- `Cache`
-- `Callbacks -> Server`
-- `Player -> Server`
-- `Vehicle -> Server`
-- `Clothing -> Server`
+Use `Client` for clothing resource detection and player clothing helpers.
+Use `Server` for the current server-side public clothing support note.
