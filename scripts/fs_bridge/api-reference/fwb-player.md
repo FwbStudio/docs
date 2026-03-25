@@ -1,199 +1,723 @@
 # FWB.Player
 
-`FWB.Player` is the main client-side namespace for local player state, player info, status updates, nearby helpers, and front-coord helpers.
+`FWB.Player` is the main client-side namespace for local player state, basic player data, status helpers, nearby lookups, and front-coord helpers.
 
-## Public Calls
+Related player namespaces:
 
-```lua
-FWB.Player.IsLoaded()
-FWB.Player.Data()
-FWB.Player.CharacterId()
-FWB.Player.Name(source)
-FWB.Player.Salary()
-FWB.Player.IsBoss()
+- [FWB.Player.Job](fwb-player-job.md)
+- [FWB.Player.Clothes](fwb-player-clothes.md)
+- [FWB.Player.Request](fwb-player-request.md)
+- [FWB.Player.Vehicle](fwb-player-vehicle.md)
 
-FWB.Player.Hunger.Add(value)
-FWB.Player.Hunger.Remove(value)
-FWB.Player.Thirst.Add(value)
-FWB.Player.Thirst.Remove(value)
-FWB.Player.Stress.Add(value)
-FWB.Player.Stress.Remove(value)
-FWB.Player.Health.Add(value)
-FWB.Player.Health.Remove(value)
-FWB.Player.Armour.Add(value)
-FWB.Player.Armour.Remove(value)
-
-FWB.Player.GetNearbyObjects(extras)
-FWB.Player.GetClosestObject(extras)
-FWB.Player.GetNearbyPlayers(extras)
-FWB.Player.GetClosestPlayer(extras)
-FWB.Player.GetNearbyPeds(extras)
-FWB.Player.GetClosestPed(extras)
-FWB.Player.GetNearbyVehicles(extras)
-FWB.Player.GetClosestVehicle(extras)
-FWB.Player.GetFrontCoords(extras)
-```
+## Player
 
 <details>
-<summary><strong>Player State And Identity</strong></summary>
+<summary><strong>IsLoaded()</strong></summary>
 
-Short description: Read the current client player load state and basic player information.
-
-Signature:
-
-```lua
-FWB.Player.IsLoaded()
-FWB.Player.Data()
-FWB.Player.CharacterId()
-FWB.Player.Name(source)
-FWB.Player.Salary()
-FWB.Player.IsBoss()
-
-exports.fs_bridge:IsPlayerLoaded()
-exports.fs_bridge:GetPlayerData()
-exports.fs_bridge:GetPlayerIdentifier()
-exports.fs_bridge:GetPlayerName(source)
-exports.fs_bridge:GetPlayerSalary()
-exports.fs_bridge:IsPlayerBoss()
-```
+Short description: Check whether the local player has fully loaded inside the active framework.
 
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.IsLoaded()` | none | Checks whether the local player has fully loaded |
-| `FWB.Player.Data()` | none | Returns the active framework player data table |
-| `FWB.Player.CharacterId()` | none | Returns the framework character id or identifier |
-| `FWB.Player.Name(source)` | `source?` | Without `source`, returns the local player full name |
-| `FWB.Player.Salary()` | none | Returns current job salary or payment |
-| `FWB.Player.IsBoss()` | none | Returns whether the local player is boss grade |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
-- `FWB.Player.IsLoaded()` -> `boolean`
-- `FWB.Player.Data()` -> framework player table or `false`
-- `FWB.Player.CharacterId()` -> `string` or `nil`
-- `FWB.Player.Name(source)` -> `string`, player source fallback, or `nil`
-- `FWB.Player.Salary()` -> `number` or `nil`
-- `FWB.Player.IsBoss()` -> `boolean`
+- `boolean`
 
-Example usage:
+How to write it:
 
 ```lua
-if FWB.Player.IsLoaded() then
-    local playerData = FWB.Player.Data()
-    local name = FWB.Player.Name()
-    local characterId = FWB.Player.CharacterId()
+local loaded = FWB.Player.IsLoaded()
+```
 
-    print(name, characterId, playerData and playerData.job and playerData.job.name)
+Example:
+
+```lua
+if not FWB.Player.IsLoaded() then return end
+
+print('Player is loaded')
+```
+
+</details>
+
+<details>
+<summary><strong>Data()</strong></summary>
+
+Short description: Get the current framework player data table for the local player.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- framework player data table
+- `false` when player data is not ready yet
+
+How to write it:
+
+```lua
+local playerData = FWB.Player.Data()
+```
+
+Example:
+
+```lua
+local playerData = FWB.Player.Data()
+
+if playerData then
+    print(playerData.job and playerData.job.name)
 end
 ```
 
-Notes:
+</details>
 
-- `FWB.Player.Data()` returns the native ESX, QBCore, or Qbox player data table
-- `FWB.Player.Name(source)` can be used when you need another player's name on the client
+<details>
+<summary><strong>CharacterId()</strong></summary>
+
+Short description: Get the local player's current character id or framework identifier.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- `string`
+- `nil`
+
+How to write it:
+
+```lua
+local characterId = FWB.Player.CharacterId()
+```
+
+Example:
+
+```lua
+local characterId = FWB.Player.CharacterId()
+print(characterId)
+```
 
 </details>
 
 <details>
-<summary><strong>Player Status Helpers</strong></summary>
+<summary><strong>Name(source)</strong></summary>
 
-Short description: Add or remove common player status values through the active bridge integration.
+Short description: Get the local player's full name, or another player's name when a source is provided.
 
-Signature:
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `source` | `number` | Optional player source when you want another player's name |
+
+Returns:
+
+- `string`
+- player source fallback
+- `nil`
+
+How to write it:
+
+```lua
+local myName = FWB.Player.Name()
+local otherName = FWB.Player.Name(source)
+```
+
+Example:
+
+```lua
+local myName = FWB.Player.Name()
+print(myName)
+```
+
+</details>
+
+<details>
+<summary><strong>Salary()</strong></summary>
+
+Short description: Get the current salary or payment value from the local player's active job.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- `number`
+- `nil`
+
+How to write it:
+
+```lua
+local salary = FWB.Player.Salary()
+```
+
+Example:
+
+```lua
+local salary = FWB.Player.Salary()
+print(salary)
+```
+
+</details>
+
+<details>
+<summary><strong>IsBoss()</strong></summary>
+
+Short description: Check whether the local player is currently the boss grade for the active job.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- `boolean`
+
+How to write it:
+
+```lua
+local isBoss = FWB.Player.IsBoss()
+```
+
+Example:
+
+```lua
+if FWB.Player.IsBoss() then
+    print('Open boss features')
+end
+```
+
+</details>
+
+<details>
+<summary><strong>IsDown()</strong></summary>
+
+Short description: Check whether the local player is currently downed through the active ambulance integration.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This shortcut is for the local player |
+
+Returns:
+
+- `boolean`
+- `false`
+
+How to write it:
+
+```lua
+local isDown = FWB.Player.IsDown()
+```
+
+Example:
+
+```lua
+if FWB.Player.IsDown() then
+    print('Player is downed')
+end
+```
+
+</details>
+
+<details>
+<summary><strong>IsDead()</strong></summary>
+
+Short description: Check whether the local player is currently dead through the active ambulance integration.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This shortcut is for the local player |
+
+Returns:
+
+- `boolean`
+- `false`
+
+How to write it:
+
+```lua
+local isDead = FWB.Player.IsDead()
+```
+
+Example:
+
+```lua
+if FWB.Player.IsDead() then
+    print('Player is dead')
+end
+```
+
+</details>
+
+<details>
+<summary><strong>Hunger.Add(value)</strong></summary>
+
+Short description: Add hunger status value through the active bridge-compatible status system.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Hunger amount to add |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
 
 ```lua
 FWB.Player.Hunger.Add(value)
-FWB.Player.Hunger.Remove(value)
-FWB.Player.Thirst.Add(value)
-FWB.Player.Thirst.Remove(value)
-FWB.Player.Stress.Add(value)
-FWB.Player.Stress.Remove(value)
-FWB.Player.Health.Add(value)
-FWB.Player.Health.Remove(value)
-FWB.Player.Armour.Add(value)
-FWB.Player.Armour.Remove(value)
-
-exports.fs_bridge:AddHunger(value)
-exports.fs_bridge:RemoveHunger(value)
-exports.fs_bridge:AddThirst(value)
-exports.fs_bridge:RemoveThirst(value)
-exports.fs_bridge:AddStress(value)
-exports.fs_bridge:RemoveStress(value)
-exports.fs_bridge:AddHealth(value)
-exports.fs_bridge:RemoveHealth(value)
-exports.fs_bridge:AddArmour(value)
-exports.fs_bridge:RemoveArmour(value)
 ```
 
-Arguments:
-
-| Call Family | Arguments | Notes |
-|---|---|---|
-| `Hunger`, `Thirst`, `Stress`, `Health`, `Armour` | `value` | Number to add or remove |
-
-Returns:
-
-- framework-specific status update result
-- `nil` if the active status resource does not return a value
-
-Example usage:
+Example:
 
 ```lua
-FWB.Player.Hunger.Remove(15)
-FWB.Player.Thirst.Remove(10)
-FWB.Player.Stress.Add(5)
+FWB.Player.Hunger.Add(10)
 ```
-
-Notes:
-
-- keep `value` numeric
-- if a status system is not supported in normal setup, use the manual compatibility page
 
 </details>
 
 <details>
-<summary><strong>Nearby Objects And Players</strong></summary>
+<summary><strong>Hunger.Remove(value)</strong></summary>
 
-Short description: Search for nearby objects or players from the local player position by default.
-
-Signature:
-
-```lua
-FWB.Player.GetNearbyObjects(extras)
-FWB.Player.GetClosestObject(extras)
-FWB.Player.GetNearbyPlayers(extras)
-FWB.Player.GetClosestPlayer(extras)
-
-exports.fs_bridge:GetNearbyObjects(extras)
-exports.fs_bridge:GetClosestObject(extras)
-exports.fs_bridge:GetNearbyPlayers(extras)
-exports.fs_bridge:GetClosestPlayer(extras)
-```
+Short description: Remove hunger status value through the active bridge-compatible status system.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `coords` | `vector3` | Optional override coords |
-| `maxDistance` | `number` | Search radius, default `2.0` |
-| `maxCount` | `number` | Trim result list |
-| `sortedByDistance` | `boolean` | Default `true` |
-| `model` | `number|string` | Object model filter |
-| `models` | `table` | Allow-list models |
-| `excludeModels` | `table` | Block-list models |
-| `requireClearLos` | `boolean` | Useful for line-of-sight interaction checks |
-| `selfInclude` | `boolean` | For player search only |
+| `value` | `number` | Hunger amount to remove |
 
 Returns:
 
-- `GetNearbyObjects(extras)` -> table of object entries
-- `GetClosestObject(extras)` -> one object entry or `nil`
-- `GetNearbyPlayers(extras)` -> table of player entries
-- `GetClosestPlayer(extras)` -> one player entry or `nil`
+- compatibility-specific result
+- `nil`
 
-Example usage:
+How to write it:
+
+```lua
+FWB.Player.Hunger.Remove(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Hunger.Remove(15)
+```
+
+</details>
+
+<details>
+<summary><strong>Thirst.Add(value)</strong></summary>
+
+Short description: Add thirst status value through the active bridge-compatible status system.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Thirst amount to add |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Thirst.Add(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Thirst.Add(10)
+```
+
+</details>
+
+<details>
+<summary><strong>Thirst.Remove(value)</strong></summary>
+
+Short description: Remove thirst status value through the active bridge-compatible status system.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Thirst amount to remove |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Thirst.Remove(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Thirst.Remove(10)
+```
+
+</details>
+
+<details>
+<summary><strong>Stress.Add(value)</strong></summary>
+
+Short description: Add stress status value through the active bridge-compatible status system.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Stress amount to add |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Stress.Add(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Stress.Add(5)
+```
+
+</details>
+
+<details>
+<summary><strong>Stress.Remove(value)</strong></summary>
+
+Short description: Remove stress status value through the active bridge-compatible status system.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Stress amount to remove |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Stress.Remove(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Stress.Remove(5)
+```
+
+</details>
+
+<details>
+<summary><strong>Health.Add(value)</strong></summary>
+
+Short description: Add health value to the local player through the active bridge-compatible health handler.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Health amount to add |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Health.Add(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Health.Add(25)
+```
+
+</details>
+
+<details>
+<summary><strong>Health.Remove(value)</strong></summary>
+
+Short description: Remove health value from the local player through the active bridge-compatible health handler.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Health amount to remove |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Health.Remove(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Health.Remove(10)
+```
+
+</details>
+
+<details>
+<summary><strong>Armour.Add(value)</strong></summary>
+
+Short description: Add armour value to the local player through the active bridge-compatible armour handler.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Armour amount to add |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Armour.Add(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Armour.Add(20)
+```
+
+</details>
+
+<details>
+<summary><strong>Armour.Remove(value)</strong></summary>
+
+Short description: Remove armour value from the local player through the active bridge-compatible armour handler.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `value` | `number` | Armour amount to remove |
+
+Returns:
+
+- compatibility-specific result
+- `nil`
+
+How to write it:
+
+```lua
+FWB.Player.Armour.Remove(value)
+```
+
+Example:
+
+```lua
+FWB.Player.Armour.Remove(10)
+```
+
+</details>
+
+<details>
+<summary><strong>GetNearbyObjects(extras)</strong></summary>
+
+Short description: Get nearby world objects around the local player, or around custom coords when provided.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `maxCount` | `number` | Limit the number of returned entries |
+| `sortedByDistance` | `boolean` | Default `true` |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- table of nearby object entries
+
+How to write it:
+
+```lua
+local objects = FWB.Player.GetNearbyObjects(extras)
+```
+
+Example:
+
+```lua
+local objects = FWB.Player.GetNearbyObjects({
+    maxDistance = 3.0,
+    model = `prop_atm_01`
+})
+
+if objects[1] then
+    print(objects[1].object, objects[1].distance)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetClosestObject(extras)</strong></summary>
+
+Short description: Get the closest object entry around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- one object entry
+- `nil`
+
+How to write it:
+
+```lua
+local closestObject = FWB.Player.GetClosestObject(extras)
+```
+
+Example:
+
+```lua
+local closestObject = FWB.Player.GetClosestObject({
+    maxDistance = 2.5,
+    model = `prop_atm_01`
+})
+
+if closestObject then
+    print(closestObject.object)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetNearbyPlayers(extras)</strong></summary>
+
+Short description: Get nearby player entries around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `maxCount` | `number` | Limit the number of returned entries |
+| `sortedByDistance` | `boolean` | Default `true` |
+| `selfInclude` | `boolean` | Include the local player in results |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- table of nearby player entries
+
+How to write it:
+
+```lua
+local players = FWB.Player.GetNearbyPlayers(extras)
+```
+
+Example:
+
+```lua
+local players = FWB.Player.GetNearbyPlayers({
+    maxDistance = 5.0,
+    selfInclude = false
+})
+
+if players[1] then
+    print(players[1].source, players[1].distance)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetClosestPlayer(extras)</strong></summary>
+
+Short description: Get the closest player entry around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `selfInclude` | `boolean` | Include the local player in results |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- one player entry
+- `nil`
+
+How to write it:
+
+```lua
+local closestPlayer = FWB.Player.GetClosestPlayer(extras)
+```
+
+Example:
 
 ```lua
 local closestPlayer = FWB.Player.GetClosestPlayer({
@@ -202,60 +726,175 @@ local closestPlayer = FWB.Player.GetClosestPlayer({
 })
 
 if closestPlayer then
-    print(closestPlayer.source, closestPlayer.distance)
+    print(closestPlayer.source)
 end
 ```
-
-Notes:
-
-- player entries include `id`, `source`, `serverId`, `ped`, `coords`, and `distance`
-- object entries include `object`, `entity`, `coords`, `distance`, and `model`
 
 </details>
 
 <details>
-<summary><strong>Nearby Peds And Vehicles</strong></summary>
+<summary><strong>GetNearbyPeds(extras)</strong></summary>
 
-Short description: Search for nearby peds or nearby vehicles from the local player position.
-
-Signature:
-
-```lua
-FWB.Player.GetNearbyPeds(extras)
-FWB.Player.GetClosestPed(extras)
-FWB.Player.GetNearbyVehicles(extras)
-FWB.Player.GetClosestVehicle(extras)
-
-exports.fs_bridge:GetNearbyPeds(extras)
-exports.fs_bridge:GetClosestPed(extras)
-exports.fs_bridge:GetNearbyVehicles(extras)
-exports.fs_bridge:GetClosestVehicle(extras)
-```
+Short description: Get nearby ped entries around the local player or provided coords.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
 | `coords` | `vector3` | Optional override coords |
 | `maxDistance` | `number` | Search radius, default `2.0` |
-| `maxCount` | `number` | Trim result list |
+| `maxCount` | `number` | Limit the number of returned entries |
 | `sortedByDistance` | `boolean` | Default `true` |
-| `requireClearLos` | `boolean` | Useful for interaction checks |
-| `includeMissionPeds` | `boolean` | Ped search only |
-| `aliveOnly` | `boolean` | Ped search only, default `true` |
-| `includePlayerVehicle` | `boolean` | Vehicle search only |
-| `model` | `number|string` | Optional model filter |
-| `models` | `table` | Allow-list models |
-| `excludeModels` | `table` | Block-list models |
+| `includeMissionPeds` | `boolean` | Include mission peds in the result |
+| `aliveOnly` | `boolean` | Default `true` |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
 
 Returns:
 
-- `GetNearbyPeds(extras)` -> table of ped entries
-- `GetClosestPed(extras)` -> one ped entry or `nil`
-- `GetNearbyVehicles(extras)` -> table of vehicle entries
-- `GetClosestVehicle(extras)` -> one vehicle entry or `nil`
+- table of nearby ped entries
 
-Example usage:
+How to write it:
+
+```lua
+local peds = FWB.Player.GetNearbyPeds(extras)
+```
+
+Example:
+
+```lua
+local peds = FWB.Player.GetNearbyPeds({
+    maxDistance = 10.0,
+    includeMissionPeds = false,
+    aliveOnly = true
+})
+
+if peds[1] then
+    print(peds[1].ped, peds[1].distance)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetClosestPed(extras)</strong></summary>
+
+Short description: Get the closest ped entry around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `includeMissionPeds` | `boolean` | Include mission peds in the result |
+| `aliveOnly` | `boolean` | Default `true` |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- one ped entry
+- `nil`
+
+How to write it:
+
+```lua
+local closestPed = FWB.Player.GetClosestPed(extras)
+```
+
+Example:
+
+```lua
+local closestPed = FWB.Player.GetClosestPed({
+    maxDistance = 3.0,
+    aliveOnly = true
+})
+
+if closestPed then
+    print(closestPed.ped)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetNearbyVehicles(extras)</strong></summary>
+
+Short description: Get nearby vehicle entries around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `maxCount` | `number` | Limit the number of returned entries |
+| `sortedByDistance` | `boolean` | Default `true` |
+| `includePlayerVehicle` | `boolean` | Include the current player vehicle |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- table of nearby vehicle entries
+
+How to write it:
+
+```lua
+local vehicles = FWB.Player.GetNearbyVehicles(extras)
+```
+
+Example:
+
+```lua
+local vehicles = FWB.Player.GetNearbyVehicles({
+    maxDistance = 8.0,
+    includePlayerVehicle = false
+})
+
+if vehicles[1] then
+    print(vehicles[1].plate)
+end
+```
+
+</details>
+
+<details>
+<summary><strong>GetClosestVehicle(extras)</strong></summary>
+
+Short description: Get the closest vehicle entry around the local player or provided coords.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `includePlayerVehicle` | `boolean` | Include the current player vehicle |
+| `model` | `number|string` | Optional single model filter |
+| `models` | `table` | Optional allow-list of models |
+| `excludeModels` | `table` | Optional block-list of models |
+| `requireClearLos` | `boolean` | Optional line-of-sight check |
+
+Returns:
+
+- one vehicle entry
+- `nil`
+
+How to write it:
+
+```lua
+local closestVehicle = FWB.Player.GetClosestVehicle(extras)
+```
+
+Example:
 
 ```lua
 local closestVehicle = FWB.Player.GetClosestVehicle({
@@ -268,31 +907,19 @@ if closestVehicle then
 end
 ```
 
-Notes:
-
-- ped entries include `ped`, `entity`, `coords`, `distance`, and `model`
-- vehicle entries include `vehicle`, `entity`, `coords`, `distance`, `model`, and `plate`
-
 </details>
 
 <details>
-<summary><strong>Front Coords</strong></summary>
+<summary><strong>GetFrontCoords(extras)</strong></summary>
 
-Short description: Get a point directly in front of the local player or a provided ped/heading.
-
-Signature:
-
-```lua
-FWB.Player.GetFrontCoords(extras)
-exports.fs_bridge:GetFrontCoords(extras)
-```
+Short description: Get a point directly in front of the local player or in front of custom coords and heading.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `distance` | `number` | Default `1.0` |
-| `verticalOffset` | `number` | Default `-0.7` |
+| `distance` | `number` | Optional distance, default `1.0` |
+| `verticalOffset` | `number` | Optional vertical offset, default `-0.7` |
 | `ped` | `number` | Optional ped to calculate from |
 | `coords` | `vector3` | Optional base coords |
 | `heading` | `number` | Optional base heading |
@@ -301,7 +928,13 @@ Returns:
 
 - `vector3`
 
-Example usage:
+How to write it:
+
+```lua
+local frontCoords = FWB.Player.GetFrontCoords(extras)
+```
+
+Example:
 
 ```lua
 local frontCoords = FWB.Player.GetFrontCoords({
@@ -311,9 +944,5 @@ local frontCoords = FWB.Player.GetFrontCoords({
 
 print(frontCoords)
 ```
-
-Notes:
-
-- useful for placing props, markers, and interaction checks in front of the player
 
 </details>
