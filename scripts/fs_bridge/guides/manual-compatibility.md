@@ -21,7 +21,7 @@ layout:
 
 Use manual compatibility when your setup needs custom behavior that is not already covered by supported integrations.
 
-## Where Manual Compatibility Code Goes
+## 📍 Where Manual Compatibility Code Goes
 
 Client side:
 
@@ -35,7 +35,7 @@ Server side:
 unlocked/server.lua
 ```
 
-## When To Use Manual Compatibility
+## 🧩 When To Use Manual Compatibility
 
 Use it when:
 
@@ -43,7 +43,7 @@ Use it when:
 * auto-detect cannot resolve your setup
 * your setup needs custom integration behavior
 
-## When Not To Use Manual Compatibility
+## 🚫 When Not To Use Manual Compatibility
 
 Do not use it when:
 
@@ -51,6 +51,6 @@ Do not use it when:
 * the issue is only config selection
 * the problem is installation order, not missing functionality
 
-## Next Step
+## ➡️ Next Step
 
 Use the namespace pages in [Developer API](../developer-api/) to pick the correct override surface.
