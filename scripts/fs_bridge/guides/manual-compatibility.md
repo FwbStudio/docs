@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# Manual Compatibility
+# 🧩 Manual Compatibility
 
 Use manual compatibility when your setup needs custom behavior that is not already covered by supported integrations.
 

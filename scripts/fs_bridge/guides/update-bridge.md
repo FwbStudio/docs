@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# Update Bridge
+# 🔁 Update Bridge
 
 Use this guide when you want to update Bridge safely without losing your current setup.
 
