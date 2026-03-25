@@ -25,6 +25,135 @@ Use this page when you need server-side compatibility for an unsupported or cust
 
 Paste these overrides into `fs_bridge/unlocked/server.lua`.
 
+### Ambulance
+
+<details>
+<summary><strong>IsPlayerDowned</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDowned(source)
+    return exports['your_ambulance']:isPlayerDowned(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>IsPlayerDead</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- `boolean`
+
+Override code:
+
+```lua
+function Override.IsPlayerDead(source)
+    return exports['your_ambulance']:isPlayerDead(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge resolves this through the ambulance compatibility layer
+
+</details>
+
+<details>
+<summary><strong>RevivePlayer</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+
+Returns:
+
+- optional result from your ambulance resource
+
+Override code:
+
+```lua
+function Override.RevivePlayer(source)
+    return exports['your_ambulance']:revivePlayer(source)
+end
+```
+
+Notes:
+
+- this override is server-side
+- use the exact revive function expected by your ambulance system
+
+</details>
+
+<details>
+<summary><strong>GetAmbulanceResourceName</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+- none
+
+Returns:
+
+- `string` resource name
+- `nil` if you do not want to report one
+
+Override code:
+
+```lua
+function Override.GetAmbulanceResourceName()
+    return 'your_ambulance'
+end
+```
+
+Notes:
+
+- this override is server-side
+- return the exact started resource folder name
+
+</details>
+
 ### Banking
 
 <details>
@@ -241,6 +370,50 @@ Notes:
 
 </details>
 
+### Logging
+
+<details>
+<summary><strong>CreateLog</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` or `string` | Yes | Player source or invoking resource name |
+| `event` | `string` | Yes | Log event name |
+| `message` | `string` | Yes | Log message |
+| `...` | `any` | No | Extra values forwarded by Bridge |
+
+Returns:
+
+- no return is required
+
+Override code:
+
+```lua
+function Override.CreateLog(source, event, message, ...)
+    local extra = { ... }
+
+    return exports['your_logger']:createLog({
+        source = source,
+        event = event,
+        message = message,
+        extra = extra,
+    })
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge can still run its own built-in logger after this override
+
+</details>
+
 ### Phone
 
 <details>
@@ -312,6 +485,75 @@ Notes:
 
 - return the exact started resource folder name
 - if you also need this on the client side, define the same function in `fs_bridge/unlocked/client.lua`
+
+</details>
+
+### Security
+
+<details>
+<summary><strong>BanPlayer</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+| `reason` | `string` | No | Ban reason |
+
+Returns:
+
+- `boolean` success result
+- optional custom result from your ban system
+
+Override code:
+
+```lua
+function Override.BanPlayer(source, reason)
+    return exports['your_anticheat']:banPlayer(source, reason)
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge uses a default reason if one is not provided
+
+</details>
+
+<details>
+<summary><strong>Kick</strong></summary>
+
+Description:
+
+Copy this code into `fs_bridge/unlocked/server.lua`.
+
+Arguments:
+
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `source` | `number` | Yes | Player source |
+| `reason` | `string` | No | Kick reason |
+
+Returns:
+
+- optional result from your kick flow
+
+Override code:
+
+```lua
+function Override.Kick(source, reason)
+    DropPlayer(source, reason or 'You have been Kicked from the server.')
+end
+```
+
+Notes:
+
+- this override is server-side
+- Bridge uses a default reason if one is not provided
 
 </details>
 
@@ -448,248 +690,6 @@ Notes:
 
 - this override is server-side
 - keep the result compatible with your server plate format and database rules
-
-</details>
-
-### Security
-
-<details>
-<summary><strong>BanPlayer</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` | Yes | Player source |
-| `reason` | `string` | No | Ban reason |
-
-Returns:
-
-- `boolean` success result
-- optional custom result from your ban system
-
-Override code:
-
-```lua
-function Override.BanPlayer(source, reason)
-    return exports['your_anticheat']:banPlayer(source, reason)
-end
-```
-
-Notes:
-
-- this override is server-side
-- Bridge uses a default reason if one is not provided
-
-</details>
-
-<details>
-<summary><strong>Kick</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` | Yes | Player source |
-| `reason` | `string` | No | Kick reason |
-
-Returns:
-
-- optional result from your kick flow
-
-Override code:
-
-```lua
-function Override.Kick(source, reason)
-    DropPlayer(source, reason or 'You have been Kicked from the server.')
-end
-```
-
-Notes:
-
-- this override is server-side
-- Bridge uses a default reason if one is not provided
-
-</details>
-
-### Logging
-
-<details>
-<summary><strong>CreateLog</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` or `string` | Yes | Player source or invoking resource name |
-| `event` | `string` | Yes | Log event name |
-| `message` | `string` | Yes | Log message |
-| `...` | `any` | No | Extra values forwarded by Bridge |
-
-Returns:
-
-- no return is required
-
-Override code:
-
-```lua
-function Override.CreateLog(source, event, message, ...)
-    local extra = { ... }
-
-    return exports['your_logger']:createLog({
-        source = source,
-        event = event,
-        message = message,
-        extra = extra,
-    })
-end
-```
-
-Notes:
-
-- this override is server-side
-- Bridge can still run its own built-in logger after this override
-
-</details>
-
-### Ambulance
-
-<details>
-<summary><strong>IsPlayerDowned</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` | Yes | Player source |
-
-Returns:
-
-- `boolean`
-
-Override code:
-
-```lua
-function Override.IsPlayerDowned(source)
-    return exports['your_ambulance']:isPlayerDowned(source)
-end
-```
-
-Notes:
-
-- this override is server-side
-- Bridge resolves this through the ambulance compatibility layer
-
-</details>
-
-<details>
-<summary><strong>IsPlayerDead</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` | Yes | Player source |
-
-Returns:
-
-- `boolean`
-
-Override code:
-
-```lua
-function Override.IsPlayerDead(source)
-    return exports['your_ambulance']:isPlayerDead(source)
-end
-```
-
-Notes:
-
-- this override is server-side
-- Bridge resolves this through the ambulance compatibility layer
-
-</details>
-
-<details>
-<summary><strong>RevivePlayer</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-| Name | Type | Required | Notes |
-|---|---|---|---|
-| `source` | `number` | Yes | Player source |
-
-Returns:
-
-- optional result from your ambulance resource
-
-Override code:
-
-```lua
-function Override.RevivePlayer(source)
-    return exports['your_ambulance']:revivePlayer(source)
-end
-```
-
-Notes:
-
-- this override is server-side
-- use the exact revive function expected by your ambulance system
-
-</details>
-
-<details>
-<summary><strong>GetAmbulanceResourceName</strong></summary>
-
-Description:
-
-Copy this code into `fs_bridge/unlocked/server.lua`.
-
-Arguments:
-
-- none
-
-Returns:
-
-- `string` resource name
-- `nil` if you do not want to report one
-
-Override code:
-
-```lua
-function Override.GetAmbulanceResourceName()
-    return 'your_ambulance'
-end
-```
-
-Notes:
-
-- this override is server-side
-- return the exact started resource folder name
 
 </details>
 
