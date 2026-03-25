@@ -21,36 +21,36 @@ layout:
 
 Use this guide when you want to update Bridge safely without losing your current setup.
 
-## Recommended Update Flow
+## 🗂 Back Up Your Current Bridge
 
-1. make a backup of your current `fs_bridge`
-2. create a `.zip` backup so you can restore it quickly if the new version does not work correctly
-3. download a fresh copy of the new Bridge version
-4. drag and drop the fresh version into your server
+Before anything else, make a full backup of your current `fs_bridge` resource.
 
-## Important Backup Note
+This gives you a safe restore point if the new version does not work correctly on your server.
 
-Before replacing Bridge, keep a full backup of your current resource.
+## 📦 Keep A Zip Copy
 
-That way, if the new version causes problems on your server, you can restore the previous working version immediately.
+It is also recommended to create a `.zip` backup of your current Bridge before replacing it.
 
-## Use A Fresh Copy
+A zipped backup is faster to store, easier to move, and easier to restore if you need to roll back quickly.
 
-For updates, it is recommended to use a fresh Bridge copy instead of trying to merge old and new files manually.
+## ⬇️ Use A Fresh Copy
 
-This keeps the update cleaner and reduces the chance of missing changed files.
+Download a fresh copy of the new Bridge version and drag it into your server instead of trying to merge old and new files manually.
 
-## If You Use Override Files
+A clean replacement keeps the update process simpler and reduces the chance of missing changed files.
 
-If you use manual compatibility code or any override snippets, replace your `unlocked` folder with your own previous `unlocked` folder after updating.
+## 🧩 Restore Your Custom Files
 
-That keeps your custom manual compatibility code in place.
+If you use manual compatibility code or override snippets, replace the fresh `unlocked` folder with your own previous `unlocked` folder after the update.
 
-## Final Check
+That keeps your custom compatibility code in place.
 
-After updating:
+## ✅ Check Everything After Updating
+
+After the update:
 
 1. restart the server
 2. check Bridge output in `F8`
 3. check Bridge output in the server console
-4. confirm your supported resources and custom manual compatibility still work correctly
+4. confirm your supported resources still detect correctly
+5. confirm your manual compatibility still works if you use it
