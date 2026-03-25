@@ -1,3 +1,22 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Basic Server Knowledge
 
 This page covers the basic setup habits that help most FiveM resources work correctly.
@@ -8,7 +27,7 @@ Use clear resource groups in your `resources` folder so startup order is easier 
 
 Example:
 
-```text
+```
 resources/
 |-- [framework]
 |-- [standalone]
@@ -23,10 +42,10 @@ Resources should start in dependency order.
 
 That means:
 
-- `oxmysql` first
-- your framework before dependent scripts
-- required integrations before the scripts that detect them
-- Bridge after the resources it needs to detect
+* `oxmysql` first
+* your framework before dependent scripts
+* required integrations before the scripts that detect them
+* Bridge after the resources it needs to detect
 
 If the start order is wrong, detection issues are very common.
 
@@ -58,7 +77,7 @@ General flow:
 
 When testing a resource:
 
-- check `F8` for client-side output
-- check the server console for server-side output
+* check `F8` for client-side output
+* check the server console for server-side output
 
 Looking at only one side can hide the real problem.

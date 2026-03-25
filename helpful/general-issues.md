@@ -1,3 +1,22 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # General Issues
 
 This page covers common setup problems that are not limited to a single script.
@@ -28,9 +47,9 @@ A messy resource layout makes troubleshooting harder.
 
 Recommended rule:
 
-- keep framework resources together
-- keep standalone dependencies together
-- keep Beta resources together inside `[fs]`
+* keep framework resources together
+* keep standalone dependencies together
+* keep Beta resources together inside `[fs]`
 
 This makes startup order and detection problems much easier to spot.
 
@@ -40,7 +59,7 @@ Some problems only appear on one side.
 
 Always check:
 
-- `F8` for client-side prints and errors
-- server console for server-side prints and errors
+* `F8` for client-side prints and errors
+* server console for server-side prints and errors
 
 If needed, test again after a full restart instead of only restarting a single resource.

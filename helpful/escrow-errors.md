@@ -1,3 +1,22 @@
+---
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Escrow Errors
 
 This page covers common problems related to escrowed resources.
@@ -28,7 +47,7 @@ If the server says you do not have access to the resource:
 
 If a script starts but key functionality is broken right away:
 
-- check that all escrow files are still present
-- check that the upload finished correctly
-- check the server console for missing file or parsing errors
-- replace the resource with a clean download if needed
+* check that all escrow files are still present
+* check that the upload finished correctly
+* check the server console for missing file or parsing errors
+* replace the resource with a clean download if needed
