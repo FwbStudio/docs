@@ -21,6 +21,18 @@ layout:
 
 This page groups the main client-side developer docs for Bridge.
 
+## Player Namespaces
+
+| Page | What It Covers |
+|---|---|
+| [FWB.Player](../api-reference/fwb-player.md) | Player state, player data, status helpers, nearby helpers, and front-coords |
+| [FWB.Player.Job](../api-reference/fwb-player-job.md) | Job name, labels, grade info, and normalized job data |
+| [FWB.Player.Clothes](../api-reference/fwb-player-clothes.md) | Current-player clothing shortcuts and native skin helpers |
+| [FWB.Player.Request](../api-reference/fwb-player-request.md) | Asset request helpers for models, anim dicts, clip sets, and more |
+| [FWB.Player.Vehicle](../api-reference/fwb-player-vehicle.md) | Player-focused vehicle search helpers and vehicle key helpers |
+
+## Other Namespace Pages
+
 | Page | What It Covers |
 |---|---|
 | [FWB.Blip](../api-reference/fwb-blip.md) | Client blip helpers and runtime usage |
