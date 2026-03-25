@@ -1,0 +1,2 @@
+# \[QBCore] Config Files]
+
