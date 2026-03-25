@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# ❓ FAQ
+# Ã¢Ââ€œ FAQ
 
 Below you'll find answers to the most common Bridge setup and usage questions.
 
@@ -104,18 +104,3 @@ The current public docs focus on:
 
 </details>
 
-<details>
-
-<summary><strong>What should my own scripts use?</strong></summary>
-
-Use the public APIs and namespaces, such as:
-
-* `FWB.Player.Job.Name()`
-* `FWB.Blip.Create(options)`
-* `FWB.Ped.Create(options)`
-* `FWB.Vehicle.Create(...)`
-* `FWB.Entity.Vehicle.Closest(extras)`
-
-For unsupported systems, use overrides instead of editing locked files.
-
-</details>
