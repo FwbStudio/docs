@@ -23,7 +23,7 @@ This page lists the active override functions currently used by the local Bridge
 
 Use these when your setup needs custom compatibility that is not already covered by normal public support.
 
-## ðŸ“ Where Manual Compatibility Code Goes
+## Where Manual Compatibility Code Goes
 
 Client side:
 
@@ -37,7 +37,7 @@ Server side:
 fs_bridge/unlocked/server.lua
 ```
 
-## ðŸ–¥ï¸ Client Overrides
+## Client Overrides
 
 ### Player Status
 
@@ -47,7 +47,6 @@ fs_bridge/unlocked/server.lua
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Player.Hunger.Add(value)` and `FWB.Player.Hunger.Remove(value)` should call your own status system.
 
 Arguments:
 
@@ -84,7 +83,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Player.Thirst.Add(value)` and `FWB.Player.Thirst.Remove(value)` should call your own status system.
 
 Arguments:
 
@@ -121,7 +119,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Player.Stress.Add(value)` and `FWB.Player.Stress.Remove(value)` should call your own stress system.
 
 Arguments:
 
@@ -158,7 +155,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Player.Health.Add(value)` and `FWB.Player.Health.Remove(value)` should use your own health logic.
 
 Arguments:
 
@@ -197,7 +193,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Player.Armour.Add(value)` and `FWB.Player.Armour.Remove(value)` should use your own armour logic.
 
 Arguments:
 
@@ -238,7 +233,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Banking.OpenBossMenu(job)` should open your own banking or society menu.
 
 Arguments:
 
@@ -271,7 +265,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when Bridge should report your custom banking resource name on the client side.
 
 Arguments:
 
@@ -305,7 +298,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Clothes.ResetPedCurrentScriptSkin()` should reset the player back to the last saved outfit from your clothing system.
 
 Arguments:
 
@@ -336,7 +328,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Clothes.SavePedCurrentScriptSkin()` should save the current outfit through your clothing system.
 
 Arguments:
 
@@ -367,7 +358,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when Bridge should report your custom clothing resource name.
 
 Arguments:
 
@@ -401,7 +391,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.OpenStash(argument)` should open a stash in your own inventory system.
 
 Arguments:
 
@@ -448,7 +437,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.OpenShop(argument)` should open a shop in your own inventory system.
 
 Arguments:
 
@@ -489,7 +477,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when Bridge should report your custom phone resource name on the client side.
 
 Arguments:
 
@@ -523,7 +510,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.Notify(argument)` should display notifications through your own UI resource.
 
 Arguments:
 
@@ -566,7 +552,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.TextUi.Show(text, options)` and `FWB.TextUi.Hide()` should use your own text UI resource.
 
 Arguments:
 
@@ -608,7 +593,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/client.lua`.
-Use it when `FWB.SetClipBoard(string)` should copy text through your own clipboard helper.
 
 Arguments:
 
@@ -635,7 +619,7 @@ Notes:
 
 </details>
 
-## ðŸ› ï¸ Server Overrides
+## Server Overrides
 
 ### Banking
 
@@ -645,7 +629,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Banking.AddSocietyMoney(job, money)` should add money through your own society banking system.
 
 Arguments:
 
@@ -680,7 +663,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Banking.RemoveSocietyMoney(job, money)` should remove money through your own society banking system.
 
 Arguments:
 
@@ -715,7 +697,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Banking.GetSocietyMoney(job)` should read balance through your own society banking system.
 
 Arguments:
 
@@ -749,7 +730,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when Bridge should report your custom banking resource name on the server side.
 
 Arguments:
 
@@ -783,7 +763,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.AddCustomDispatch(argument)` should send alerts through your own dispatch resource.
 
 Arguments:
 
@@ -833,7 +812,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when Bridge should report your custom dispatch resource name.
 
 Arguments:
 
@@ -867,7 +845,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.SendEmail(source, emaildata)` should send mail through your own phone resource.
 
 Arguments:
 
@@ -909,7 +886,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when Bridge should report your custom phone resource name on the server side.
 
 Arguments:
 
@@ -943,7 +919,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.PlayUrlPos(source, position, distance, url, volume, loop)` should play positional audio through your own sound resource.
 
 Arguments:
 
@@ -982,7 +957,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Destroy(source, soundId)` should stop sound playback through your own sound resource.
 
 Arguments:
 
@@ -1016,7 +990,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when Bridge should report your custom sound resource name.
 
 Arguments:
 
@@ -1050,7 +1023,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Vehicle.Plate.Generate()` should use your own custom plate generator.
 
 Arguments:
 
@@ -1083,7 +1055,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Hacker.Ban(source, reason)` should ban through your own anticheat or admin system.
 
 Arguments:
 
@@ -1118,7 +1089,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Hacker.Kick(source, reason)` should kick through your own admin system.
 
 Arguments:
 
@@ -1154,7 +1124,6 @@ Notes:
 Description:
 
 Copy this code into `fs_bridge/unlocked/server.lua`.
-Use it when `FWB.Log.Create(source, event, message, ...)` should also send logs to your own logging system.
 
 Arguments:
 
