@@ -285,13 +285,13 @@ end
 <details>
 <summary><strong>Hunger.Add(value)</strong></summary>
 
-Short description: Add hunger status value through the active bridge-compatible status system.
+Short description: Add hunger by a `1-100` percentage-style value on the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Hunger amount to add |
+| `value` | `number` | `1-100` percentage-style value to add to the current hunger status |
 
 Returns:
 
@@ -315,13 +315,13 @@ FWB.Player.Hunger.Add(10)
 <details>
 <summary><strong>Hunger.Remove(value)</strong></summary>
 
-Short description: Remove hunger status value through the active bridge-compatible status system.
+Short description: Remove hunger by a `1-100` percentage-style value from the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Hunger amount to remove |
+| `value` | `number` | `1-100` percentage-style value to remove from the current hunger status |
 
 Returns:
 
@@ -345,13 +345,13 @@ FWB.Player.Hunger.Remove(15)
 <details>
 <summary><strong>Thirst.Add(value)</strong></summary>
 
-Short description: Add thirst status value through the active bridge-compatible status system.
+Short description: Add thirst by a `1-100` percentage-style value on the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Thirst amount to add |
+| `value` | `number` | `1-100` percentage-style value to add to the current thirst status |
 
 Returns:
 
@@ -375,13 +375,13 @@ FWB.Player.Thirst.Add(10)
 <details>
 <summary><strong>Thirst.Remove(value)</strong></summary>
 
-Short description: Remove thirst status value through the active bridge-compatible status system.
+Short description: Remove thirst by a `1-100` percentage-style value from the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Thirst amount to remove |
+| `value` | `number` | `1-100` percentage-style value to remove from the current thirst status |
 
 Returns:
 
@@ -405,13 +405,13 @@ FWB.Player.Thirst.Remove(10)
 <details>
 <summary><strong>Stress.Add(value)</strong></summary>
 
-Short description: Add stress status value through the active bridge-compatible status system.
+Short description: Add stress by a `1-100` percentage-style value on the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Stress amount to add |
+| `value` | `number` | `1-100` percentage-style value to add to the current stress status |
 
 Returns:
 
@@ -435,13 +435,13 @@ FWB.Player.Stress.Add(5)
 <details>
 <summary><strong>Stress.Remove(value)</strong></summary>
 
-Short description: Remove stress status value through the active bridge-compatible status system.
+Short description: Remove stress by a `1-100` percentage-style value from the current status.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Stress amount to remove |
+| `value` | `number` | `1-100` percentage-style value to remove from the current stress status |
 
 Returns:
 
@@ -525,13 +525,13 @@ FWB.Player.Health.Remove(10)
 <details>
 <summary><strong>Armour.Add(value)</strong></summary>
 
-Short description: Add armour value to the local player through the active bridge-compatible armour handler.
+Short description: Add armour by a `1-100` percentage-style value on the current armour.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Armour amount to add |
+| `value` | `number` | `1-100` percentage-style value to add to the current armour |
 
 Returns:
 
@@ -555,13 +555,13 @@ FWB.Player.Armour.Add(20)
 <details>
 <summary><strong>Armour.Remove(value)</strong></summary>
 
-Short description: Remove armour value from the local player through the active bridge-compatible armour handler.
+Short description: Remove armour by a `1-100` percentage-style value from the current armour.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `value` | `number` | Armour amount to remove |
+| `value` | `number` | `1-100` percentage-style value to remove from the current armour |
 
 Returns:
 

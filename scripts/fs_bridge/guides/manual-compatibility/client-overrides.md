@@ -602,7 +602,7 @@ Arguments:
 
 | Name | Type | Required | Notes |
 |---|---|---|---|
-| `value` | `number` | Yes | Amount to add or remove |
+| `value` | `number` | Yes | `1-100` percentage-style value to add or remove from the current hunger status |
 
 Returns:
 
@@ -622,7 +622,7 @@ end
 
 Notes:
 
-- Bridge expects `value` to be numeric
+- Bridge expects `value` to be a numeric `1-100` percentage-style change on the current hunger status
 - this override is client-side
 
 </details>
@@ -638,7 +638,7 @@ Arguments:
 
 | Name | Type | Required | Notes |
 |---|---|---|---|
-| `value` | `number` | Yes | Amount to add or remove |
+| `value` | `number` | Yes | `1-100` percentage-style value to add or remove from the current thirst status |
 
 Returns:
 
@@ -658,7 +658,7 @@ end
 
 Notes:
 
-- Bridge expects `value` to be numeric
+- Bridge expects `value` to be a numeric `1-100` percentage-style change on the current thirst status
 - this override is client-side
 
 </details>
@@ -674,7 +674,7 @@ Arguments:
 
 | Name | Type | Required | Notes |
 |---|---|---|---|
-| `value` | `number` | Yes | Amount to add or remove |
+| `value` | `number` | Yes | `1-100` percentage-style value to add or remove from the current stress status |
 
 Returns:
 
@@ -694,7 +694,7 @@ end
 
 Notes:
 
-- Bridge expects `value` to be numeric
+- Bridge expects `value` to be a numeric `1-100` percentage-style change on the current stress status
 - this override is client-side
 
 </details>
@@ -748,7 +748,7 @@ Arguments:
 
 | Name | Type | Required | Notes |
 |---|---|---|---|
-| `value` | `number` | Yes | Amount to add or remove |
+| `value` | `number` | Yes | `1-100` percentage-style value to add or remove from the current armour |
 
 Returns:
 
@@ -759,7 +759,7 @@ Override code:
 ```lua
 function Override.AddArmour(value)
     local ped = PlayerPedId()
-    SetPedArmour(ped, GetPedArmour(ped) + value)
+    SetPedArmour(ped, math.min(100, GetPedArmour(ped) + value))
 end
 
 function Override.RemoveArmour(value)
@@ -770,8 +770,9 @@ end
 
 Notes:
 
+- Bridge expects `value` to be a numeric `1-100` percentage-style change on the current armour
 - this override is client-side
-- clamp values if your armour system has its own limits
+- this example clamps armour between `0` and `100`
 
 </details>
 
