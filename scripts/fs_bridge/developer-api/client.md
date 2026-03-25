@@ -19,11 +19,11 @@ layout:
 
 # Client API
 
-This page documents the player-related client namespaces currently available in Bridge.
+This page documents the public client-side player namespaces available in Bridge.
 
 ## FWB.Player
 
-`FWB.Player` is the main client-side namespace for local player state, basic player data, status helpers, nearby lookups, and front-coord helpers.
+`FWB.Player` covers local player state, basic player data, status helpers, nearby lookups, and front-coord helpers.
 
 ### Player
 
@@ -227,7 +227,7 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `none` | - | This shortcut is for the local player |
+| `none` | - | This shortcut is for the local player only |
 
 Returns:
 
@@ -259,7 +259,7 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `none` | - | This shortcut is for the local player |
+| `none` | - | This shortcut is for the local player only |
 
 Returns:
 
@@ -962,163 +962,200 @@ print(frontCoords)
 ```
 
 </details>
+
 ## FWB.Player.Job
 
-`FWB.Player.Job` is the client-side job namespace for reading the local player's current job name, labels, grade details, and normalized job data.
+`FWB.Player.Job` covers local player job information.
 
 ### Job
 
 <details>
-<summary><strong>Read Job Name And Labels</strong></summary>
+<summary><strong>Name()</strong></summary>
 
-Short description: Read the current local player job name and display labels.
-
-Signature:
-
-```lua
-FWB.Player.Job.Name()
-FWB.Player.Job.Label()
-FWB.Player.Job.GradeLabel()
-
-exports.fs_bridge:GetPlayerJob()
-exports.fs_bridge:GetPlayerJobLabel()
-exports.fs_bridge:GetPlayerJobGradeLabel()
-```
+Short description: Get the internal name of the local player's current job.
 
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Job.Name()` | none | Internal job name such as `police` |
-| `FWB.Player.Job.Label()` | none | Display label such as `Police` |
-| `FWB.Player.Job.GradeLabel()` | none | Current grade label or grade name |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
-- `string` or `nil`
+- `string`
+- `nil`
 
-Example usage:
+How to write it:
 
 ```lua
 local jobName = FWB.Player.Job.Name()
-local jobLabel = FWB.Player.Job.Label()
-local gradeLabel = FWB.Player.Job.GradeLabel()
-
-print(jobName, jobLabel, gradeLabel)
 ```
 
-Notes:
+Example:
 
-- values come from the active framework player data
-- `GradeLabel()` reflects ESX or QBCore/Qbox naming for the active framework
+```lua
+local jobName = FWB.Player.Job.Name()
+print(jobName)
+```
 
 </details>
 
 <details>
-<summary><strong>Read Job Grade Level</strong></summary>
+<summary><strong>Label()</strong></summary>
 
-Short description: Read the numeric grade level of the local player's current job.
-
-Signature:
-
-```lua
-FWB.Player.Job.GradeLevel()
-exports.fs_bridge:GetPlayerJobGradeLevel()
-```
+Short description: Get the display label of the local player's current job.
 
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Job.GradeLevel()` | none | Returns the current grade level |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
-- `number` or `nil`
+- `string`
+- `nil`
 
-Example usage:
+How to write it:
 
 ```lua
-local gradeLevel = FWB.Player.Job.GradeLevel()
-
-if gradeLevel and gradeLevel >= 3 then
-    print('High enough grade')
-end
+local jobLabel = FWB.Player.Job.Label()
 ```
 
-Notes:
+Example:
 
-- QBCore and Qbox return the grade level from the nested job grade structure
+```lua
+local jobLabel = FWB.Player.Job.Label()
+print(jobLabel)
+```
 
 </details>
 
 <details>
-<summary><strong>Read Normalized Job Data</strong></summary>
+<summary><strong>GradeLabel()</strong></summary>
 
-Short description: Read the Bridge-normalized job data table for the local player.
-
-Signature:
-
-```lua
-FWB.Player.Job.Data()
-exports.fs_bridge:GetPlayerJobData()
-```
+Short description: Get the display label or grade name of the local player's current job grade.
 
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Job.Data()` | none | Returns a normalized job table |
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- `string`
+- `nil`
+
+How to write it:
+
+```lua
+local gradeLabel = FWB.Player.Job.GradeLabel()
+```
+
+Example:
+
+```lua
+local gradeLabel = FWB.Player.Job.GradeLabel()
+print(gradeLabel)
+```
+
+</details>
+
+<details>
+<summary><strong>GradeLevel()</strong></summary>
+
+Short description: Get the numeric grade level of the local player's current job.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
+
+Returns:
+
+- `number`
+- `nil`
+
+How to write it:
+
+```lua
+local gradeLevel = FWB.Player.Job.GradeLevel()
+```
+
+Example:
+
+```lua
+local gradeLevel = FWB.Player.Job.GradeLevel()
+print(gradeLevel)
+```
+
+</details>
+
+<details>
+<summary><strong>Data()</strong></summary>
+
+Short description: Get the Bridge-normalized job data table for the local player.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
 - job data table
+- `nil`
 
-Example usage:
+How to write it:
 
 ```lua
-local job = FWB.Player.Job.Data()
-
-if job then
-    print(job.name, job.label, job.gradeLevel)
-end
+local jobData = FWB.Player.Job.Data()
 ```
 
-Notes:
+Example:
 
-- use this when you want one normalized job object instead of reading individual fields
+```lua
+local jobData = FWB.Player.Job.Data()
+
+if jobData then
+    print(jobData.name, jobData.gradeLevel)
+end
+```
 
 </details>
 
 ## FWB.Player.Clothes
 
-`FWB.Player.Clothes` provides current-player clothing shortcuts for reading native skin data, applying native skin data, resetting the saved outfit, and saving the current outfit.
+`FWB.Player.Clothes` covers current-player clothing helpers.
 
 ### Clothes
 
 <details>
-<summary><strong>Get Native Clothes</strong></summary>
+<summary><strong>GetNative()</strong></summary>
 
 Short description: Read the current local player's native clothing state.
 
-Signature:
-
-```lua
-FWB.Player.Clothes.GetNative()
-exports.fs_bridge:GetPedCurrentNativeSkin()
-```
-
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Clothes.GetNative()` | none | Reads the current local player skin only |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
 - clothes table keyed by component and prop names
+- `nil`
 
-Example usage:
+How to write it:
+
+```lua
+local clothes = FWB.Player.Clothes.GetNative()
+```
+
+Example:
 
 ```lua
 local clothes = FWB.Player.Clothes.GetNative()
@@ -1128,24 +1165,12 @@ if clothes then
 end
 ```
 
-Notes:
-
-- use this client shortcut for the current player only
-- for direct ped-oriented calls, use the `FWB.Clothes` namespace
-
 </details>
 
 <details>
-<summary><strong>Set Native Clothes</strong></summary>
+<summary><strong>SetNative(clothes)</strong></summary>
 
 Short description: Apply a native clothes table to the current local player.
-
-Signature:
-
-```lua
-FWB.Player.Clothes.SetNative(clothes)
-exports.fs_bridge:SetPedCurrentNativeSkin(clothes)
-```
 
 Arguments:
 
@@ -1155,10 +1180,16 @@ Arguments:
 
 Returns:
 
-- framework-specific apply result
+- compatibility-specific result
 - `false` when the provided clothes data is invalid
 
-Example usage:
+How to write it:
+
+```lua
+FWB.Player.Clothes.SetNative(clothes)
+```
+
+Example:
 
 ```lua
 FWB.Player.Clothes.SetNative({
@@ -1168,127 +1199,97 @@ FWB.Player.Clothes.SetNative({
 })
 ```
 
-Notes:
-
-- this helper targets the local player only
-- the clothes table can include component keys such as `torso_1`, `pants_1`, and props such as `helmet_1`
-
 </details>
 
 <details>
-<summary><strong>Reset Saved Clothes</strong></summary>
+<summary><strong>Reset()</strong></summary>
 
 Short description: Reset the local player to the last saved clothing state through the active clothing resource.
 
-Signature:
-
-```lua
-FWB.Player.Clothes.Reset()
-exports.fs_bridge:ResetPedCurrentScriptSkin()
-```
-
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Clothes.Reset()` | none | Resets the local player only |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
-- compatibility-specific reset result
+- compatibility-specific result
 
-Example usage:
+How to write it:
 
 ```lua
 FWB.Player.Clothes.Reset()
 ```
 
-Notes:
+Example:
 
-- this uses the active clothing integration rather than only natives
+```lua
+FWB.Player.Clothes.Reset()
+```
 
 </details>
 
 <details>
-<summary><strong>Save Current Clothes</strong></summary>
+<summary><strong>Save()</strong></summary>
 
 Short description: Save the current local player outfit through the active clothing resource.
 
-Signature:
-
-```lua
-FWB.Player.Clothes.Save()
-exports.fs_bridge:SavePedCurrentScriptSkin()
-```
-
 Arguments:
 
-| Call | Arguments | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `FWB.Player.Clothes.Save()` | none | Saves the local player only |
+| `none` | - | This function does not take any arguments |
 
 Returns:
 
-- compatibility-specific save result
+- compatibility-specific result
 
-Example usage:
+How to write it:
 
 ```lua
 FWB.Player.Clothes.Save()
 ```
 
-Notes:
+Example:
 
-- use this after changing outfit data when your clothing resource supports saving through Bridge
+```lua
+FWB.Player.Clothes.Save()
+```
 
 </details>
 
 ## FWB.Player.Request
 
-`FWB.Player.Request` groups the client-side asset request helpers for animation dictionaries, models, animation sets, clip sets, particle assets, and weapon assets.
+`FWB.Player.Request` covers client-side asset request helpers.
 
 ### Request
 
-### Common Rules
-
-- all request helpers return `true` on success and `false` on failure
-- all helpers support the `extras` table style
-- default `timeout` is `10000`
-- `silent = true` disables failure prints
-- `keepLoaded = false` releases the asset after a successful load
-
 <details>
-<summary><strong>Request Anim Dict</strong></summary>
+<summary><strong>AnimDict(extras)</strong></summary>
 
 Short description: Load an animation dictionary before playing an animation.
 
-Signature:
-
-```lua
-FWB.Player.Request.AnimDict({
-    dict = 'amb@world_human_stand_mobile@male@text@enter',
-    timeout = 5000,
-    silent = false,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestAnimDict(extras)
-```
-
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
 | `dict` | `string` | Required animation dictionary |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
-| `keepLoaded` | `boolean` | Keep asset loaded after success |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
 
 Returns:
 
 - `boolean`
 
-Example usage:
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.AnimDict(extras)
+```
+
+Example:
 
 ```lua
 local ok = FWB.Player.Request.AnimDict({
@@ -1296,51 +1297,37 @@ local ok = FWB.Player.Request.AnimDict({
     timeout = 5000
 })
 
-if ok then
-    print('Anim dict loaded')
-end
+print(ok)
 ```
-
-Notes:
-
-- use this before `TaskPlayAnim`
 
 </details>
 
 <details>
-<summary><strong>Request Model</strong></summary>
+<summary><strong>Model(extras)</strong></summary>
 
 Short description: Load a model before creating a ped, prop, or vehicle.
 
-Signature:
-
-```lua
-FWB.Player.Request.Model({
-    model = `adder`,
-    timeout = 5000,
-    silent = false,
-    keepLoaded = true,
-    requireValid = true
-})
-
-exports.fs_bridge:RequestModel(extras)
-```
-
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
 | `model` | `string|number` | Required model name or hash |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
-| `keepLoaded` | `boolean` | Keep asset loaded after success |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
 | `requireValid` | `boolean` | Default `true` |
 
 Returns:
 
 - `boolean`
 
-Example usage:
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.Model(extras)
+```
+
+Example:
 
 ```lua
 local ok = FWB.Player.Request.Model({
@@ -1348,144 +1335,132 @@ local ok = FWB.Player.Request.Model({
     timeout = 5000
 })
 
-if ok then
-    print('Model loaded')
-end
+print(ok)
 ```
-
-Notes:
-
-- this helper is also used internally by other runtime helpers that need a loaded model
 
 </details>
 
 <details>
-<summary><strong>Request Anim Set Or Clip Set</strong></summary>
+<summary><strong>AnimSet(extras)</strong></summary>
 
-Short description: Load movement sets and clip sets before applying them to a ped.
-
-Signature:
-
-```lua
-FWB.Player.Request.AnimSet({
-    animSet = 'move_m@drunk@slightlydrunk',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-FWB.Player.Request.ClipSet({
-    clipSet = 'move_ped_crouched',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestAnimSet(extras)
-exports.fs_bridge:RequestClipSet(extras)
-```
+Short description: Load an animation set before applying it to a ped.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
-| `animSet` | `string` | Required for `AnimSet` |
-| `clipSet` | `string` | Required for `ClipSet` |
+| `animSet` | `string` | Required animation set name |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
-| `keepLoaded` | `boolean` | Keep asset loaded after success |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
 
 Returns:
 
 - `boolean`
 
-Example usage:
+How to write it:
 
 ```lua
-FWB.Player.Request.AnimSet({
+local ok = FWB.Player.Request.AnimSet(extras)
+```
+
+Example:
+
+```lua
+local ok = FWB.Player.Request.AnimSet({
     animSet = 'move_m@drunk@slightlydrunk'
 })
 
-FWB.Player.Request.ClipSet({
-    clipSet = 'move_ped_crouched'
-})
+print(ok)
 ```
-
-Notes:
-
-- `AnimSet` and `ClipSet` share the same loading rules and return pattern
 
 </details>
 
 <details>
-<summary><strong>Request Named Ptfx Asset</strong></summary>
+<summary><strong>ClipSet(extras)</strong></summary>
 
-Short description: Load a named particle asset before using particle effects.
-
-Signature:
-
-```lua
-FWB.Player.Request.NamedPtfxAsset({
-    asset = 'core',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestNamedPtfxAsset(extras)
-```
+Short description: Load a clip set before applying it to a ped.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
+|---|---|---|
+| `clipSet` | `string` | Required clip set name |
+| `timeout` | `number` | Optional timeout in milliseconds |
+| `silent` | `boolean` | Disable failure prints |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
+
+Returns:
+
+- `boolean`
+
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.ClipSet(extras)
+```
+
+Example:
+
+```lua
+local ok = FWB.Player.Request.ClipSet({
+    clipSet = 'move_ped_crouched'
+})
+
+print(ok)
+```
+
+</details>
+
+<details>
+<summary><strong>NamedPtfxAsset(extras)</strong></summary>
+
+Short description: Load a named particle asset before using particle effects.
+
+Arguments:
+
+| Name | Type | Notes |
 |---|---|---|
 | `asset` | `string` | Required particle asset name |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
-| `keepLoaded` | `boolean` | Keep asset loaded after success |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
 
 Returns:
 
 - `boolean`
 
-Example usage:
+How to write it:
 
 ```lua
-FWB.Player.Request.NamedPtfxAsset({
-    asset = 'core'
-})
+local ok = FWB.Player.Request.NamedPtfxAsset(extras)
 ```
 
-Notes:
+Example:
 
-- use this before starting named particle effects
+```lua
+local ok = FWB.Player.Request.NamedPtfxAsset({
+    asset = 'core'
+})
+
+print(ok)
+```
 
 </details>
 
 <details>
-<summary><strong>Request Weapon Asset</strong></summary>
+<summary><strong>WeaponAsset(extras)</strong></summary>
 
 Short description: Load a weapon asset before using weapon-based effects or previews.
 
-Signature:
-
-```lua
-FWB.Player.Request.WeaponAsset({
-    weapon = `WEAPON_PISTOL`,
-    timeout = 5000,
-    keepLoaded = true,
-    weaponRequestFlags = 31,
-    ammoType = 0
-})
-
-exports.fs_bridge:RequestWeaponAsset(extras)
-```
-
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
 | `weapon` | `string|number` | Required weapon name or hash |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
-| `keepLoaded` | `boolean` | Keep asset loaded after success |
+| `keepLoaded` | `boolean` | Keep the asset loaded after success |
 | `weaponRequestFlags` | `number` | Default `31` |
 | `ammoType` | `number` | Default `0` |
 
@@ -1493,58 +1468,57 @@ Returns:
 
 - `boolean`
 
-Example usage:
+How to write it:
 
 ```lua
-FWB.Player.Request.WeaponAsset({
-    weapon = `WEAPON_PISTOL`
-})
+local ok = FWB.Player.Request.WeaponAsset(extras)
 ```
 
-Notes:
+Example:
 
-- useful when your script works with weapon previews, effects, or weapon-specific assets
+```lua
+local ok = FWB.Player.Request.WeaponAsset({
+    weapon = `WEAPON_PISTOL`
+})
+
+print(ok)
+```
 
 </details>
 
 ## FWB.Player.Vehicle
 
-`FWB.Player.Vehicle` groups the player-focused client vehicle helpers for nearby search, closest vehicle lookup, and vehicle key actions.
+`FWB.Player.Vehicle` covers player-focused vehicle search and vehicle key helpers.
 
 ### Vehicle
 
 <details>
-<summary><strong>Nearby And Closest Vehicle</strong></summary>
+<summary><strong>NearBy(extras)</strong></summary>
 
-Short description: Search nearby vehicles from the local player position without needing to pass the player coords yourself.
-
-Signature:
-
-```lua
-FWB.Player.Vehicle.NearBy(extras)
-FWB.Player.Vehicle.Closest(extras)
-
-exports.fs_bridge:GetPlayerNearbyVehicles(extras)
-exports.fs_bridge:GetPlayerClosestVehicle(extras)
-```
+Short description: Search nearby vehicles from the local player position without passing the player coords yourself.
 
 Arguments:
 
-| Key | Type | Notes |
+| Name | Type | Notes |
 |---|---|---|
 | `coords` | `vector3` | Optional override coords |
 | `maxDistance` | `number` | Search radius, default `2.0` |
-| `maxCount` | `number` | Trim result list for `NearBy` |
+| `maxCount` | `number` | Limit the number of returned entries |
 | `sortedByDistance` | `boolean` | Default `true` |
 | `includePlayerVehicle` | `boolean` | Include the current player vehicle |
 | `model` | `number|string` | Optional model filter |
 
 Returns:
 
-- `FWB.Player.Vehicle.NearBy(extras)` -> table of nearby vehicle entries
-- `FWB.Player.Vehicle.Closest(extras)` -> vehicle entity id or `nil`
+- table of nearby vehicle entries
 
-Example usage:
+How to write it:
+
+```lua
+local nearby = FWB.Player.Vehicle.NearBy(extras)
+```
+
+Example:
 
 ```lua
 local nearby = FWB.Player.Vehicle.NearBy({
@@ -1552,34 +1526,54 @@ local nearby = FWB.Player.Vehicle.NearBy({
     includePlayerVehicle = false
 })
 
-local closestVehicle = FWB.Player.Vehicle.Closest({
-    maxDistance = 5.0
-})
-
-print(nearby[1] and nearby[1].plate, closestVehicle)
+if nearby[1] then
+    print(nearby[1].plate)
+end
 ```
-
-Notes:
-
-- the public function name is `NearBy` with the current Bridge casing
-- nearby entries include `vehicle`, `coords`, `distance`, `model`, and `plate`
 
 </details>
 
 <details>
-<summary><strong>Give And Remove Vehicle Keys</strong></summary>
+<summary><strong>Closest(extras)</strong></summary>
 
-Short description: Give or remove keys for a vehicle through the active vehicle keys integration.
+Short description: Get the closest vehicle entity from the local player position.
 
-Signature:
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `coords` | `vector3` | Optional override coords |
+| `maxDistance` | `number` | Search radius, default `2.0` |
+| `includePlayerVehicle` | `boolean` | Include the current player vehicle |
+| `model` | `number|string` | Optional model filter |
+
+Returns:
+
+- vehicle entity id
+- `nil`
+
+How to write it:
 
 ```lua
-FWB.Player.Vehicle.Keys.Give(vehicle)
-FWB.Player.Vehicle.Keys.Remove(vehicle)
-
-exports.fs_bridge:GiveCarKeyPlayer(vehicle)
-exports.fs_bridge:RemoveCarKeyPlayer(vehicle)
+local vehicle = FWB.Player.Vehicle.Closest(extras)
 ```
+
+Example:
+
+```lua
+local vehicle = FWB.Player.Vehicle.Closest({
+    maxDistance = 5.0
+})
+
+print(vehicle)
+```
+
+</details>
+
+<details>
+<summary><strong>Keys.Give(vehicle)</strong></summary>
+
+Short description: Give keys for a vehicle through the active vehicle keys integration.
 
 Arguments:
 
@@ -1591,22 +1585,53 @@ Returns:
 
 - compatibility-specific key result
 
-Example usage:
+How to write it:
 
 ```lua
-local vehicle = FWB.Player.Vehicle.Closest({
-    maxDistance = 5.0
-})
+FWB.Player.Vehicle.Keys.Give(vehicle)
+```
+
+Example:
+
+```lua
+local vehicle = FWB.Player.Vehicle.Closest({ maxDistance = 5.0 })
 
 if vehicle then
     FWB.Player.Vehicle.Keys.Give(vehicle)
 end
 ```
 
-Notes:
-
-- this uses the active vehicle keys resource selected by Bridge
-- if you need the active keys resource name, use `FWB.Vehicle.Keys.ResourceName()`
-
 </details>
 
+<details>
+<summary><strong>Keys.Remove(vehicle)</strong></summary>
+
+Short description: Remove keys for a vehicle through the active vehicle keys integration.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `vehicle` | `number` | Vehicle entity id |
+
+Returns:
+
+- compatibility-specific key result
+
+How to write it:
+
+```lua
+FWB.Player.Vehicle.Keys.Remove(vehicle)
+```
+
+Example:
+
+```lua
+local vehicle = FWB.Player.Vehicle.Closest({ maxDistance = 5.0 })
+
+if vehicle then
+    FWB.Player.Vehicle.Keys.Remove(vehicle)
+end
+```
+
+</details>
