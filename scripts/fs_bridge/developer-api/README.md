@@ -1,5 +1,4 @@
 ---
-icon: code-branch
 layout:
   width: wide
   title:
@@ -22,9 +21,9 @@ layout:
 
 This section is for developers building resources with Bridge.
 
-## Developer API Categories
+## Pages
 
-| Category                   | What It Covers                                                   |
-| -------------------------- | ---------------------------------------------------------------- |
-| [Usage](usage/)            | Public namespaces, exports, examples, and normal developer usage |
-| [Overrides](../overrides/) | Custom integration snippets grouped by namespace                 |
+| Page | What It Covers |
+|---|---|
+| [Client](client.md) | Client-side usage, runtime docs, examples, and client manual compatibility |
+| [Server](server.md) | Server-side usage, runtime docs, examples, and server manual compatibility |
