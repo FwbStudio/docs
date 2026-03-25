@@ -35,22 +35,54 @@ Server side:
 unlocked/server.lua
 ```
 
-## 🧩 When To Use Manual Compatibility
+## Overrides
 
-Use it when:
+Below is a sample override entry so the rest of the manual compatibility docs can follow the same format.
 
-* your resource is unsupported
-* auto-detect cannot resolve your setup
-* your setup needs custom integration behavior
+<details>
+<summary><strong>Hunger</strong></summary>
 
-## 🚫 When Not To Use Manual Compatibility
+Short description: Adds or removes hunger through your own status system.
 
-Do not use it when:
+Signature:
 
-* your supported resource already works
-* the issue is only config selection
-* the problem is installation order, not missing functionality
+```lua
+Override.AddHunger(value)
+Override.RemoveHunger(value)
+```
 
-## ➡️ Next Step
+Arguments:
 
-Use the namespace pages in [Developer API](../developer-api/) to pick the correct override surface.
+| Name | Type | Required | Notes |
+|---|---|---|---|
+| `value` | `number` | Yes | Amount to add or remove |
+
+Returns:
+
+- optional result from your own status system
+
+Override code:
+
+```lua
+function Override.AddHunger(value)
+    TriggerEvent('my_status:add', 'hunger', value)
+end
+
+function Override.RemoveHunger(value)
+    TriggerEvent('my_status:remove', 'hunger', value)
+end
+```
+
+Example usage:
+
+```lua
+FWB.Player.Hunger.Add(10)
+FWB.Player.Hunger.Remove(5)
+```
+
+Notes:
+
+- this is client-side
+- replace the event names with the ones from your own status system
+
+</details>
