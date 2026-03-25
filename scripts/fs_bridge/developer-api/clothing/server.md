@@ -18,8 +18,12 @@ layout:
 ---
 # Server
 
-There is currently no normal public server-side clothing namespace in the live Bridge build.
+This page documents the public server-side Clothing API.
 
-Use the `Client` clothing page for the public clothing helpers that Bridge exposes today.
+## Server Clothing
 
-If your setup needs custom server-side clothing compatibility, use the Manual Compatibility pages instead of relying on undocumented internal hooks.
+### Public Clothing API
+
+The current live Bridge build does not expose a normal public server-side clothing namespace or clothing exports.
+
+Use the client clothing helpers for public clothing operations. If you need custom server-driven clothing behavior, use the Manual Compatibility pages instead of relying on undocumented internal hooks.
