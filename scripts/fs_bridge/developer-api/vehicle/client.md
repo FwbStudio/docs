@@ -800,44 +800,32 @@ Arguments:
 | `spawnSource` | `number|vector3|vector4|nil` | Player ped entity, coordinates, or leave empty to use the local player ped |
 | `model` | `string|number` | Vehicle model name or model hash |
 | `options` | `table` | Vehicle creation options table |
-| `options.handle` | `string` | Optional custom runtime handle |
 | `options.resource` | `string` | Optional resource owner name. Defaults to the invoking resource |
 | `options.coords` | `vector3|vector4|table` | Spawn position |
 | `options.position` | `vector3|vector4|table` | Alias for `options.coords` |
-| `options.location` | `vector3|vector4|table` | Alias for `options.coords` |
 | `options.heading` | `number` | Spawn heading when your coordinates do not already include `w` |
-| `options.giveKeys` | `boolean` | Give keys after spawn |
-| `options.give_keys` | `boolean` | Alias for `options.giveKeys` |
-| `options.keys` | `boolean` | Alias for `options.giveKeys` |
-| `options.warp` | `boolean` | Warp the local player into the vehicle |
-| `options.wrap` | `boolean` | Alias for `options.warp` |
-| `options.seat` | `number` | Seat index used when `options.warp = true`. Defaults to `-1` |
-| `options.putOnGround` | `boolean` | Put the vehicle on the ground after spawn |
-| `options.on_ground` | `boolean` | Alias for `options.putOnGround` |
+| `options.seat` | `number` | Seat index used by vehicle placement logic |
 | `options.spawnclear` | `boolean` | Clear nearby vehicles before spawning |
-| `options.clearArea` | `boolean` | Alias for `options.spawnclear` |
 | `options.clearRadius` | `number` | Radius used when `options.spawnclear = true`. Defaults to `5.0` |
-| `options.spawnClearRadius` | `number` | Alias for `options.clearRadius` |
-| `options.timeout` | `number` | Model/entity wait timeout in milliseconds. Defaults to `10000` |
-| `options.silent` | `boolean` | Set `true` to suppress Bridge request-model failure prints |
-| `options.extras` | `table` | Vehicle extras map copied into `options.props.extras` when needed |
-| `options.props` | `table` | Full vehicle properties table |
-| `options.livery` | `number` | Livery value copied into `props.modLivery` when needed |
 | `options.plate` | `string` | Custom plate text |
 | `options.fuel` | `number` | Fuel level to apply after spawn |
-| `options.engineOn` | `boolean` | Engine state after spawn |
-| `options.engine` | `boolean` | Alias for `options.engineOn` |
-| `options.locked` | `boolean|number` | Lock state after spawn |
-| `options.lock` | `boolean|number` | Alias for `options.locked` |
+| `options.props` | `table` | Full vehicle properties table |
+| `options.extras` | `table` | Vehicle extras map copied into `options.props.extras` when needed |
+| `options.livery` | `number` | Livery value copied into `props.modLivery` when needed |
+| `options.putOnGround` | `boolean` | Put the vehicle on the ground after spawn |
 | `options.freeze` | `boolean` | Freeze the vehicle position after spawn |
+| `options.engineOn` | `boolean` | Engine state after spawn |
+| `options.locked` | `boolean|number` | Lock state after spawn |
 | `options.dirtLevel` | `number` | Dirt level value |
 | `options.bodyHealth` | `number` | Body health value |
 | `options.engineHealth` | `number` | Engine health value |
 | `options.petrolTankHealth` | `number` | Petrol tank health value |
+| `options.timeout` | `number` | Model or entity wait timeout in milliseconds. Defaults to `10000` |
+| `options.silent` | `boolean` | Set `true` to suppress Bridge request-model failure prints |
 
 Returns:
 
-- `table` runtime entry with `handle`, `resource`, `model`, `modelName`, `options`, `vehicle`, `netId`, `netid`, and `spawnSource`
+- `table` runtime entry with `handle`, `resource`, `model`, `modelName`, `options`, `vehicle`, `netId`, and `spawnSource`
 - throws a Lua error when the model is invalid, the spawn source is invalid, or creation times out
 
 How to write it as function:
@@ -856,11 +844,14 @@ Example as function:
 
 ```lua
 local entry = FWB.Vehicle.Create(nil, 'adder', {
-    warp = true,
-    giveKeys = true,
+    spawnclear = true,
     plate = FWB.Vehicle.GeneratePlate(),
-    fuel = 80.0,
-    engineOn = true
+    fuel = 95.0,
+    putOnGround = true,
+    props = {
+        bodyHealth = 1000.0,
+        engineHealth = 1000.0
+    }
 })
 ```
 
@@ -868,11 +859,14 @@ Example as export:
 
 ```lua
 local entry = exports['fs_bridge']:CreateVehicle(nil, 'adder', {
-    warp = true,
-    giveKeys = true,
+    spawnclear = true,
     plate = exports['fs_bridge']:GenerateVehiclePlate(),
-    fuel = 80.0,
-    engineOn = true
+    fuel = 95.0,
+    putOnGround = true,
+    props = {
+        bodyHealth = 1000.0,
+        engineHealth = 1000.0
+    }
 })
 ```
 
@@ -893,36 +887,25 @@ Arguments:
 | `updates.resource` | `string` | Optional new resource owner name |
 | `updates.coords` | `vector3|vector4|table` | New position |
 | `updates.position` | `vector3|vector4|table` | Alias for `updates.coords` |
-| `updates.location` | `vector3|vector4|table` | Alias for `updates.coords` |
 | `updates.heading` | `number` | New heading |
-| `updates.giveKeys` | `boolean` | Give keys after update |
-| `updates.give_keys` | `boolean` | Alias for `updates.giveKeys` |
-| `updates.keys` | `boolean` | Alias for `updates.giveKeys` |
-| `updates.warp` | `boolean` | Warp the local player into the vehicle |
-| `updates.wrap` | `boolean` | Alias for `updates.warp` |
-| `updates.seat` | `number` | Seat index used when `updates.warp = true`. Defaults to `-1` |
-| `updates.putOnGround` | `boolean` | Put the vehicle on the ground |
-| `updates.on_ground` | `boolean` | Alias for `updates.putOnGround` |
+| `updates.seat` | `number` | Seat index used by vehicle placement logic |
 | `updates.spawnclear` | `boolean` | Clear nearby vehicles before a recreate |
-| `updates.clearArea` | `boolean` | Alias for `updates.spawnclear` |
 | `updates.clearRadius` | `number` | Radius used when `updates.spawnclear = true` |
-| `updates.spawnClearRadius` | `number` | Alias for `updates.clearRadius` |
-| `updates.timeout` | `number` | Model/entity wait timeout in milliseconds |
-| `updates.silent` | `boolean` | Set `true` to suppress Bridge request-model failure prints during recreate |
-| `updates.extras` | `table` | Vehicle extras map copied into `updates.props.extras` when needed |
-| `updates.props` | `table` | Full or partial vehicle properties table |
-| `updates.livery` | `number` | Livery value copied into `props.modLivery` when needed |
 | `updates.plate` | `string` | New plate text |
 | `updates.fuel` | `number` | Fuel level to apply |
-| `updates.engineOn` | `boolean` | Engine state |
-| `updates.engine` | `boolean` | Alias for `updates.engineOn` |
-| `updates.locked` | `boolean|number` | Lock state |
-| `updates.lock` | `boolean|number` | Alias for `updates.locked` |
+| `updates.props` | `table` | Full or partial vehicle properties table |
+| `updates.extras` | `table` | Vehicle extras map copied into `updates.props.extras` when needed |
+| `updates.livery` | `number` | Livery value copied into `props.modLivery` when needed |
+| `updates.putOnGround` | `boolean` | Put the vehicle on the ground |
 | `updates.freeze` | `boolean` | Freeze state |
+| `updates.engineOn` | `boolean` | Engine state |
+| `updates.locked` | `boolean|number` | Lock state |
 | `updates.dirtLevel` | `number` | Dirt level value |
 | `updates.bodyHealth` | `number` | Body health value |
 | `updates.engineHealth` | `number` | Engine health value |
 | `updates.petrolTankHealth` | `number` | Petrol tank health value |
+| `updates.timeout` | `number` | Model or entity wait timeout in milliseconds. Defaults to `10000` |
+| `updates.silent` | `boolean` | Set `true` to suppress Bridge request-model failure prints during recreate |
 
 Returns:
 
@@ -959,49 +942,6 @@ local success, entry = exports['fs_bridge']:UpdateVehicle(entry.handle, {
     freeze = true,
     plate = 'FS100'
 })
-```
-
-</details>
-
-<details>
-<summary><strong>Remove Vehicle</strong></summary>
-
-Short description: Remove one tracked runtime vehicle entry and delete its spawned entity.
-
-Arguments:
-
-| Name | Type | Notes |
-|---|---|---|
-| `handleOrEntry` | `string|number|table` | Runtime handle, runtime entry table, vehicle entity handle, or vehicle network id |
-
-Returns:
-
-- `boolean` success
-
-How to write it as function:
-
-```lua
-local ok = FWB.Vehicle.Remove(handleOrEntry)
-```
-
-How to write it as export:
-
-```lua
-local ok = exports['fs_bridge']:RemoveVehicle(handleOrEntry)
-```
-
-Example as function:
-
-```lua
-local ok = FWB.Vehicle.Remove(entry.handle)
-print(ok)
-```
-
-Example as export:
-
-```lua
-local ok = exports['fs_bridge']:RemoveVehicle(entry.handle)
-print(ok)
 ```
 
 </details>
@@ -1089,49 +1029,6 @@ Example as export:
 ```lua
 local vehicles = exports['fs_bridge']:GetAllVehicles()
 print(vehicles)
-```
-
-</details>
-
-<details>
-<summary><strong>Clear Vehicles</strong></summary>
-
-Short description: Remove tracked runtime vehicle entries for one resource, or clear every tracked runtime vehicle when no resource is passed.
-
-Arguments:
-
-| Name | Type | Notes |
-|---|---|---|
-| `resource` | `string` | Optional resource owner name. Leave empty to clear every tracked runtime vehicle |
-
-Returns:
-
-- `number` amount of cleared runtime entries
-
-How to write it as function:
-
-```lua
-local cleared = FWB.Vehicle.Clear(resource)
-```
-
-How to write it as export:
-
-```lua
-local cleared = exports['fs_bridge']:ClearVehicles(resource)
-```
-
-Example as function:
-
-```lua
-local cleared = FWB.Vehicle.Clear(GetCurrentResourceName())
-print(cleared)
-```
-
-Example as export:
-
-```lua
-local cleared = exports['fs_bridge']:ClearVehicles(GetCurrentResourceName())
-print(cleared)
 ```
 
 </details>

@@ -382,23 +382,28 @@ Returns:
 How to write it as function:
 
 ```lua
-local ownedVehicles = FWB.GetOwnedVehiclesList()
+local ownedVehicles = FWB.Vehicle.GetOwnedList()
 ```
 
 How to write it as export:
 
-- No direct export is provided for this helper.
+```lua
+local ownedVehicles = exports['fs_bridge']:GetOwnedVehiclesList()
+```
 
 Example as function:
 
 ```lua
-local ownedVehicles = FWB.GetOwnedVehiclesList()
+local ownedVehicles = FWB.Vehicle.GetOwnedList()
 print(ownedVehicles)
 ```
 
 Example as export:
 
-- No direct export is provided for this helper.
+```lua
+local ownedVehicles = exports['fs_bridge']:GetOwnedVehiclesList()
+print(ownedVehicles)
+```
 
 </details>
 
@@ -421,23 +426,28 @@ Returns:
 How to write it as function:
 
 ```lua
-local detail = FWB.GetVehicleDetailFromPlate(plate)
+local detail = FWB.Vehicle.GetDetailFromPlate(plate)
 ```
 
 How to write it as export:
 
-- No direct export is provided for this helper.
+```lua
+local detail = exports['fs_bridge']:GetVehicleDetailFromPlate(plate)
+```
 
 Example as function:
 
 ```lua
-local detail = FWB.GetVehicleDetailFromPlate('ABC123')
+local detail = FWB.Vehicle.GetDetailFromPlate('ABC123')
 print(detail)
 ```
 
 Example as export:
 
-- No direct export is provided for this helper.
+```lua
+local detail = exports['fs_bridge']:GetVehicleDetailFromPlate('ABC123')
+print(detail)
+```
 
 </details>
 
@@ -455,50 +465,37 @@ Arguments:
 | `spawnSource` | `number|vector3|vector4` | Player source, ped entity, or coordinates. When using coordinates only, you can still set `options.source` |
 | `model` | `string|number` | Vehicle model name or model hash |
 | `options` | `table` | Vehicle creation options table |
-| `options.handle` | `string` | Optional custom runtime handle |
 | `options.resource` | `string` | Optional resource owner name. Defaults to the invoking resource |
-| `options.source` | `number` | Owner player source used for keys, props sync, and client updates |
+| `options.source` | `number` | Owner player source used for props sync and client updates |
 | `options.playerSource` | `number` | Alias for `options.source` |
 | `options.ownerSource` | `number` | Alias for `options.source` |
 | `options.coords` | `vector3|vector4|table` | Spawn position |
 | `options.position` | `vector3|vector4|table` | Alias for `options.coords` |
-| `options.location` | `vector3|vector4|table` | Alias for `options.coords` |
 | `options.heading` | `number` | Spawn heading when your coordinates do not already include `w` |
-| `options.giveKeys` | `boolean` | Give keys after spawn |
-| `options.give_keys` | `boolean` | Alias for `options.giveKeys` |
-| `options.keys` | `boolean` | Alias for `options.giveKeys` |
-| `options.warp` | `boolean` | Ask the owner client to warp into the vehicle |
-| `options.wrap` | `boolean` | Alias for `options.warp` |
-| `options.seat` | `number` | Seat index used when `options.warp = true`. Defaults to `-1` |
-| `options.putOnGround` | `boolean` | Ask the owner client to place the vehicle on the ground |
-| `options.on_ground` | `boolean` | Alias for `options.putOnGround` |
 | `options.spawnclear` | `boolean` | Clear nearby vehicles before spawning |
-| `options.clearArea` | `boolean` | Alias for `options.spawnclear` |
 | `options.clearRadius` | `number` | Radius used when `options.spawnclear = true`. Defaults to `5.0` |
-| `options.spawnClearRadius` | `number` | Alias for `options.clearRadius` |
-| `options.timeout` | `number` | Entity/owner wait timeout in milliseconds. Defaults to `10000` |
-| `options.rbucket` | `number` | Routing bucket applied to the spawned vehicle |
-| `options.vehicleType` | `string` | Optional explicit vehicle type. Leave empty to let Bridge resolve it |
-| `options.extras` | `table` | Vehicle extras map copied into `options.props.extras` when needed |
-| `options.props` | `table` | Full vehicle properties table |
-| `options.livery` | `number` | Livery value copied into `props.modLivery` when needed |
 | `options.plate` | `string` | Custom plate text |
 | `options.fuel` | `number` | Fuel level sent to the owner client |
-| `options.engineOn` | `boolean` | Engine state sent to the owner client |
-| `options.engine` | `boolean` | Alias for `options.engineOn` |
-| `options.locked` | `boolean|number` | Lock state sent to the owner client |
-| `options.lock` | `boolean|number` | Alias for `options.locked` |
+| `options.props` | `table` | Full vehicle properties table |
+| `options.extras` | `table` | Vehicle extras map copied into `options.props.extras` when needed |
+| `options.livery` | `number` | Livery value copied into `props.modLivery` when needed |
+| `options.putOnGround` | `boolean` | Ask the owner client to place the vehicle on the ground |
 | `options.freeze` | `boolean` | Freeze the vehicle position |
+| `options.engineOn` | `boolean` | Engine state sent to the owner client |
+| `options.locked` | `boolean|number` | Lock state sent to the owner client |
 | `options.dirtLevel` | `number` | Dirt level value sent to the owner client |
 | `options.bodyHealth` | `number` | Body health value sent to the owner client |
 | `options.engineHealth` | `number` | Engine health value sent to the owner client |
 | `options.petrolTankHealth` | `number` | Petrol tank health value sent to the owner client |
+| `options.timeout` | `number` | Entity or owner wait timeout in milliseconds. Defaults to `10000` |
+| `options.rbucket` | `number` | Routing bucket applied to the spawned vehicle |
+| `options.vehicleType` | `string` | Optional explicit vehicle type. Leave empty to let Bridge resolve it |
 | `options.removeOnDisconnect` | `boolean` | Remove the runtime vehicle automatically when the owner disconnects |
 | `options.removeOnLogout` | `boolean` | Remove the runtime vehicle automatically when the owner logs out |
 
 Returns:
 
-- `table` runtime entry with `handle`, `resource`, `model`, `modelName`, `options`, `vehicle`, `netId`, `netid`, `spawnSource`, and `ownerSource`
+- `table` runtime entry with `handle`, `resource`, `model`, `modelName`, `options`, `vehicle`, `netId`, `spawnSource`, and `ownerSource`
 - throws a Lua error when the model is invalid, the spawn source is invalid, the vehicle type cannot be resolved, or creation times out
 
 How to write it as function:
@@ -518,10 +515,13 @@ Example as function:
 ```lua
 local entry = FWB.Vehicle.Create(source, 'adder', {
     source = source,
-    giveKeys = true,
-    warp = true,
+    rbucket = 1,
     plate = FWB.Vehicle.GeneratePlate(),
-    removeOnDisconnect = true
+    fuel = 80.0,
+    props = {
+        bodyHealth = 1000.0,
+        engineHealth = 1000.0
+    }
 })
 ```
 
@@ -530,10 +530,13 @@ Example as export:
 ```lua
 local entry = exports['fs_bridge']:CreateVehicle(source, 'adder', {
     source = source,
-    giveKeys = true,
-    warp = true,
+    rbucket = 1,
     plate = exports['fs_bridge']:GenerateVehiclePlate(),
-    removeOnDisconnect = true
+    fuel = 80.0,
+    props = {
+        bodyHealth = 1000.0,
+        engineHealth = 1000.0
+    }
 })
 ```
 
@@ -552,42 +555,30 @@ Arguments:
 | `updates` | `table` | Partial update table |
 | `updates.model` | `string|number` | New vehicle model. Changing this recreates the vehicle |
 | `updates.resource` | `string` | Optional new resource owner name |
-| `updates.source` | `number` | Owner player source used for keys, props sync, and client updates |
+| `updates.source` | `number` | Owner player source used for props sync and client updates |
 | `updates.playerSource` | `number` | Alias for `updates.source` |
 | `updates.ownerSource` | `number` | Alias for `updates.source` |
 | `updates.coords` | `vector3|vector4|table` | New position |
 | `updates.position` | `vector3|vector4|table` | Alias for `updates.coords` |
-| `updates.location` | `vector3|vector4|table` | Alias for `updates.coords` |
 | `updates.heading` | `number` | New heading |
-| `updates.giveKeys` | `boolean` | Give keys after update |
-| `updates.give_keys` | `boolean` | Alias for `updates.giveKeys` |
-| `updates.keys` | `boolean` | Alias for `updates.giveKeys` |
-| `updates.warp` | `boolean` | Ask the owner client to warp into the vehicle |
-| `updates.wrap` | `boolean` | Alias for `updates.warp` |
-| `updates.seat` | `number` | Seat index used when `updates.warp = true`. Defaults to `-1` |
-| `updates.putOnGround` | `boolean` | Ask the owner client to place the vehicle on the ground |
-| `updates.on_ground` | `boolean` | Alias for `updates.putOnGround` |
 | `updates.spawnclear` | `boolean` | Clear nearby vehicles before a recreate |
-| `updates.clearArea` | `boolean` | Alias for `updates.spawnclear` |
 | `updates.clearRadius` | `number` | Radius used when `updates.spawnclear = true` |
-| `updates.spawnClearRadius` | `number` | Alias for `updates.clearRadius` |
-| `updates.timeout` | `number` | Entity/owner wait timeout in milliseconds |
-| `updates.rbucket` | `number` | Routing bucket applied to the vehicle |
-| `updates.vehicleType` | `string` | Optional explicit vehicle type used during recreate |
-| `updates.extras` | `table` | Vehicle extras map copied into `updates.props.extras` when needed |
-| `updates.props` | `table` | Full or partial vehicle properties table |
-| `updates.livery` | `number` | Livery value copied into `props.modLivery` when needed |
 | `updates.plate` | `string` | New plate text |
 | `updates.fuel` | `number` | Fuel level sent to the owner client |
-| `updates.engineOn` | `boolean` | Engine state sent to the owner client |
-| `updates.engine` | `boolean` | Alias for `updates.engineOn` |
-| `updates.locked` | `boolean|number` | Lock state sent to the owner client |
-| `updates.lock` | `boolean|number` | Alias for `updates.locked` |
+| `updates.props` | `table` | Full or partial vehicle properties table |
+| `updates.extras` | `table` | Vehicle extras map copied into `updates.props.extras` when needed |
+| `updates.livery` | `number` | Livery value copied into `props.modLivery` when needed |
+| `updates.putOnGround` | `boolean` | Ask the owner client to place the vehicle on the ground |
 | `updates.freeze` | `boolean` | Freeze state |
+| `updates.engineOn` | `boolean` | Engine state sent to the owner client |
+| `updates.locked` | `boolean|number` | Lock state sent to the owner client |
 | `updates.dirtLevel` | `number` | Dirt level value sent to the owner client |
 | `updates.bodyHealth` | `number` | Body health value sent to the owner client |
 | `updates.engineHealth` | `number` | Engine health value sent to the owner client |
 | `updates.petrolTankHealth` | `number` | Petrol tank health value sent to the owner client |
+| `updates.timeout` | `number` | Entity or owner wait timeout in milliseconds. Defaults to `10000` |
+| `updates.rbucket` | `number` | Routing bucket applied to the vehicle |
+| `updates.vehicleType` | `string` | Optional explicit vehicle type used during recreate |
 | `updates.removeOnDisconnect` | `boolean` | Remove the runtime vehicle automatically when the owner disconnects |
 | `updates.removeOnLogout` | `boolean` | Remove the runtime vehicle automatically when the owner logs out |
 
@@ -628,49 +619,6 @@ local success, entry = exports['fs_bridge']:UpdateVehicle(entry.handle, {
     freeze = true,
     removeOnLogout = true
 })
-```
-
-</details>
-
-<details>
-<summary><strong>Remove Vehicle</strong></summary>
-
-Short description: Remove one tracked runtime vehicle entry and delete its spawned entity.
-
-Arguments:
-
-| Name | Type | Notes |
-|---|---|---|
-| `handleOrEntry` | `string|number|table` | Runtime handle, runtime entry table, vehicle entity handle, or vehicle network id |
-
-Returns:
-
-- `boolean` success
-
-How to write it as function:
-
-```lua
-local ok = FWB.Vehicle.Remove(handleOrEntry)
-```
-
-How to write it as export:
-
-```lua
-local ok = exports['fs_bridge']:RemoveVehicle(handleOrEntry)
-```
-
-Example as function:
-
-```lua
-local ok = FWB.Vehicle.Remove(entry.handle)
-print(ok)
-```
-
-Example as export:
-
-```lua
-local ok = exports['fs_bridge']:RemoveVehicle(entry.handle)
-print(ok)
 ```
 
 </details>
@@ -758,49 +706,6 @@ Example as export:
 ```lua
 local vehicles = exports['fs_bridge']:GetAllVehicles()
 print(vehicles)
-```
-
-</details>
-
-<details>
-<summary><strong>Clear Vehicles</strong></summary>
-
-Short description: Remove tracked runtime vehicle entries for one resource, or clear every tracked runtime vehicle when no resource is passed.
-
-Arguments:
-
-| Name | Type | Notes |
-|---|---|---|
-| `resource` | `string` | Optional resource owner name. Leave empty to clear every tracked runtime vehicle |
-
-Returns:
-
-- `number` amount of cleared runtime entries
-
-How to write it as function:
-
-```lua
-local cleared = FWB.Vehicle.Clear(resource)
-```
-
-How to write it as export:
-
-```lua
-local cleared = exports['fs_bridge']:ClearVehicles(resource)
-```
-
-Example as function:
-
-```lua
-local cleared = FWB.Vehicle.Clear(GetCurrentResourceName())
-print(cleared)
-```
-
-Example as export:
-
-```lua
-local cleared = exports['fs_bridge']:ClearVehicles(GetCurrentResourceName())
-print(cleared)
 ```
 
 </details>
