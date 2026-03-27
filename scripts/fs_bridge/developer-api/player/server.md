@@ -1079,17 +1079,21 @@ print(exports['fs_bridge']:GetJobPlayerCount('police'))
 
 ## FWB.Player.Request
 
+Server-side request helpers exist for API compatibility only. They do not actually stream assets on the server.
+
+The public `FWB.Player.Request.*` contract still uses one options table only, even here.
+
 <details>
 <summary><strong>Request Anim Dict</strong></summary>
 
-Short description: Server-side request helpers exist for API compatibility only. They do not actually stream assets on the server.
+Short description: Compatibility helper only. This does not actually stream an animation dictionary on the server.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `dict` | `string` | Animation dictionary name |
-| `timeout` | `number` | Optional compatibility argument |
+| `options.dict` | `string` | Required animation dictionary name |
+| `options.timeout` | `number` | Optional compatibility timeout |
 
 Returns:
 
@@ -1098,26 +1102,38 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.AnimDict(dict, timeout)
+local ok = FWB.Player.Request.AnimDict({
+    dict = 'amb@prop_human_bum_bin@base',
+    timeout = 5000
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimDict(dict, timeout)
+local ok = exports['fs_bridge']:RequestAnimDict({
+    dict = 'amb@prop_human_bum_bin@base',
+    timeout = 5000
+})
 ```
 
 Example as function:
 
 ```lua
-local ok = FWB.Player.Request.AnimDict('amb@prop_human_bum_bin@base')
+local ok = FWB.Player.Request.AnimDict({
+    dict = 'amb@prop_human_bum_bin@base',
+    timeout = 5000
+})
 print(ok)
 ```
 
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimDict('amb@prop_human_bum_bin@base')
+local ok = exports['fs_bridge']:RequestAnimDict({
+    dict = 'amb@prop_human_bum_bin@base',
+    timeout = 5000
+})
 print(ok)
 ```
 
@@ -1126,14 +1142,14 @@ print(ok)
 <details>
 <summary><strong>Request Model</strong></summary>
 
-Short description: Server-side request helpers exist for API compatibility only. They do not actually stream assets on the server.
+Short description: Compatibility helper only. This does not actually stream a model on the server.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `model` | `string|number` | Model name or hash |
-| `timeout` | `number` | Optional compatibility argument |
+| `options.model` | `string|number` | Required model name or hash |
+| `options.timeout` | `number` | Optional compatibility timeout |
 
 Returns:
 
@@ -1142,27 +1158,40 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.Model(model, timeout)
+local ok = FWB.Player.Request.Model({
+    model = 'adder',
+    timeout = 5000
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestModel(model, timeout)
+local ok = exports['fs_bridge']:RequestModel({
+    model = 'adder',
+    timeout = 5000
+})
 ```
 
 Example as function:
 
 ```lua
-local ok = FWB.Player.Request.Model('adder')
+local ok = FWB.Player.Request.Model({
+    model = 'adder',
+    timeout = 5000
+})
 print(ok)
 ```
 
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestModel('adder')
+local ok = exports['fs_bridge']:RequestModel({
+    model = 'adder',
+    timeout = 5000
+})
 print(ok)
 ```
 
 </details>
+

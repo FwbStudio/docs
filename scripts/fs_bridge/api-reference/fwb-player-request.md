@@ -5,39 +5,28 @@
 ## Public Calls
 
 ```lua
-FWB.Player.Request.AnimDict(extras)
-FWB.Player.Request.Model(extras)
-FWB.Player.Request.AnimSet(extras)
-FWB.Player.Request.ClipSet(extras)
-FWB.Player.Request.NamedPtfxAsset(extras)
-FWB.Player.Request.WeaponAsset(extras)
+FWB.Player.Request.AnimDict(options)
+FWB.Player.Request.Model(options)
+FWB.Player.Request.AnimSet(options)
+FWB.Player.Request.ClipSet(options)
+FWB.Player.Request.NamedPtfxAsset(options)
+FWB.Player.Request.WeaponAsset(options)
 ```
 
 ## Common Rules
 
 - all request helpers return `true` on success and `false` on failure
-- all helpers support the `extras` table style
+- `FWB.Player.Request.*` uses one options table only
+- the extra second `timeout` argument is not part of the new request contract
 - default `timeout` is `10000`
 - `silent = true` disables failure prints
-- `keepLoaded = false` releases the asset after a successful load
+- `keepLoaded = true` keeps the asset loaded after a successful request
+- deprecated compatibility is still kept for `FWB.RequestAnimDict(dict, timeout)` and `FWB.RequestModel(model, timeout)`
 
 <details>
 <summary><strong>Request Anim Dict</strong></summary>
 
 Short description: Load an animation dictionary before playing an animation.
-
-Signature:
-
-```lua
-FWB.Player.Request.AnimDict({
-    dict = 'amb@world_human_stand_mobile@male@text@enter',
-    timeout = 5000,
-    silent = false,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestAnimDict(extras)
-```
 
 Arguments:
 
@@ -51,6 +40,28 @@ Arguments:
 Returns:
 
 - `boolean`
+
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.AnimDict({
+    dict = 'amb@world_human_stand_mobile@male@text@enter',
+    timeout = 5000,
+    silent = false,
+    keepLoaded = true
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestAnimDict({
+    dict = 'amb@world_human_stand_mobile@male@text@enter',
+    timeout = 5000,
+    silent = false,
+    keepLoaded = true
+})
+```
 
 Example usage:
 
@@ -76,20 +87,6 @@ Notes:
 
 Short description: Load a model before creating a ped, prop, or vehicle.
 
-Signature:
-
-```lua
-FWB.Player.Request.Model({
-    model = `adder`,
-    timeout = 5000,
-    silent = false,
-    keepLoaded = true,
-    requireValid = true
-})
-
-exports.fs_bridge:RequestModel(extras)
-```
-
 Arguments:
 
 | Key | Type | Notes |
@@ -104,12 +101,36 @@ Returns:
 
 - `boolean`
 
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.Model({
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestModel({
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
+})
+```
+
 Example usage:
 
 ```lua
 local ok = FWB.Player.Request.Model({
-    model = `adder`,
-    timeout = 5000
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
 })
 
 if ok then
@@ -124,35 +145,15 @@ Notes:
 </details>
 
 <details>
-<summary><strong>Request Anim Set Or Clip Set</strong></summary>
+<summary><strong>Request Anim Set</strong></summary>
 
-Short description: Load movement sets and clip sets before applying them to a ped.
-
-Signature:
-
-```lua
-FWB.Player.Request.AnimSet({
-    animSet = 'move_m@drunk@slightlydrunk',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-FWB.Player.Request.ClipSet({
-    clipSet = 'move_ped_crouched',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestAnimSet(extras)
-exports.fs_bridge:RequestClipSet(extras)
-```
+Short description: Load an animation set before applying it to a ped.
 
 Arguments:
 
 | Key | Type | Notes |
 |---|---|---|
-| `animSet` | `string` | Required for `AnimSet` |
-| `clipSet` | `string` | Required for `ClipSet` |
+| `animSet` | `string` | Required animation set name |
 | `timeout` | `number` | Optional timeout in milliseconds |
 | `silent` | `boolean` | Disable failure prints |
 | `keepLoaded` | `boolean` | Keep asset loaded after success |
@@ -161,21 +162,87 @@ Returns:
 
 - `boolean`
 
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.AnimSet({
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestAnimSet({
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
+})
+```
+
 Example usage:
 
 ```lua
 FWB.Player.Request.AnimSet({
-    animSet = 'move_m@drunk@slightlydrunk'
-})
-
-FWB.Player.Request.ClipSet({
-    clipSet = 'move_ped_crouched'
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
 })
 ```
 
 Notes:
 
-- `AnimSet` and `ClipSet` share the same loading rules and return pattern
+- use this before applying a movement set
+
+</details>
+
+<details>
+<summary><strong>Request Clip Set</strong></summary>
+
+Short description: Load a clip set before applying it to a ped.
+
+Arguments:
+
+| Key | Type | Notes |
+|---|---|---|
+| `clipSet` | `string` | Required clip set name |
+| `timeout` | `number` | Optional timeout in milliseconds |
+| `silent` | `boolean` | Disable failure prints |
+| `keepLoaded` | `boolean` | Keep asset loaded after success |
+
+Returns:
+
+- `boolean`
+
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.ClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
+```
+
+Example usage:
+
+```lua
+FWB.Player.Request.ClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
+```
+
+Notes:
+
+- use this before applying a clip set
 
 </details>
 
@@ -183,18 +250,6 @@ Notes:
 <summary><strong>Request Named Ptfx Asset</strong></summary>
 
 Short description: Load a named particle asset before using particle effects.
-
-Signature:
-
-```lua
-FWB.Player.Request.NamedPtfxAsset({
-    asset = 'core',
-    timeout = 5000,
-    keepLoaded = true
-})
-
-exports.fs_bridge:RequestNamedPtfxAsset(extras)
-```
 
 Arguments:
 
@@ -209,11 +264,30 @@ Returns:
 
 - `boolean`
 
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.NamedPtfxAsset({
+    asset = 'core',
+    timeout = 5000
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestNamedPtfxAsset({
+    asset = 'core',
+    timeout = 5000
+})
+```
+
 Example usage:
 
 ```lua
 FWB.Player.Request.NamedPtfxAsset({
-    asset = 'core'
+    asset = 'core',
+    timeout = 5000
 })
 ```
 
@@ -227,20 +301,6 @@ Notes:
 <summary><strong>Request Weapon Asset</strong></summary>
 
 Short description: Load a weapon asset before using weapon-based effects or previews.
-
-Signature:
-
-```lua
-FWB.Player.Request.WeaponAsset({
-    weapon = `WEAPON_PISTOL`,
-    timeout = 5000,
-    keepLoaded = true,
-    weaponRequestFlags = 31,
-    ammoType = 0
-})
-
-exports.fs_bridge:RequestWeaponAsset(extras)
-```
 
 Arguments:
 
@@ -257,11 +317,36 @@ Returns:
 
 - `boolean`
 
+How to write it:
+
+```lua
+local ok = FWB.Player.Request.WeaponAsset({
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
+})
+```
+
+How to write it as export:
+
+```lua
+local ok = exports['fs_bridge']:RequestWeaponAsset({
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
+})
+```
+
 Example usage:
 
 ```lua
 FWB.Player.Request.WeaponAsset({
-    weapon = `WEAPON_PISTOL`
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
 })
 ```
 

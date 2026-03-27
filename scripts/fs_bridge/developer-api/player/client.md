@@ -935,6 +935,15 @@ exports['fs_bridge']:RemoveArmour(10)
 
 ### Request
 
+`FWB.Player.Request.*` is the current request API and uses one options table only.
+
+Important behavior split:
+
+- New `FWB.Player.Request.*` uses one options table only.
+- The extra second `timeout` argument is not part of the new contract.
+- `timeout` stays inside the options table with the other request keys.
+- Deprecated compatibility is still kept for `FWB.RequestAnimDict(dict, timeout)` and `FWB.RequestModel(model, timeout)`.
+
 <details>
 <summary><strong>Request Anim Dict</strong></summary>
 
@@ -944,12 +953,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `dict` | `string` | Animation dictionary name when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.dict` | `string` | Required animation dictionary name when using the table form |
+| `options.dict` | `string` | Required animation dictionary name |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the dict after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the dict loaded after a successful request |
 
 Returns:
 
@@ -958,13 +965,23 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.AnimDict(dictOrOptions, timeout)
+local ok = FWB.Player.Request.AnimDict({
+    dict = 'amb@world_human_stand_mobile@male@text@enter',
+    timeout = 5000,
+    silent = false,
+    keepLoaded = true
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimDict(dictOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestAnimDict({
+    dict = 'amb@world_human_stand_mobile@male@text@enter',
+    timeout = 5000,
+    silent = false,
+    keepLoaded = true
+})
 ```
 
 Example as function:
@@ -973,6 +990,7 @@ Example as function:
 local ok = FWB.Player.Request.AnimDict({
     dict = 'amb@world_human_stand_mobile@male@text@enter',
     timeout = 5000,
+    silent = false,
     keepLoaded = true
 })
 ```
@@ -980,7 +998,12 @@ local ok = FWB.Player.Request.AnimDict({
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimDict('amb@world_human_stand_mobile@male@text@enter', 5000)
+local ok = exports['fs_bridge']:RequestAnimDict({
+    dict = 'amb@world_human_stand_mobile@male@text@enter',
+    timeout = 5000,
+    silent = false,
+    keepLoaded = true
+})
 ```
 
 </details>
@@ -994,12 +1017,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `model` | `string|number` | Model name or hash when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.model` | `string|number` | Required model name or hash when using the table form |
+| `options.model` | `string|number` | Required model name or hash |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the model after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the model loaded after a successful request |
 | `options.requireValid` | `boolean` | Set `false` to skip the Bridge valid-model check |
 
 Returns:
@@ -1009,21 +1030,32 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.Model(modelOrOptions, timeout)
+local ok = FWB.Player.Request.Model({
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestModel(modelOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestModel({
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
+})
 ```
 
 Example as function:
 
 ```lua
 local ok = FWB.Player.Request.Model({
-    model = `adder`,
+    model = 'adder',
     timeout = 5000,
+    keepLoaded = true,
     requireValid = true
 })
 ```
@@ -1031,7 +1063,12 @@ local ok = FWB.Player.Request.Model({
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestModel('adder', 5000)
+local ok = exports['fs_bridge']:RequestModel({
+    model = 'adder',
+    timeout = 5000,
+    keepLoaded = true,
+    requireValid = true
+})
 ```
 
 </details>
@@ -1045,12 +1082,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `animSet` | `string` | Animation set name when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.animSet` | `string` | Required animation set name when using the table form |
+| `options.animSet` | `string` | Required animation set name |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the anim set after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the anim set loaded after a successful request |
 
 Returns:
 
@@ -1059,13 +1094,19 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.AnimSet(animSetOrOptions, timeout)
+local ok = FWB.Player.Request.AnimSet({
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimSet(animSetOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestAnimSet({
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
+})
 ```
 
 Example as function:
@@ -1073,14 +1114,17 @@ Example as function:
 ```lua
 local ok = FWB.Player.Request.AnimSet({
     animSet = 'move_m@drunk@slightlydrunk',
-    keepLoaded = true
+    timeout = 5000
 })
 ```
 
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestAnimSet('move_m@drunk@slightlydrunk', 5000)
+local ok = exports['fs_bridge']:RequestAnimSet({
+    animSet = 'move_m@drunk@slightlydrunk',
+    timeout = 5000
+})
 ```
 
 </details>
@@ -1094,12 +1138,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `clipSet` | `string` | Clip set name when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.clipSet` | `string` | Required clip set name when using the table form |
+| `options.clipSet` | `string` | Required clip set name |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the clip set after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the clip set loaded after a successful request |
 
 Returns:
 
@@ -1108,13 +1150,19 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.ClipSet(clipSetOrOptions, timeout)
+local ok = FWB.Player.Request.ClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestClipSet(clipSetOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
 ```
 
 Example as function:
@@ -1122,14 +1170,17 @@ Example as function:
 ```lua
 local ok = FWB.Player.Request.ClipSet({
     clipSet = 'move_ped_crouched',
-    keepLoaded = true
+    timeout = 5000
 })
 ```
 
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestClipSet('move_ped_crouched', 5000)
+local ok = exports['fs_bridge']:RequestClipSet({
+    clipSet = 'move_ped_crouched',
+    timeout = 5000
+})
 ```
 
 </details>
@@ -1143,12 +1194,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `asset` | `string` | Asset name when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.asset` | `string` | Required asset name when using the table form |
+| `options.asset` | `string` | Required asset name |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the asset after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the asset loaded after a successful request |
 
 Returns:
 
@@ -1157,13 +1206,19 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.NamedPtfxAsset(assetOrOptions, timeout)
+local ok = FWB.Player.Request.NamedPtfxAsset({
+    asset = 'core',
+    timeout = 5000
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestNamedPtfxAsset(assetOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestNamedPtfxAsset({
+    asset = 'core',
+    timeout = 5000
+})
 ```
 
 Example as function:
@@ -1171,14 +1226,17 @@ Example as function:
 ```lua
 local ok = FWB.Player.Request.NamedPtfxAsset({
     asset = 'core',
-    keepLoaded = true
+    timeout = 5000
 })
 ```
 
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestNamedPtfxAsset('core', 5000)
+local ok = exports['fs_bridge']:RequestNamedPtfxAsset({
+    asset = 'core',
+    timeout = 5000
+})
 ```
 
 </details>
@@ -1192,12 +1250,10 @@ Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `weapon` | `string|number` | Weapon name or hash when using the short form |
-| `timeout` | `number` | Optional timeout in milliseconds when using the short form |
-| `options.weapon` | `string|number` | Required weapon name or hash when using the table form |
+| `options.weapon` | `string|number` | Required weapon name or hash |
 | `options.timeout` | `number` | Optional timeout in milliseconds. Defaults to `10000` |
 | `options.silent` | `boolean` | Set `true` to suppress Bridge failure prints |
-| `options.keepLoaded` | `boolean` | Set `false` to unload the weapon asset after a successful request |
+| `options.keepLoaded` | `boolean` | Set `true` to keep the weapon asset loaded after a successful request |
 | `options.weaponRequestFlags` | `number` | Optional weapon request flags. Defaults to `31` |
 | `options.ammoType` | `number` | Optional ammo type. Defaults to `0` |
 
@@ -1208,20 +1264,31 @@ Returns:
 How to write it as function:
 
 ```lua
-local ok = FWB.Player.Request.WeaponAsset(weaponOrOptions, timeout)
+local ok = FWB.Player.Request.WeaponAsset({
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
+})
 ```
 
 How to write it as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestWeaponAsset(weaponOrOptions, timeout)
+local ok = exports['fs_bridge']:RequestWeaponAsset({
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
+})
 ```
 
 Example as function:
 
 ```lua
 local ok = FWB.Player.Request.WeaponAsset({
-    weapon = `WEAPON_PISTOL`,
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
     weaponRequestFlags = 31,
     ammoType = 0
 })
@@ -1230,7 +1297,13 @@ local ok = FWB.Player.Request.WeaponAsset({
 Example as export:
 
 ```lua
-local ok = exports['fs_bridge']:RequestWeaponAsset(`WEAPON_PISTOL`, 5000)
+local ok = exports['fs_bridge']:RequestWeaponAsset({
+    weapon = 'WEAPON_PISTOL',
+    timeout = 5000,
+    weaponRequestFlags = 31,
+    ammoType = 0
+})
 ```
 
 </details>
+
