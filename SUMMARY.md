@@ -1,4 +1,4 @@
-# Table of contents
+﻿# Table of contents
 
 * [Home](README.md)
 * [Helpful](helpful/README.md)
@@ -6,13 +6,15 @@
   * [Escrow Errors](helpful/escrow-errors.md)
   * [General Issues](helpful/general-issues.md)
   * [Install FwB Scripts](helpful/install-fwb-scripts.md)
+
+## Bridge
 * [Bridge](scripts/fs_bridge/README.md)
-  * [🔧 Installation](scripts/fs_bridge/installation.md)
-  * [🔁 Compatibility](scripts/fs_bridge/compatibility.md)
+  * [Installation](scripts/fs_bridge/installation.md)
+  * [Compatibility](scripts/fs_bridge/compatibility.md)
   * [FAQ](scripts/fs_bridge/faq.md)
-  * [⚠️ Common Errors](scripts/fs_bridge/common-errors.md)
+  * [Common Errors](scripts/fs_bridge/common-errors.md)
   * [Guides](scripts/fs_bridge/guides/README.md)
-    * [🔁 Update Bridge](scripts/fs_bridge/guides/update-bridge.md)
+    * [Update Bridge](scripts/fs_bridge/guides/update-bridge.md)
     * [Manual Compatibility](scripts/fs_bridge/guides/manual-compatibility/README.md)
       * [Client Overrides](scripts/fs_bridge/guides/manual-compatibility/client-overrides.md)
       * [Server Overrides](scripts/fs_bridge/guides/manual-compatibility/server-overrides.md)
@@ -61,10 +63,11 @@
     * [Version](scripts/fs_bridge/developer-api/version/README.md)
       * [Client](scripts/fs_bridge/developer-api/version/client.md)
       * [Server](scripts/fs_bridge/developer-api/version/server.md)
-  * [📖 Configuration Files](scripts/fs_bridge/configuration-files/README.md)
+  * [Configuration Files](scripts/fs_bridge/configuration-files/README.md)
     * [Shared Config (sh\_config.lua)](scripts/fs_bridge/configuration-files/shared-config.md)
     * [Client Config (cl\_config.lua)](scripts/fs_bridge/configuration-files/client-config.md)
     * [Server Config (sv\_config.lua)](scripts/fs_bridge/configuration-files/server-config.md)
+## All Resources
 * [Bodybag](scripts/bodybag/README.md)
   * [\[ESX/QB\] Config\]](bodybag/esx-qb-config.md)
   * [Installation](scripts/bodybag/installation.md)
@@ -213,6 +216,9 @@
   * [Integrations](scripts/white-widow/integrations.md)
   * [Exports / Functions](scripts/white-widow/exports-functions.md)
   * [Common Issues](scripts/white-widow/common-issues.md)
+
+
+
 
 
 
