@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -18,12 +18,58 @@ layout:
 ---
 # Server
 
-This page documents server-side notifications.
+This page documents the public server-side notification helper.
 
-`lua
+## FWB.Notify
+
+### Notifications
+
+<details>
+<summary><strong>Notify</strong></summary>
+
+Short description: Forward a notification from the server to one target client.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `source` | `number` | Target player source |
+| `argument` | `table|string` | Notification payload, or a plain string that Bridge converts to `{ description = argument }` on the client |
+
+Returns:
+
+- `nil`
+
+How to write it as function:
+
+```lua
 FWB.Notify(source, argument)
+```
+
+How to write it as export:
+
+```lua
 exports['fs_bridge']:Notify(source, argument)
-` 
+```
 
-The server helper forwards the notification to the target client.
+Example as function:
 
+```lua
+FWB.Notify(source, {
+    title = 'Bridge',
+    description = 'Garage updated',
+    type = 'inform'
+})
+```
+
+Example as export:
+
+```lua
+exports['fs_bridge']:Notify(source, {
+    title = 'Bridge',
+    description = 'Garage updated',
+    type = 'inform'
+})
+```
+
+</details>

@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -18,32 +18,94 @@ layout:
 ---
 # Math
 
-This page documents the shared `FWB.Math` helpers.
+This page documents the shared math helpers.
 
-## Public Calls
+## FWB.Math
+
+### Math Helpers
+
+<details>
+<summary><strong>Round Number</strong></summary>
+
+Short description: Round a number with optional decimal precision.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `num` | `number` | Number to round |
+| `decimalPlaces` | `number` | Optional decimal precision |
+
+Returns:
+
+- `number`
+
+How to write it as function:
 
 ```lua
-FWB.Math.Round(num, decimalPlaces)
-FWB.Math.Random(minRange, maxRange)
+local rounded = FWB.Math.Round(num, decimalPlaces)
 ```
 
-## Round
+How to write it as export:
+
+```lua
+-- This helper does not have a direct Bridge export.
+```
+
+Example as function:
 
 ```lua
 local rounded = FWB.Math.Round(12.3456, 2)
 print(rounded)
 ```
 
-- Without `decimalPlaces`, it returns a rounded integer.
-- With `decimalPlaces`, it returns a rounded number.
-
-## Random
+Example as export:
 
 ```lua
-local number = FWB.Math.Random(1, 10)
-print(number)
+-- Use FWB.Math.Round(...) through import.lua.
 ```
 
-- `minRange` defaults to `1`
-- `maxRange` defaults to `10`
+</details>
 
+<details>
+<summary><strong>Random Number</strong></summary>
+
+Short description: Generate a random number inside the requested range.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `minRange` | `number` | Minimum range. Defaults to `1` |
+| `maxRange` | `number` | Maximum range. Defaults to `10` |
+
+Returns:
+
+- `number`
+
+How to write it as function:
+
+```lua
+local value = FWB.Math.Random(minRange, maxRange)
+```
+
+How to write it as export:
+
+```lua
+-- This helper does not have a direct Bridge export.
+```
+
+Example as function:
+
+```lua
+local value = FWB.Math.Random(1, 10)
+print(value)
+```
+
+Example as export:
+
+```lua
+-- Use FWB.Math.Random(...) through import.lua.
+```
+
+</details>

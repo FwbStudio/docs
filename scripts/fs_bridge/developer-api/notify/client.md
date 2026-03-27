@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -18,12 +18,67 @@ layout:
 ---
 # Client
 
-This page documents client-side notifications.
+This page documents the public client-side notification helper.
 
-`lua
+## FWB.Notify
+
+### Notifications
+
+<details>
+<summary><strong>Notify</strong></summary>
+
+Short description: Send a client notification through the active Bridge notification integration.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `argument` | `table|string` | Notification payload, or a plain string that Bridge converts to `{ description = argument }` |
+| `argument.title` | `string` | Optional title |
+| `argument.description` | `string` | Main notification text |
+| `argument.type` | `string` | Optional type such as `inform`, `success`, `warning`, or `error` |
+| `argument.position` | `string` | Optional position. Defaults to `top` |
+| `argument.duration` | `number` | Optional duration in milliseconds. Defaults to `5000` |
+
+Returns:
+
+- integration-specific result
+- `nil`
+
+How to write it as function:
+
+```lua
 FWB.Notify(argument)
+```
+
+How to write it as export:
+
+```lua
 exports['fs_bridge']:Notify(argument)
-` 
+```
 
-If rgument is a string, Bridge converts it into { description = argument }. Common fields include 	itle, description, 	ype, position, and duration.
+Example as function:
 
+```lua
+FWB.Notify({
+    title = 'Bridge',
+    description = 'Vehicle created successfully',
+    type = 'success',
+    duration = 5000,
+    position = 'top'
+})
+```
+
+Example as export:
+
+```lua
+exports['fs_bridge']:Notify({
+    title = 'Bridge',
+    description = 'Vehicle created successfully',
+    type = 'success',
+    duration = 5000,
+    position = 'top'
+})
+```
+
+</details>

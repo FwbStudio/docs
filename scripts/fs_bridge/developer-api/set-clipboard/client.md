@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -18,11 +18,50 @@ layout:
 ---
 # Client
 
-This page documents the client-side clipboard helper.
+This page documents the public client-side clipboard helper.
 
-`lua
+## FWB.SetClipBoard
+
+### Clipboard
+
+<details>
+<summary><strong>Set Clipboard</strong></summary>
+
+Short description: Copy a string to the client clipboard through the active Bridge clipboard integration.
+
+Arguments:
+
+| Name | Type | Notes |
+|---|---|---|
+| `text` | `string` | Text to copy to the clipboard |
+
+Returns:
+
+- integration-specific result
+- `nil`
+
+How to write it as function:
+
+```lua
 FWB.SetClipBoard(text)
-` 
+```
 
-Bridge currently uses ox_lib clipboard support when available. If the value is not a string, nothing happens.
+How to write it as export:
 
+```lua
+-- This helper does not have a direct Bridge export.
+```
+
+Example as function:
+
+```lua
+FWB.SetClipBoard('ABC123')
+```
+
+Example as export:
+
+```lua
+-- Use FWB.SetClipBoard(...) through import.lua.
+```
+
+</details>
