@@ -1,6 +1,6 @@
 # FWB.Vehicle
 
-`FWB.Vehicle` is the public vehicle runtime for creation, updates, props, plate generation, and owner workflows.
+`FWB.Vehicle` is the public vehicle runtime for creation, updates, props, plate generation, nearby search, closest lookup, plate lookup, and owner workflows.
 
 ## Public Calls
 
@@ -12,207 +12,153 @@ FWB.Vehicle.Get(handleOrEntry)
 FWB.Vehicle.GetAll()
 FWB.Vehicle.Clear(resource)
 FWB.Vehicle.GeneratePlate()
+FWB.Vehicle.GetByPlate(plate)
+FWB.Vehicle.Nearby(extras)
+FWB.Vehicle.Closest(extras)
 FWB.Vehicle.Props.Get(vehicle)
 FWB.Vehicle.Props.Set(vehicle, props)
 FWB.Vehicle.Owner.Update(oldOwner, newOwner, plate)
 FWB.Vehicle.InsertNewOwnedVehicle(options)
 FWB.Vehicle.LabelByModel(model)
 FWB.Vehicle.LabelByEntity(entity)
-FWB.Vehicle.FromPlate(plate)
-FWB.Vehicle.Nearby(coords, extras)
-FWB.Vehicle.Closest(coords, extras)
 ```
+
+## Common Rules
+
+- `FWB.Vehicle.Nearby` uses one `extras` table only
+- `FWB.Vehicle.Closest` uses one `extras` table only
+- `extras.includePlayerVehicle` is the supported key
+- the old `coordsOrExtras, extras` contract is removed from the new API docs
+- `FWB.Vehicle.GeneratePlate()` is the public plate generate helper
+- `FWB.Vehicle.GetByPlate(plate)` is the public plate lookup helper
+- `FWB.Vehicle.Plate.Generate()` and `FWB.Vehicle.FromPlate(plate)` are not part of the current public API docs
 
 <details>
-<summary><strong>Create A Vehicle</strong></summary>
+<summary><strong>Nearby Vehicles</strong></summary>
 
-Short description: Spawn a vehicle and optionally apply props, keys, fuel, lock state, and routing bucket settings.
+Short description: Get nearby vehicle entries by passing one search options table.
 
-Signature:
-
-```lua
-FWB.Vehicle.Create(spawnSource, model, options)
-exports.fs_bridge:CreateVehicle(spawnSource, model, options)
-```
-
-Common options:
+Arguments:
 
 | Key | Type | Notes |
 |---|---|---|
-| `coords` | `vector3` or `vector4` | Spawn point |
-| `warp` | `boolean` | Warp player into vehicle |
-| `plate` | `string` | Custom plate |
-| `fuel` | `number` | Initial fuel |
-| `keys` | `boolean` | Give keys |
-| `props` | `table` | Vehicle props |
-| `extras` | `table` | Extra states |
-| `freeze` | `boolean` | Freeze state |
-| `lock` | `boolean` | Lock state |
-| `rbucket` | `number` | Routing bucket |
-| `source` | `number` | Owning player for server-created vehicles |
+| `coords` | `vector3|vector4|table` | Optional search center |
+| `model` | `string|number` | Optional vehicle model name or model hash filter |
+| `maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
+| `sortedByDistance` | `boolean` | Sort results from nearest to farthest. Defaults to `true` |
+| `includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
+| `maxCount` | `number` | Optional maximum amount of results to keep |
 
 Returns:
 
-- created entry table
+- `table[]`
 
 Example usage:
 
 ```lua
-local created = FWB.Vehicle.Create(source, 'adder', {
-    source = source,
-    warp = true,
-    plate = FWB.Vehicle.GeneratePlate(),
-    fuel = 80.0,
-    keys = true
+local vehicles = FWB.Vehicle.Nearby({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
 Notes:
 
-- props still use the active framework vehicle property implementation
+- nearby entries include `vehicle`, `coords`, `distance`, `model`, and `plate`
 
 </details>
 
 <details>
-<summary><strong>Update Or Remove A Vehicle</strong></summary>
+<summary><strong>Closest Vehicle</strong></summary>
 
-Short description: Update runtime fields or remove a vehicle from the bridge registry.
+Short description: Get the closest vehicle entity by passing one search options table.
 
-Signature:
+Arguments:
 
-```lua
-FWB.Vehicle.Update(handleOrEntry, updates)
-FWB.Vehicle.Remove(handleOrEntry)
-```
+| Key | Type | Notes |
+|---|---|---|
+| `coords` | `vector3|vector4|table` | Optional search center |
+| `model` | `string|number` | Optional vehicle model name or model hash filter |
+| `maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
+| `sortedByDistance` | `boolean` | Bridge forces this to `true` for closest lookup |
+| `includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
+| `maxCount` | `number` | Optional value accepted, but Bridge internally forces this call to one result |
 
 Returns:
 
-- update success and updated entry
-- remove result
+- `number`
+- `nil`
 
 Example usage:
 
 ```lua
-local ok = FWB.Vehicle.Update(created.handle, {
-    fuel = 100.0,
-    freeze = true
+local closestVehicle = FWB.Vehicle.Closest({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
-
-FWB.Vehicle.Remove(created.handle)
 ```
 
 Notes:
 
-- `handleOrEntry` can be a handle string, entry table, entity id, or net id
+- this returns a vehicle entity handle, not the full nearby entry table
 
 </details>
 
 <details>
-<summary><strong>Read Registry Data</strong></summary>
+<summary><strong>Generate Plate</strong></summary>
 
-Short description: Read one vehicle entry, all entries, or clear by resource.
+Short description: Generate a new plate through the Bridge runtime callback.
 
-Signature:
+Arguments:
 
-```lua
-FWB.Vehicle.Get(handleOrEntry)
-FWB.Vehicle.GetAll()
-FWB.Vehicle.Clear(resource)
-```
+| Key | Type | Notes |
+|---|---|---|
+| `none` | - | This helper does not take any arguments |
 
 Returns:
 
-- one entry
-- table of all entries
-- clear result
-
-Example usage:
-
-```lua
-local entry = FWB.Vehicle.Get(created.handle)
-local vehicles = FWB.Vehicle.GetAll()
-```
-
-Notes:
-
-- client and server both expose active registries
-
-</details>
-
-<details>
-<summary><strong>Vehicle Props And Plates</strong></summary>
-
-Short description: Generate a plate or get and set vehicle properties through the active framework.
-
-Signature:
-
-```lua
-FWB.Vehicle.GeneratePlate()
-FWB.Vehicle.Props.Get(vehicle)
-FWB.Vehicle.Props.Set(vehicle, props)
-```
-
-Returns:
-
-- string plate
-- props table
-- props set result
+- `string`
+- `nil`
 
 Example usage:
 
 ```lua
 local plate = FWB.Vehicle.GeneratePlate()
-local props = FWB.Vehicle.Props.Get(vehicle)
-FWB.Vehicle.Props.Set(vehicle, props)
+print(plate)
 ```
 
 Notes:
 
-- server prop updates are routed back through the owning client when needed
+- use this instead of old plate aliases
 
 </details>
 
 <details>
-<summary><strong>Ownership Helpers</strong></summary>
+<summary><strong>Vehicle By Plate</strong></summary>
 
-Short description: Update an existing owned vehicle record or insert a new one.
+Short description: Find a spawned vehicle entity by plate text.
 
-Signature:
+Arguments:
 
-```lua
-FWB.Vehicle.Owner.Update(oldOwner, newOwner, plate)
-FWB.Vehicle.InsertNewOwnedVehicle(options)
-```
-
-Arguments for insert:
-
-| Key | Type | Required |
+| Key | Type | Notes |
 |---|---|---|
-| `owner` | `number` | Yes |
-| `plate` | `string` | Yes |
-| `model` | `string` or `number` | Yes |
-| `props` | `table` | Yes |
-| `type` | `string` | No |
+| `plate` | `string` | Vehicle plate text |
 
 Returns:
 
-- success and result
+- `number`
+- `nil`
 
 Example usage:
 
 ```lua
-FWB.Vehicle.Owner.Update(source, 'char1:NEWIDENTIFIER', 'ABC123')
-
-FWB.Vehicle.InsertNewOwnedVehicle({
-    owner = source,
-    plate = 'ABC123',
-    model = 'adder',
-    props = {}
-})
+local vehicle = FWB.Vehicle.GetByPlate('ABC123')
 ```
 
 Notes:
 
-- server-side only
+- use this instead of old plate lookup aliases
 
 </details>

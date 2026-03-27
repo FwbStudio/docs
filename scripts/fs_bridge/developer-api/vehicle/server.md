@@ -182,7 +182,6 @@ How to write it as function:
 
 ```lua
 local plate = FWB.Vehicle.GeneratePlate()
-local aliasPlate = FWB.Vehicle.Plate.Generate()
 ```
 
 How to write it as export:

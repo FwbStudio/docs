@@ -29,19 +29,18 @@ It covers player vehicle helpers, vehicle keys, fuel helpers, and the runtime `F
 <details>
 <summary><strong>Nearby Vehicles</strong></summary>
 
-Short description: Get nearby vehicle entries around the local player, or around `extras.coords` when you pass custom coordinates.
+Short description: Get nearby vehicle entries around any coordinate set by using one extras table.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `extras` | `table` | Optional search options table |
-| `extras.coords` | `vector3|vector4|table` | Optional custom search center. Defaults to the local player coordinates |
+| `extras` | `table` | Search options table |
+| `extras.coords` | `vector3|vector4|table` | Optional search center |
 | `extras.model` | `string|number` | Optional vehicle model name or model hash filter |
 | `extras.maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
 | `extras.sortedByDistance` | `boolean` | Sort results from nearest to farthest. Defaults to `true` |
-| `extras.includePlayerVehicle` | `boolean` | Set `true` to include the vehicle the player is currently using. Defaults to `false` |
-| `extras.includedPlayerVehicle` | `boolean` | Legacy alias accepted by the current helper |
+| `extras.includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
 | `extras.maxCount` | `number` | Optional maximum amount of results to keep |
 
 Returns:
@@ -52,21 +51,21 @@ Returns:
 How to write it as function:
 
 ```lua
-local nearbyVehicles = FWB.Player.Vehicle.NearBy(extras)
+local nearbyVehicles = FWB.Vehicle.Nearby(extras)
 ```
 
 How to write it as export:
 
 ```lua
-local nearbyVehicles = exports['fs_bridge']:GetPlayerNearbyVehicles(extras)
+local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles(extras)
 ```
 
 Example as function:
 
 ```lua
-local nearbyVehicles = FWB.Player.Vehicle.NearBy({
-    maxDistance = 15.0,
-    maxCount = 5,
+local nearbyVehicles = FWB.Vehicle.Nearby({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
     includePlayerVehicle = false
 })
 ```
@@ -74,9 +73,9 @@ local nearbyVehicles = FWB.Player.Vehicle.NearBy({
 Example as export:
 
 ```lua
-local nearbyVehicles = exports['fs_bridge']:GetPlayerNearbyVehicles({
-    maxDistance = 15.0,
-    maxCount = 5,
+local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
     includePlayerVehicle = false
 })
 ```
@@ -86,19 +85,18 @@ local nearbyVehicles = exports['fs_bridge']:GetPlayerNearbyVehicles({
 <details>
 <summary><strong>Closest Vehicle</strong></summary>
 
-Short description: Get the closest vehicle entity around the local player, or around `extras.coords` when you pass custom coordinates.
+Short description: Get the closest vehicle entity around any coordinate set by using one extras table.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `extras` | `table` | Optional search options table |
-| `extras.coords` | `vector3|vector4|table` | Optional custom search center. Defaults to the local player coordinates |
+| `extras` | `table` | Search options table |
+| `extras.coords` | `vector3|vector4|table` | Optional search center |
 | `extras.model` | `string|number` | Optional vehicle model name or model hash filter |
 | `extras.maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
 | `extras.sortedByDistance` | `boolean` | Sort results from nearest to farthest. Bridge forces this to `true` here |
-| `extras.includePlayerVehicle` | `boolean` | Set `true` to include the vehicle the player is currently using. Defaults to `false` |
-| `extras.includedPlayerVehicle` | `boolean` | Legacy alias accepted by the current helper |
+| `extras.includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
 | `extras.maxCount` | `number` | Optional value accepted, but Bridge internally forces this call to one result |
 
 Returns:
@@ -109,30 +107,32 @@ Returns:
 How to write it as function:
 
 ```lua
-local vehicle = FWB.Player.Vehicle.Closest(extras)
+local vehicle = FWB.Vehicle.Closest(extras)
 ```
 
 How to write it as export:
 
 ```lua
-local vehicle = exports['fs_bridge']:GetPlayerClosestVehicle(extras)
+local vehicle = exports['fs_bridge']:GetClosestVehicle(extras)
 ```
 
 Example as function:
 
 ```lua
-local vehicle = FWB.Player.Vehicle.Closest({
-    maxDistance = 8.0,
-    model = `adder`
+local vehicle = FWB.Vehicle.Closest({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
 Example as export:
 
 ```lua
-local vehicle = exports['fs_bridge']:GetPlayerClosestVehicle({
-    maxDistance = 8.0,
-    model = `adder`
+local vehicle = exports['fs_bridge']:GetClosestVehicle({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
@@ -427,7 +427,6 @@ How to write it as function:
 
 ```lua
 local plate = FWB.Vehicle.GeneratePlate()
-local aliasPlate = FWB.Vehicle.Plate.Generate()
 ```
 
 How to write it as export:
@@ -653,26 +652,24 @@ How to write it as function:
 
 ```lua
 local vehicle = FWB.Vehicle.GetByPlate(plate)
-local aliasVehicle = FWB.Vehicle.FromPlate(plate)
 ```
 
 How to write it as export:
 
 ```lua
 local vehicle = exports['fs_bridge']:GetVehicleByPlate(plate)
-local aliasVehicle = exports['fs_bridge']:GetVehicleFromPlate(plate)
 ```
 
 Example as function:
 
 ```lua
-local vehicle = FWB.Vehicle.FromPlate('ABC123')
+local vehicle = FWB.Vehicle.GetByPlate('ABC123')
 ```
 
 Example as export:
 
 ```lua
-local vehicle = exports['fs_bridge']:GetVehicleFromPlate('ABC123')
+local vehicle = exports['fs_bridge']:GetVehicleByPlate('ABC123')
 ```
 
 </details>
@@ -680,20 +677,18 @@ local vehicle = exports['fs_bridge']:GetVehicleFromPlate('ABC123')
 <details>
 <summary><strong>Nearby Vehicles</strong></summary>
 
-Short description: Get nearby vehicle entries around any coordinate set, or pass one extras table as the first argument.
+Short description: Get nearby vehicle entries around any coordinate set by using one extras table.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `coordsOrExtras` | `vector3|vector4|table` | Search coordinates, or pass the full extras table as the first argument |
-| `extras` | `table` | Optional search options when the first argument is coordinates |
-| `extras.coords` | `vector3|vector4|table` | Optional search center when you use the one-table call style |
+| `extras` | `table` | Search options table |
+| `extras.coords` | `vector3|vector4|table` | Optional search center |
 | `extras.model` | `string|number` | Optional vehicle model name or model hash filter |
 | `extras.maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
 | `extras.sortedByDistance` | `boolean` | Sort results from nearest to farthest. Defaults to `true` |
 | `extras.includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
-| `extras.includedPlayerVehicle` | `boolean` | Legacy alias accepted by the current helper |
 | `extras.maxCount` | `number` | Optional maximum amount of results to keep |
 
 Returns:
@@ -704,22 +699,22 @@ Returns:
 How to write it as function:
 
 ```lua
-local nearbyVehicles = FWB.Vehicle.Nearby(coordsOrExtras, extras)
+local nearbyVehicles = FWB.Vehicle.Nearby(extras)
 ```
 
 How to write it as export:
 
 ```lua
-local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles(coordsOrExtras, extras)
+local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles(extras)
 ```
 
 Example as function:
 
 ```lua
-local nearbyVehicles = FWB.Vehicle.Nearby(GetEntityCoords(PlayerPedId()), {
-    maxDistance = 20.0,
-    model = `adder`,
-    maxCount = 3
+local nearbyVehicles = FWB.Vehicle.Nearby({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
@@ -728,9 +723,8 @@ Example as export:
 ```lua
 local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles({
     coords = GetEntityCoords(PlayerPedId()),
-    maxDistance = 20.0,
-    model = `adder`,
-    maxCount = 3
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
@@ -739,20 +733,18 @@ local nearbyVehicles = exports['fs_bridge']:GetNearbyVehicles({
 <details>
 <summary><strong>Closest Vehicle</strong></summary>
 
-Short description: Get the closest vehicle entity around any coordinate set, or pass one extras table as the first argument.
+Short description: Get the closest vehicle entity around any coordinate set by using one extras table.
 
 Arguments:
 
 | Name | Type | Notes |
 |---|---|---|
-| `coordsOrExtras` | `vector3|vector4|table` | Search coordinates, or pass the full extras table as the first argument |
-| `extras` | `table` | Optional search options when the first argument is coordinates |
-| `extras.coords` | `vector3|vector4|table` | Optional search center when you use the one-table call style |
+| `extras` | `table` | Search options table |
+| `extras.coords` | `vector3|vector4|table` | Optional search center |
 | `extras.model` | `string|number` | Optional vehicle model name or model hash filter |
 | `extras.maxDistance` | `number` | Maximum search distance. Defaults to `2.0` |
 | `extras.sortedByDistance` | `boolean` | Sort results from nearest to farthest. Bridge forces this to `true` here |
 | `extras.includePlayerVehicle` | `boolean` | Set `true` to include the player vehicle in the result. Defaults to `false` |
-| `extras.includedPlayerVehicle` | `boolean` | Legacy alias accepted by the current helper |
 | `extras.maxCount` | `number` | Optional value accepted, but Bridge internally forces this call to one result |
 
 Returns:
@@ -763,21 +755,22 @@ Returns:
 How to write it as function:
 
 ```lua
-local vehicle = FWB.Vehicle.Closest(coordsOrExtras, extras)
+local vehicle = FWB.Vehicle.Closest(extras)
 ```
 
 How to write it as export:
 
 ```lua
-local vehicle = exports['fs_bridge']:GetClosestVehicle(coordsOrExtras, extras)
+local vehicle = exports['fs_bridge']:GetClosestVehicle(extras)
 ```
 
 Example as function:
 
 ```lua
-local vehicle = FWB.Vehicle.Closest(GetEntityCoords(PlayerPedId()), {
-    maxDistance = 10.0,
-    model = `adder`
+local vehicle = FWB.Vehicle.Closest({
+    coords = GetEntityCoords(PlayerPedId()),
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
@@ -786,8 +779,8 @@ Example as export:
 ```lua
 local vehicle = exports['fs_bridge']:GetClosestVehicle({
     coords = GetEntityCoords(PlayerPedId()),
-    maxDistance = 10.0,
-    model = `adder`
+    maxDistance = 5.0,
+    includePlayerVehicle = false
 })
 ```
 
