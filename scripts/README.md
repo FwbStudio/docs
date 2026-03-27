@@ -1,8 +1,10 @@
-# Scripts
+﻿# Resources
 
-This section is the entry point for individual script docs.
+This section is the entry point for individual FWB resource docs.
 
-Each script gets its own:
+`fs_bridge` is documented separately in the top-level `Bridge` section.
+
+Each resource can include:
 
 - overview
 - getting started guide
@@ -11,10 +13,11 @@ Each script gets its own:
 - API reference
 - framework and resource support notes
 
-## Currently Available
+## Current Structure
 
-| Script | What It Covers |
+| Section | What It Covers |
 |---|---|
-| [`fs_bridge`](fs_bridge/README.md) | Public bridge APIs, override snippets, config keys, and integration support |
+| `Resources` | Individual public docs for FWB scripts |
+| `Bridge` | Public bridge APIs, override snippets, config keys, and integration support |
 
-More script sections can be added here later without reshaping the whole docs space.
+More resource docs can be added here later without reshaping the whole docs space.

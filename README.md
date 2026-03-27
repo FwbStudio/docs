@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -21,10 +21,11 @@ layout:
 
 Public documentation for Beta resources.
 
-This docs space is structured in two layers:
+This docs space is structured in clear sections:
 
-* `Helpful` for general server knowledge and common setup issues
+* `General Information` for shared knowledge and setup help
 * `Bridge` for the public `fs_bridge` documentation
+* `Resources` for all other FWB script docs
 
 ## Current Focus
 
@@ -36,5 +37,6 @@ The current public docs focus on FiveM servers using:
 
 ## Start Here
 
-* [Helpful](helpful/)
+* [General Information](general-information/)
 * [Bridge](scripts/fs_bridge/)
+* [Resources](scripts/)
