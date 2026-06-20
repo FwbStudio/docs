@@ -1,2 +1,0 @@
-# \[ESX/QB] Config Files)
-

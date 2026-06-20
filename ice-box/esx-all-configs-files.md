@@ -1,2 +1,0 @@
-# \[ESX] ALL Configs Files
-

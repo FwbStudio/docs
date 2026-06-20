@@ -1,4 +1,4 @@
----
+﻿---
 layout:
   width: wide
   title:
@@ -17,27 +17,27 @@ layout:
     visible: true
 ---
 
-# 🔁 Compatibility
+# ðŸ” Compatibility
 
 This page shows the frameworks and integrations that currently have public Bridge support.
 
-| ✅ Officially Supported                                                            | ✅ Supported                                                       | ⚠️ Supported                                                                              |
+| âœ… Officially Supported                                                            | âœ… Supported                                                       | âš ï¸ Supported                                                                              |
 | --------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Verified compatibility and public Bridge support are available for this resource. | Bridge includes support for this resource in normal public setup. | Compatibility may exist in code, but it should be checked carefully before relying on it. |
 
-| ⛔ Not Supported                                                                   | 🕓 Soon...                                    |
+| â›” Not Supported                                                                   | ðŸ•“ Soon...                                    |
 | --------------------------------------------------------------------------------- | --------------------------------------------- |
 | Resource is not supported in the normal public setup flow. Use overrides instead. | We may add public support in a future update. |
 
-## ⚙ Supported Frameworks
+## âš™ Supported Frameworks
 
 | Framework | Status                 | Resource Name |
 | --------- | ---------------------- | ------------- |
-| `ESX`     | ✅ Officially Supported | `es_extended` |
-| `QBCore`  | ✅ Officially Supported | `qb-core`     |
-| `Qbox`    | ✅ Officially Supported | `qbx_core`    |
+| `ESX`     | âœ… Officially Supported | `es_extended` |
+| `QBCore`  | âœ… Officially Supported | `qb-core`     |
+| `Qbox`    | âœ… Officially Supported | `qbx_core`    |
 
-## 🔌 Integration Compatibility
+## ðŸ”Œ Integration Compatibility
 
 All integration groups below follow the same public setup rule:
 
@@ -45,181 +45,182 @@ All integration groups below follow the same public setup rule:
 * only force a specific resource if support tells you to
 * use overrides if your exact resource is not listed
 
-### 🚑 Ambulance
+### ðŸš‘ Ambulance
 
 Used for downed-state and ambulance compatibility.
 
 | Resource            | Status      |
 | ------------------- | ----------- |
-| `esx_ambulancejob`  | ✅ Supported |
-| `wasabi_ambulance`  | ✅ Supported |
-| `qb-ambulancejob`   | ✅ Supported |
-| `ak47_ambulancejob` | ✅ Supported |
-| `tk_ambulancejob`   | ✅ Supported |
-| `p_ambulancejob`    | ✅ Supported |
+| `esx_ambulancejob`  | âœ… Supported |
+| `wasabi_ambulance`  | âœ… Supported |
+| `qb-ambulancejob`   | âœ… Supported |
+| `ak47_ambulancejob` | âœ… Supported |
+| `tk_ambulancejob`   | âœ… Supported |
+| `p_ambulancejob`    | âœ… Supported |
 
-### 🏦 Banking
+### ðŸ¦ Banking
 
 Used for society banking and bank-related helpers.
 
 | Resource          | Status      |
 | ----------------- | ----------- |
-| `okokBanking`     | ✅ Supported |
-| `qb-banking`      | ✅ Supported |
-| `Renewed-Banking` | ✅ Supported |
-| `qb-management`   | ✅ Supported |
-| `tgg-banking`     | ✅ Supported |
-| `qs_banking`      | ✅ Supported |
-| `fd_banking`      | ✅ Supported |
+| `okokBanking`     | âœ… Supported |
+| `qb-banking`      | âœ… Supported |
+| `Renewed-Banking` | âœ… Supported |
+| `qb-management`   | âœ… Supported |
+| `tgg-banking`     | âœ… Supported |
+| `qs_banking`      | âœ… Supported |
+| `fd_banking`      | âœ… Supported |
 
-### 👕 Clothing
+### ðŸ‘• Clothing
 
 Used for clothing, appearance, and skin-related helpers.
 
 | Resource              | Status      |
 | --------------------- | ----------- |
-| `skinchanger`         | ✅ Supported |
-| `fivem-appearance`    | ✅ Supported |
-| `illenium-appearance` | ✅ Supported |
-| `rcore_clothing`      | ✅ Supported |
-| `qb-clothing`         | ✅ Supported |
-| `crm-appearance`      | ✅ Supported |
-| `p_appearance`        | ✅ Supported |
-| `qs-appearance`       | ✅ Supported |
+| `skinchanger`         | âœ… Supported |
+| `fivem-appearance`    | âœ… Supported |
+| `illenium-appearance` | âœ… Supported |
+| `rcore_clothing`      | âœ… Supported |
+| `qb-clothing`         | âœ… Supported |
+| `crm-appearance`      | âœ… Supported |
+| `p_appearance`        | âœ… Supported |
+| `qs-appearance`       | âœ… Supported |
 
-### 🚨 Dispatch
+### ðŸš¨ Dispatch
 
 Used for alerts, police notifications, and dispatch integrations.
 
 | Resource         | Status      |
 | ---------------- | ----------- |
-| `cd_dispatch`    | ✅ Supported |
-| `ps-dispatch`    | ✅ Supported |
-| `qs-dispatch`    | ✅ Supported |
-| `tk_dispatch`    | ✅ Supported |
-| `rcore_dispatch` | ✅ Supported |
-| `core_dispatch`  | ✅ Supported |
-| `wasabi_mdt`     | ✅ Supported |
-| `lb-tablet`      | ✅ Supported |
+| `cd_dispatch`    | âœ… Supported |
+| `ps-dispatch`    | âœ… Supported |
+| `qs-dispatch`    | âœ… Supported |
+| `tk_dispatch`    | âœ… Supported |
+| `rcore_dispatch` | âœ… Supported |
+| `core_dispatch`  | âœ… Supported |
+| `wasabi_mdt`     | âœ… Supported |
+| `lb-tablet`      | âœ… Supported |
 
-### 🎒 Inventory
+### ðŸŽ’ Inventory
 
 Used for inventory reads, stash support, and item image helpers.
 
 | Resource            | Status      |
 | ------------------- | ----------- |
-| `ox_inventory`      | ✅ Supported |
-| `ak47_inventory`    | ✅ Supported |
-| `qs-inventory`      | ✅ Supported |
-| `qb-inventory`      | ✅ Supported |
-| `lj-Inventory`      | ✅ Supported |
-| `ps-inventory`      | ✅ Supported |
-| `pappu-inventorynp` | ✅ Supported |
-| `codem-inventory`   | ✅ Supported |
+| `ox_inventory`      | âœ… Supported |
+| `ak47_inventory`    | âœ… Supported |
+| `qs-inventory`      | âœ… Supported |
+| `qb-inventory`      | âœ… Supported |
+| `lj-Inventory`      | âœ… Supported |
+| `ps-inventory`      | âœ… Supported |
+| `pappu-inventorynp` | âœ… Supported |
+| `codem-inventory`   | âœ… Supported |
 
-### 🎯 Target
+### ðŸŽ¯ Target
 
 Used for target interaction support.
 
 | Resource    | Status      |
 | ----------- | ----------- |
-| `ox_target` | ✅ Supported |
-| `qb-target` | ✅ Supported |
-| `qtarget`   | ✅ Supported |
+| `ox_target` | âœ… Supported |
+| `qb-target` | âœ… Supported |
+| `qtarget`   | âœ… Supported |
 
-### 🔑 Vehicle Keys
+### ðŸ”‘ Vehicle Keys
 
 Used for key ownership and vehicle access support.
 
 | Resource              | Status      |
 | --------------------- | ----------- |
-| `wasabi_carlock`      | ✅ Supported |
-| `ak47_vehiclekeys`    | ✅ Supported |
-| `qs-vehiclekeys`      | ✅ Supported |
-| `vehicles_keys`       | ✅ Supported |
-| `msk_vehiclekeys`     | ✅ Supported |
-| `Renewed-Vehiclekeys` | ✅ Supported |
-| `qbx_vehiclekeys`     | ✅ Supported |
-| `qb-vehiclekeys`      | ✅ Supported |
-| `cd_garage`           | ✅ Supported |
+| `wasabi_carlock`      | âœ… Supported |
+| `ak47_vehiclekeys`    | âœ… Supported |
+| `qs-vehiclekeys`      | âœ… Supported |
+| `vehicles_keys`       | âœ… Supported |
+| `msk_vehiclekeys`     | âœ… Supported |
+| `Renewed-Vehiclekeys` | âœ… Supported |
+| `qbx_vehiclekeys`     | âœ… Supported |
+| `qb-vehiclekeys`      | âœ… Supported |
+| `cd_garage`           | âœ… Supported |
 
-### ⛽ Vehicle Fuel
+### â›½ Vehicle Fuel
 
 Used for fuel level support and refuel helpers.
 
 | Resource     | Status      |
 | ------------ | ----------- |
-| `ox_fuel`    | ✅ Supported |
-| `msk_fuel`   | ✅ Supported |
-| `ti_fuel`    | ✅ Supported |
-| `TAM_Fuel`   | ✅ Supported |
-| `LegacyFuel` | ✅ Supported |
-| `cdn-fuel`   | ✅ Supported |
-| `rcore_fuel` | ✅ Supported |
-| `lyre_fuel`  | ✅ Supported |
-| `lc_fuel`    | ✅ Supported |
+| `ox_fuel`    | âœ… Supported |
+| `msk_fuel`   | âœ… Supported |
+| `ti_fuel`    | âœ… Supported |
+| `TAM_Fuel`   | âœ… Supported |
+| `LegacyFuel` | âœ… Supported |
+| `cdn-fuel`   | âœ… Supported |
+| `rcore_fuel` | âœ… Supported |
+| `lyre_fuel`  | âœ… Supported |
+| `lc_fuel`    | âœ… Supported |
 
-### 🔊 Sounds
+### ðŸ”Š Sounds
 
 Used for URL and positional audio support.
 
 | Resource      | Status      |
 | ------------- | ----------- |
-| `xsound`      | ✅ Supported |
-| `mx-surround` | ✅ Supported |
+| `xsound`      | âœ… Supported |
+| `mx-surround` | âœ… Supported |
 
-### 📱 Phone
+### ðŸ“± Phone
 
 Used for phone and mail integrations.
 
 | Resource            | Status      |
 | ------------------- | ----------- |
-| `okokPhone`         | ✅ Supported |
-| `qb-phone`          | ✅ Supported |
-| `qs-smartphone`     | ✅ Supported |
-| `qs-smartphone-pro` | ✅ Supported |
-| `lb-phone`          | ✅ Supported |
-| `gksphone`          | ✅ Supported |
+| `okokPhone`         | âœ… Supported |
+| `qb-phone`          | âœ… Supported |
+| `qs-smartphone`     | âœ… Supported |
+| `qs-smartphone-pro` | âœ… Supported |
+| `lb-phone`          | âœ… Supported |
+| `gksphone`          | âœ… Supported |
 
-### 🔔 Notification
+### ðŸ”” Notification
 
 Used for notify helpers.
 
 | Resource      | Status      |
 | ------------- | ----------- |
-| `fs_bridge`   | ✅ Supported |
-| `ox_lib`      | ✅ Supported |
-| `esx_notify`  | ✅ Supported |
-| `es_extended` | ✅ Supported |
-| `qb-core`     | ✅ Supported |
+| `fs_bridge`   | âœ… Supported |
+| `ox_lib`      | âœ… Supported |
+| `esx_notify`  | âœ… Supported |
+| `es_extended` | âœ… Supported |
+| `qb-core`     | âœ… Supported |
 
-### 💬 Text UI
+### ðŸ’¬ Text UI
 
 Used for text UI helpers.
 
 | Resource      | Status      |
 | ------------- | ----------- |
-| `fs_bridge`   | ✅ Supported |
-| `ox_lib`      | ✅ Supported |
-| `esx_textui`  | ✅ Supported |
-| `es_extended` | ✅ Supported |
-| `qb-core`     | ✅ Supported |
+| `fs_bridge`   | âœ… Supported |
+| `ox_lib`      | âœ… Supported |
+| `esx_textui`  | âœ… Supported |
+| `es_extended` | âœ… Supported |
+| `qb-core`     | âœ… Supported |
 
-### ⌛ Progressbar
+### âŒ› Progressbar
 
 Used for progress helper support.
 
 | Resource          | Status      |
 | ----------------- | ----------- |
-| `ox_lib`          | ✅ Supported |
-| `esx_progressbar` | ✅ Supported |
-| `qb-core`         | ✅ Supported |
-| `mythic_progbar`  | ✅ Supported |
+| `ox_lib`          | âœ… Supported |
+| `esx_progressbar` | âœ… Supported |
+| `qb-core`         | âœ… Supported |
+| `mythic_progbar`  | âœ… Supported |
 
-## 🔧 Need A Custom Integration?
+## ðŸ”§ Need A Custom Integration?
 
 If your resource is not listed above:
 
 * do not edit locked Bridge files for a normal setup
-* use the [Overrides](overrides/) docs
+* use the [Manual Compatibility](guides/manual-compatibility/README.md) docs
 * paste custom logic into your unlocked override files only
+
