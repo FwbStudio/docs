@@ -16,7 +16,7 @@ layout:
   tags:
     visible: true
 ---
-# \[ESX/QBCore/Qbox] Configuration
+# Config
 
 This resource is designed to be configured in-game.
 

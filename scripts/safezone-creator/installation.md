@@ -36,8 +36,9 @@ Install the following dependencies before setting up Safezone Creator:
 
 | Resource | Install | Description |
 | --- | --- | --- |
-| [ox\_lib](https://github.com/overextended/ox_lib) | Required | UI helpers, zones, and utility functions |
+| [ox\_lib](https://github.com/overextended/ox_lib) | Required | UI helpers and zone handling |
 | [oxmysql](https://github.com/overextended/oxmysql) | Required | Database storage for safezones and runtime settings |
+| [PolyZone](https://github.com/mkafrin/PolyZone) | Optional | Optional replacement / fallback for `ox_lib` zone handling |
 
 Safezone Creator already includes its own internal bridge files for frameworks, inventories, notifications, and zone handling. You do not need to install `fs_bridge` separately for this resource.
 

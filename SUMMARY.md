@@ -122,7 +122,7 @@
   * [Integrations](scripts/pizza-shop/integrations.md)
   * [Common Issues](scripts/pizza-shop/common-issues.md)
 * [Safezone Creator](scripts/safezone-creator/README.md)
-  * [\[ESX/QBCore/Qbox\] Configuration](scripts/safezone-creator/esx-qb-config-files.md)
+  * [Config](scripts/safezone-creator/esx-qb-config-files.md)
   * [Compatibility](scripts/safezone-creator/compatibility.md)
   * [Installation](scripts/safezone-creator/installation.md)
   * [Functions](scripts/safezone-creator/functions.md)
