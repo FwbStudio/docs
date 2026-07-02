@@ -18,6 +18,18 @@ layout:
 ---
 # \[ESX/QB] Config Files
 
+This resource is designed to be configured in-game.
+
+The default command documented for opening the admin menu is:
+
+```text
+/safezonecreator
+```
+
+Use the in-game menu to manage safezones, permissions, notifications, bridge options, logs, icons, blips, and debug settings.
+
+The example below shows the related configuration structure and editable defaults.
+
 {% code title="ESX/QB Config" lineNumbers="true" fullWidth="true" %}
 
 ```lua

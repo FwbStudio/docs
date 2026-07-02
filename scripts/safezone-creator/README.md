@@ -18,7 +18,11 @@ layout:
 ---
 # Safezone Creator
 
-- [\[ESX/QB\] Config Files](esx-qb-config-files.md): Please read before purchase to under full functionality of our script
-- [Unlocked FIle](unlocked-file.md): Please read before purchase to under full functionality of our script
-- [Installation](installation.md): Resource installation guide and dependencies
-- [Common Issues](common-issues.md): Common issues and solutions.
+Safezone Creator is an in-game safezone management tool for FiveM servers.
+
+Use the pages below to check supported resources, understand the in-game config flow, and complete installation.
+
+- [Compatibility](compatibility.md): Supported frameworks, inventories, and zone engine resources
+- [\[ESX/QB\] Config Files](esx-qb-config-files.md): In-game config overview and command details
+- [Unlocked File](unlocked-file.md): Editable unlocked file notes
+- [Installation](installation.md): Resource installation steps and required dependencies
