@@ -15,6 +15,5 @@ Each script gets its own:
 
 | Script | What It Covers |
 |---|---|
-| [`fs_bridge`](fs_bridge/README.md) | Public bridge APIs, override snippets, config keys, and integration support |
 
 More script sections can be added here later without reshaping the whole docs space.

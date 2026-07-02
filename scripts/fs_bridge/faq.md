@@ -17,7 +17,7 @@ layout:
     visible: true
 ---
 
-# Ã¢Ââ€œ FAQ
+# FAQ
 
 Below you'll find answers to the most common Bridge setup and usage questions.
 
@@ -103,4 +103,3 @@ The current public docs focus on:
 * `Qbox`
 
 </details>
-

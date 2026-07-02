@@ -48,5 +48,4 @@ The current public docs focus on FiveM usage with:
 | [FAQ](faq.md)                               | Common questions                                         |
 | [Common Errors](common-errors.md)           | Frequent setup mistakes and fixes                        |
 | [Guides](guides/)                           | Task-based walkthroughs                                  |
-| [Developer API](developer-api/)             | Usage and override docs for developers                   |
 | [Configuration Files](configuration-files/) | User-editable config surfaces                            |
