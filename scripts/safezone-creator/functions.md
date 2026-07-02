@@ -23,7 +23,7 @@ Safezone Creator includes client and server hook functions for safezone activity
 ## Client Functions
 
 <details>
-<summary><strong>1. OnEnterZone(zone)</strong></summary>
+<summary><strong>1. Player Enter Zone - OnEnterZone(zone)</strong></summary>
 
 Runs when the local player enters a safezone.
 
@@ -53,7 +53,7 @@ end
 </details>
 
 <details>
-<summary><strong>2. OnLeaveZone(zone)</strong></summary>
+<summary><strong>2. Player Leave Zone - OnLeaveZone(zone)</strong></summary>
 
 Runs when the local player leaves a safezone.
 
@@ -72,7 +72,7 @@ end
 </details>
 
 <details>
-<summary><strong>3. InsideZone(zone)</strong></summary>
+<summary><strong>3. Player Inside Zone - InsideZone(zone)</strong></summary>
 
 Runs while the local player stays inside a safezone.
 
