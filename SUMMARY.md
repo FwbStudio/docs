@@ -123,7 +123,7 @@
   * [Common Issues](scripts/pizza-shop/common-issues.md)
 * [Safezone Creator](scripts/safezone-creator/README.md)
   * [Compatibility](scripts/safezone-creator/compatibility.md)
-  * [\[ESX/QB\] Config Files](scripts/safezone-creator/esx-qb-config-files.md)
+  * [\[ESX/QBCore/Qbox\] Configuration](scripts/safezone-creator/esx-qb-config-files.md)
   * [Unlocked File](scripts/safezone-creator/unlocked-file.md)
   * [Installation](scripts/safezone-creator/installation.md)
 * [Shoes Robbery](scripts/shoes-robbery/README.md)

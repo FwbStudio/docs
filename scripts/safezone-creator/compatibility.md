@@ -56,4 +56,5 @@ This page lists the framework, inventory, and zone engine resources currently su
 
 * Auto mode prefers the built-in `ox_lib` zone flow when available.
 * PolyZone is supported as a fallback zone engine.
+* Safezone Creator includes its own internal bridge layer for frameworks, inventories, notifications, and zone handling.
 * Check installation order before setup so dependencies are already started.
