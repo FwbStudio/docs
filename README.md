@@ -1,40 +1,35 @@
 ---
+description: These docs have moved to docs.fwbstudio.com
 layout:
-  width: wide
+  width: default
   title:
     visible: true
   description:
     visible: true
   tableOfContents:
-    visible: true
+    visible: false
   outline:
-    visible: true
+    visible: false
   pagination:
-    visible: true
-  metadata:
-    visible: true
-  tags:
-    visible: true
+    visible: false
 ---
 
-# Home
+# We have moved
 
-Public documentation for Beta resources.
+{% hint style="warning" %}
+**This site is no longer updated.** All FwB Studio documentation now lives at [**docs.fwbstudio.com**](https://docs.fwbstudio.com/).
+{% endhint %}
 
-This docs space is structured in two layers:
+The old pages here were removed because they were out of date. Every script, the Bridge and all the setup guides are on the new site, with newer installation steps, config files and common errors.
 
-* `Helpful` for general server knowledge and common setup issues
-* `Bridge` for the public `fs_bridge` documentation
+<a href="https://docs.fwbstudio.com/" class="button primary">Open the new docs</a>
 
-## Current Focus
+## FwB Studio links
 
-The current public docs focus on FiveM servers using:
+| | Link |
+|---|---|
+| 📚 **Documentation** | [docs.fwbstudio.com](https://docs.fwbstudio.com/) |
+| 🛒 **Store** | [fwbstudio.tebex.io](https://fwbstudio.tebex.io/) |
+| 💬 **Support (Discord)** | [discord.com/invite/sPqkfQHPAa](https://discord.com/invite/sPqkfQHPAa) |
 
-* `ESX`
-* `QBCore`
-* `Qbox`
-
-## Start Here
-
-* [Helpful](helpful/)
-* [Bridge](scripts/fs_bridge/)
+Followed an old link to get here? Open the new docs and find your script in the menu or with the search.
