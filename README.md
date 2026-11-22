@@ -32,4 +32,24 @@ The old pages here were removed because they were out of date. Every script, the
 | 🛒 **Store** | [fwbstudio.tebex.io](https://fwbstudio.tebex.io/) |
 | 💬 **Support (Discord)** | [discord.com/invite/sPqkfQHPAa](https://discord.com/invite/sPqkfQHPAa) |
 
+## Our other projects
+
+### CR Scripts
+
+Food, restaurant and job scripts for FiveM, made by the FwB Studio team under the CR Scripts name.
+
+| | Link |
+|---|---|
+| 📚 **Documentation** | [cr-scripts.gitbook.io/cr-scripts](https://cr-scripts.gitbook.io/cr-scripts/) |
+| 🛒 **Store** | [crscripts.tebex.io](https://crscripts.tebex.io/) |
+
+### Frontier Forge
+
+Our RedM scripts for VORP servers: installation guides, configuration and developer API.
+
+| | Link |
+|---|---|
+| 🛒 **Store** | [frontierforge.tebex.io](https://frontierforge.tebex.io/) |
+| 📚 **Documentation** | Coming soon |
+
 Followed an old link to get here? Open the new docs and find your script in the menu or with the search.
