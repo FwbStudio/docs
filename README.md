@@ -40,8 +40,8 @@ Food, restaurant and job scripts for FiveM, made by the FwB Studio team under th
 
 | | Link |
 |---|---|
-| 📚 **Documentation** | [cr-scripts.gitbook.io/cr-scripts](https://cr-scripts.gitbook.io/cr-scripts/) |
 | 🛒 **Store** | [crscripts.tebex.io](https://crscripts.tebex.io/) |
+| 📚 **Documentation** | Coming soon |
 
 ### Frontier Forge
 
